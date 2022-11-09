@@ -1,34 +1,19 @@
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun creatureCreatorPage(applicationVM: ApplicationVM) {
-    val creatureName = mutableStateOf(TextFieldValue(""))
-    val creatureRarity = mutableStateOf("Common")
-    val creatureTraits = mutableStateListOf("")
-
-
-    val showRarity = mutableStateOf(false)
-    val rarities = listOf("Common", "Uncommon", "Rare", "Unique")
-    val colorOfRarity = mutableMapOf(
-        "Common" to Color.White,
-        "Uncommon" to Color.Yellow,
-        "Rare" to Color.Cyan,
-        "Unique" to Color.Magenta
-    )
-
-    val exit_button_color = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+    val creatureVM = remember { CreatureVM() }
 
     MaterialTheme {
         Column(
@@ -36,50 +21,52 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
         ) {
             Row(Modifier.fillMaxWidth()) {
                 TextField(
-                    value = creatureName.value,
-                    onValueChange = { creatureName.value = it },
+                    value = creatureVM.creatureName.value,
+                    onValueChange = { creatureVM.creatureName.value = it },
                     label = { Text("Name") })
                 Spacer(Modifier.weight(1f))
-                Button(onClick = {applicationVM.page.value = "HomePage"}, content = { Text("x") }, colors = exit_button_color)
+                Button(
+                    onClick = { applicationVM.page.value = Pages.HomePage },
+                    content = { Text("x") },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+                )
             }
 
             Row { Text("TRAITS") }
 
             Row(Modifier.padding(vertical = 3.dp)) {
-                rarity(creatureRarity, colorOfRarity, showRarity, rarities)
-                secondaryTraits(creatureTraits)
+                dropdownWithColor(creatureVM.creatureRarity, enumValues())
+                dropdownWithColor(creatureVM.creatureAlignment, enumValues())
+                dropdownWithColor(creatureVM.creatureSize, enumValues())
+                secondaryTraits(creatureVM.creatureTraits)
             }
         }
     }
 }
 
 @Composable
-private fun rarity(
-    creatureRarity: MutableState<String>,
-    colorOfRarity: MutableMap<String, Color>,
-    showRarity: MutableState<Boolean>,
-    rarities: List<String>
+fun <T : ColorDropdownItem> dropdownWithColor(
+    dropdownList: MutableState<T>, values: Array<T>
 ) {
+    var showDropdown by remember { mutableStateOf(false) }
+
     Box(Modifier.wrapContentSize()) {
-        OutlinedTextField(
-            creatureRarity.value,
-            { creatureRarity.value = it },
-            Modifier.width(180.dp),
-            readOnly = true,
-            colors = TextFieldDefaults.textFieldColors(backgroundColor = colorOfRarity[creatureRarity.value]!!)
+        Text(
+            dropdownList.value.name,
+            Modifier.size(180.dp, 55.dp).background(dropdownList.value.color).border(1.dp, Color.Gray),
         )
-        Button(onClick = { showRarity.value = !showRarity.value }, content = { Text("^") },
+        Button(onClick = { showDropdown = !showDropdown }, content = { Text("^") },
             modifier = Modifier.align(Alignment.CenterEnd).padding(3.dp)
         )
         DropdownMenu(
-            expanded = showRarity.value,
-            onDismissRequest = { showRarity.value = false }) { //TODO resolve dismiss request problem
-            rarities.forEach {
+            expanded = showDropdown,
+            onDismissRequest = { showDropdown = false }) { //TODO resolve dismiss request problem
+            values.forEach {
                 DropdownMenuItem(onClick = {
-                    creatureRarity.value = it
-                    showRarity.value = false
+                    dropdownList.value = it
+                    showDropdown = false
                 }) {
-                    Text(it)
+                    Text(it.name)
                 }
             }
         }
@@ -89,13 +76,13 @@ private fun rarity(
 @Composable
 private fun secondaryTraits(creatureTraits: SnapshotStateList<String>) {
     creatureTraits.forEachIndexed { index, _ ->
-        if (index != creatureTraits.size -1) {
-        OutlinedTextField(
-            creatureTraits[index], { creatureTraits[index] = it }, modifier = Modifier
-                .width(180.dp)
-                .padding(horizontal = 5.dp)
-        )}
-        else {
+        if (index != creatureTraits.size - 1) {
+            OutlinedTextField(
+                creatureTraits[index], { creatureTraits[index] = it }, modifier = Modifier
+                    .width(180.dp)
+                    .padding(horizontal = 5.dp)
+            )
+        } else {
             OutlinedTextField(
                 creatureTraits[index], { creatureTraits[index] = it }, modifier = Modifier
                     .width(180.dp)
@@ -105,7 +92,19 @@ private fun secondaryTraits(creatureTraits: SnapshotStateList<String>) {
 
     }
     Column(verticalArrangement = Arrangement.Top) {
-        Button(onClick = { creatureTraits.add("") }, content = { Text(text = "+", textAlign = TextAlign.Center, modifier = Modifier.size(15.dp))}, modifier = Modifier.size(27.5f.dp))
-        Button(onClick = { creatureTraits.removeAt(creatureTraits.size - 1) }, content = { Text("-", textAlign = TextAlign.Center) }, modifier = Modifier.size(27.5f.dp))
+        Button(
+            onClick = { creatureTraits.add("") },
+            Modifier.size(27.5f.dp),
+            contentPadding = PaddingValues(2.dp),
+        ) {
+            Text(text = "+", textAlign = TextAlign.Center, fontSize = 7.sp)
+        }
+        Button(
+            onClick = { creatureTraits.removeAt(creatureTraits.size - 1) },
+            Modifier.size(27.5f.dp),
+            contentPadding = PaddingValues(2.dp),
+        ) {
+            Text("-", textAlign = TextAlign.Center, fontSize = 7.sp)
+        }
     }
 }

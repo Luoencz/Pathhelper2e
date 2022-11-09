@@ -48,7 +48,7 @@ fun homePage(applicationVM: ApplicationVM) {
                         )
                         Button(
                             onClick = {
-                                applicationVM.page.value = "CreatureCreatorPage"
+                                applicationVM.page.value = Pages.CreatureCreatorPage
                                 println(applicationVM.page.value)
                             }
                         ) {
