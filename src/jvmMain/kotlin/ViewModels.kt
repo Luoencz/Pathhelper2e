@@ -8,10 +8,44 @@ class ApplicationVM {
 
 class CreatureVM {
     val creatureName = mutableStateOf(TextFieldValue(""))
+
     val creatureRarity = mutableStateOf(Rarities.Common)
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
-    val creatureTraits = mutableStateListOf("")
+    val creatureSecondaryTraits = mutableStateListOf("")
+
+    val proficiencies = mutableStateMapOf<Skill, Proficiency>()
+}
+
+enum class Proficiency(override val color: Color) : ColorDropdownItem {
+    Untrained(Color.Transparent),
+    Trained(Color.White),
+    Expert(Color.Yellow),
+    Master(Color.Cyan),
+    Legendary(Color.Magenta)
+
+}
+
+enum class Skill(
+    val title: String
+) {
+    Acrobatics("Acrobatics"),
+    Arcana("Arcana"),
+    Athletics("Athletics"),
+    Crafting("Crafting"),
+    Deception("Deception"),
+    Diplomacy("Diplomacy"),
+    Intimidation("Intimidation"),
+    Medicine("Medicine"),
+    Nature("Nature"),
+    Occultism("Occultism"),
+    Performance("Performance"),
+    Religion("Religion"),
+    Society("Society"),
+    Stealth("Stealth"),
+    Survival("Survival"),
+    Thievery("Thievery")
+
 }
 
 interface ColorDropdownItem {
@@ -19,7 +53,7 @@ interface ColorDropdownItem {
     val name: String
 }
 
-enum class Alignment(override val color: Color): ColorDropdownItem {
+enum class Alignment(override val color: Color) : ColorDropdownItem {
     LG(Color.Green),
     NG(Color.Green),
     CG(Color.Green),
@@ -32,7 +66,7 @@ enum class Alignment(override val color: Color): ColorDropdownItem {
     CE(Color.Green)
 }
 
-enum class Size(override val color: Color): ColorDropdownItem {
+enum class Size(override val color: Color) : ColorDropdownItem {
     Tiny(Color.LightGray),
     Small(Color.LightGray),
     Medium(Color.LightGray),

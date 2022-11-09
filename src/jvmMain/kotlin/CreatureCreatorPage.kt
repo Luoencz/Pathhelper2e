@@ -32,13 +32,36 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 )
             }
 
-            Row { Text("TRAITS") }
+            Text("TRAITS")
 
             Row(Modifier.padding(vertical = 3.dp)) {
-                dropdownWithColor(creatureVM.creatureRarity, enumValues())
-                dropdownWithColor(creatureVM.creatureAlignment, enumValues())
-                dropdownWithColor(creatureVM.creatureSize, enumValues())
-                secondaryTraits(creatureVM.creatureTraits)
+                dropdownWithColor(
+                    creatureVM.creatureRarity.value,
+                    { creatureVM.creatureRarity.value = it },
+                    enumValues()
+                )
+                dropdownWithColor(
+                    creatureVM.creatureAlignment.value,
+                    { creatureVM.creatureAlignment.value = it },
+                    enumValues()
+                )
+                dropdownWithColor(
+                    creatureVM.creatureSize.value,
+                    { creatureVM.creatureSize.value = it },
+                    enumValues()
+                )
+                secondaryTraits(creatureVM.creatureSecondaryTraits)
+            }
+
+            Text("SKILLS")
+
+            Skill.values().forEach { skill ->
+                Row {
+                    Text(skill.title)
+                    dropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
+                        creatureVM.proficiencies[skill] = it
+                    }, Proficiency.values())
+                }
             }
         }
     }
@@ -46,14 +69,14 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
 
 @Composable
 fun <T : ColorDropdownItem> dropdownWithColor(
-    dropdownList: MutableState<T>, values: Array<T>
+    selected: T, onValueChanged: (T) -> Unit, values: Array<T>
 ) {
     var showDropdown by remember { mutableStateOf(false) }
 
     Box(Modifier.wrapContentSize()) {
         Text(
-            dropdownList.value.name,
-            Modifier.size(180.dp, 55.dp).background(dropdownList.value.color).border(1.dp, Color.Gray),
+            selected.name,
+            Modifier.size(180.dp, 55.dp).background(selected.color).border(1.dp, Color.Gray),
         )
         Button(onClick = { showDropdown = !showDropdown }, content = { Text("^") },
             modifier = Modifier.align(Alignment.CenterEnd).padding(3.dp)
@@ -63,7 +86,7 @@ fun <T : ColorDropdownItem> dropdownWithColor(
             onDismissRequest = { showDropdown = false }) { //TODO resolve dismiss request problem
             values.forEach {
                 DropdownMenuItem(onClick = {
-                    dropdownList.value = it
+                    onValueChanged(it)
                     showDropdown = false
                 }) {
                     Text(it.name)
@@ -75,21 +98,19 @@ fun <T : ColorDropdownItem> dropdownWithColor(
 
 @Composable
 private fun secondaryTraits(creatureTraits: SnapshotStateList<String>) {
-    creatureTraits.forEachIndexed { index, _ ->
-        if (index != creatureTraits.size - 1) {
-            OutlinedTextField(
-                creatureTraits[index], { creatureTraits[index] = it }, modifier = Modifier
-                    .width(180.dp)
-                    .padding(horizontal = 5.dp)
-            )
-        } else {
-            OutlinedTextField(
-                creatureTraits[index], { creatureTraits[index] = it }, modifier = Modifier
-                    .width(180.dp)
-                    .padding(start = 5.dp)
-            )
-        }
-
+    creatureTraits.forEachIndexed { index, value ->
+        OutlinedTextField(
+            value,
+            { creatureTraits[index] = it },
+            modifier = Modifier
+                .width(180.dp)
+                .then(
+                    if (index != creatureTraits.size - 1)
+                        Modifier.padding(horizontal = 5.dp)
+                    else
+                        Modifier.padding(start = 5.dp)
+                )
+        )
     }
     Column(verticalArrangement = Arrangement.Top) {
         Button(
