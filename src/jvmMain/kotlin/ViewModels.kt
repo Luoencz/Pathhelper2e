@@ -15,6 +15,7 @@ class CreatureVM {
     val creatureSecondaryTraits = mutableStateListOf("")
 
     val proficiencies = mutableStateMapOf<Skill, Proficiency>()
+    val abilityScores = mutableStateOf(CreatureAbilityScores())
 }
 
 enum class Proficiency(override val color: Color) : ColorDropdownItem {
@@ -24,6 +25,29 @@ enum class Proficiency(override val color: Color) : ColorDropdownItem {
     Master(Color.Cyan),
     Legendary(Color.Magenta)
 
+}
+
+
+class AbilityScore(Score: Int,Name: String) {
+    val score = mutableStateOf(Score)
+
+    val modifier = derivedStateOf {
+        (score.value - 10) / 2
+    }
+    val name = Name
+}
+
+class CreatureAbilityScores() {
+    val strength = AbilityScore(10,"Strength")
+    val dexterity = AbilityScore(10, "Dexterity")
+    val constitution = AbilityScore(10, "Constitution")
+    val intelligence = AbilityScore(10, "Intelligence")
+    val wisdom = AbilityScore(10, "Wisdom")
+    val charisma = AbilityScore(10, "Charisma")
+
+    fun list_ability_scores(): List<AbilityScore> {
+        return mutableListOf(strength,dexterity,constitution,intelligence,wisdom,charisma)
+    }
 }
 
 enum class Skill(
