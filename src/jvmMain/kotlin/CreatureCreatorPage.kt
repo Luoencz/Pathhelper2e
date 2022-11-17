@@ -1,22 +1,17 @@
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshots.*
+import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import java.lang.NumberFormatException
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.text.*
+import androidx.compose.ui.text.input.*
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.unit.*
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun creatureCreatorPage(applicationVM: ApplicationVM) {
     val creatureVM = remember { CreatureVM() }
@@ -41,61 +36,62 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             Text("TRAITS")
 
             Row(Modifier.padding(vertical = 3.dp)) {
-                dropdownWithColor(
+                DropdownWithColor(
                     creatureVM.creatureRarity.value,
                     { creatureVM.creatureRarity.value = it },
                     enumValues()
                 )
-                dropdownWithColor(
+                DropdownWithColor(
                     creatureVM.creatureAlignment.value,
                     { creatureVM.creatureAlignment.value = it },
                     enumValues()
                 )
-                dropdownWithColor(
+                DropdownWithColor(
                     creatureVM.creatureSize.value,
                     { creatureVM.creatureSize.value = it },
                     enumValues()
                 )
-                secondaryTraits(creatureVM.creatureSecondaryTraits)
+                SecondaryTraits(creatureVM.creatureSecondaryTraits)
             }
 
             Text("ABILITY SCORES")
 
-            ability_scores(creatureVM)
-
+            AbilityScores(creatureVM)
 
             Text("SKILLS")
 
-            experimental_skills_grid2(creatureVM)
+            ExperimentalSkillsGrid2(creatureVM)
         }
     }
 }
 
 @Composable
-private fun ability_scores(creatureVM: CreatureVM) {
+private fun AbilityScores(creatureVM: CreatureVM) {
     val pattern = remember { Regex("^\\d+\$") }
 
-    creatureVM.abilityScores.value.list_ability_scores().forEach { ability ->
-        Row {
-            TextField(
-                value = TextFieldValue(
-                    ability.score.value.toString(),
-                    selection = TextRange(ability.score.value.toString().length)
-                ),
-                onValueChange = {
-                    if (it.text.isEmpty()) {
-                        ability.score.value = 0
-                    }
-                    if (it.text.matches(pattern)) {
-                        ability.score.value = it.text.toInt()
-                    }
-                },
-                label = { Text(ability.name) },
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
-            )
+    Column {
+        creatureVM.abilityScores.forEach { ability ->
+            key(ability.name) {
+                Row {
+                    TextField(
+                        value = TextFieldValue(
+                            ability.score.toString(),
+                            selection = TextRange(ability.score.toString().length)
+                        ),
+                        onValueChange = {
+                            when {
+                                it.text.isEmpty() -> ability.score = 0
+                                it.text.matches(pattern) -> ability.score = it.text.toInt()
+                                else -> ability.score = ability.score
+                            }
+                        },
+                        label = { Text(ability.name) },
+                    )
 
-            val mod = ability.modifier.value
-            Text(text = if (mod < 0) mod.toString() else "+$mod")
+                    val mod = ability.modifier
+                    Text(text = if (mod < 0) mod.toString() else "+$mod")
+                }
+            }
         }
     }
 }
@@ -106,7 +102,7 @@ private fun experimental_skills_grid(creatureVM: CreatureVM) {
     LazyVerticalGrid(cells = GridCells.Adaptive(160.dp)) {
         items(Skill.values()) { skill ->
             Text(skill.title)
-            dropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
+            DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
                 creatureVM.proficiencies[skill] = it
             }, Proficiency.values())
         }
@@ -115,7 +111,7 @@ private fun experimental_skills_grid(creatureVM: CreatureVM) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun experimental_skills_grid2(creatureVM: CreatureVM) {
+private fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
     val items = Skill.values()
 
     LazyVerticalGrid(
@@ -124,7 +120,7 @@ private fun experimental_skills_grid2(creatureVM: CreatureVM) {
         items(items.size) { index ->
             Column {
                 Text(items[index].title, modifier = Modifier.absolutePadding(top = 5.dp))
-                dropdownWithColor(creatureVM.proficiencies[items[index]] ?: Proficiency.Untrained, {
+                DropdownWithColor(creatureVM.proficiencies[items[index]] ?: Proficiency.Untrained, {
                     creatureVM.proficiencies[items[index]] = it
                 }, Proficiency.values())
             }
@@ -138,7 +134,7 @@ private fun skills_grid(creatureVM: CreatureVM) {
         Skill.values().forEach { skill ->
             Column {
                 Text(skill.title)
-                dropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
+                DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
                     creatureVM.proficiencies[skill] = it
                 }, Proficiency.values())
             }
@@ -147,7 +143,7 @@ private fun skills_grid(creatureVM: CreatureVM) {
 }
 
 @Composable
-fun <T : ColorDropdownItem> dropdownWithColor(
+fun <T : ColorDropdownItem> DropdownWithColor(
     selected: T, onValueChanged: (T) -> Unit, values: Array<T>
 ) {
     var showDropdown by remember { mutableStateOf(false) }
@@ -176,7 +172,7 @@ fun <T : ColorDropdownItem> dropdownWithColor(
 }
 
 @Composable
-private fun secondaryTraits(creatureTraits: SnapshotStateList<String>) {
+private fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
     creatureTraits.forEachIndexed { index, value ->
         OutlinedTextField(
             value,
