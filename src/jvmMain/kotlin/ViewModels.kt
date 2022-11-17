@@ -26,7 +26,7 @@ class CreatureVM {
         proficiencies.mapValues { skillProficiency ->
             val (skill, proficiency) = skillProficiency
             when (skill) {
-                Skill.Acrobatics -> abilityScores.first { it.name == "Dexterity" }.modifier
+                Skill.Acrobatics -> abilityScores[Ability.Dexterity]!!.modifier
                 Skill.Arcana -> 0
                 Skill.Athletics -> 0
                 Skill.Crafting -> 0
@@ -46,15 +46,23 @@ class CreatureVM {
         }
     }
 
-    val abilityScores = listOf(
-        AbilityScore(10, "Strength"),
-        AbilityScore(10, "Dexterity"),
-        AbilityScore(10, "Constitution"),
-        AbilityScore(10, "Intelligence"),
-        AbilityScore(10, "Wisdom"),
-        AbilityScore(10, "Charisma")
+    val abilityScores = mapOf(
+        Ability.Strength to AbilityScore(10),
+        Ability.Dexterity to AbilityScore(10),
+        Ability.Constitution to AbilityScore(10),
+        Ability.Intelligence to AbilityScore(10),
+        Ability.Wisdom to AbilityScore(10),
+        Ability.Charisma to AbilityScore(10)
     )
+}
 
+enum class Ability() {
+    Strength,
+    Dexterity,
+    Constitution,
+    Intelligence,
+    Wisdom,
+    Charisma
 }
 
 enum class Proficiency(override val color: Color) : ColorDropdownItem {
@@ -65,7 +73,7 @@ enum class Proficiency(override val color: Color) : ColorDropdownItem {
     Legendary(Color.Magenta)
 }
 
-class AbilityScore(score: Int, val name: String) {
+class AbilityScore(score: Int) {
     var score by mutableStateOf(score, neverEqualPolicy())
 
     val modifier by derivedStateOf {

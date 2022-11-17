@@ -76,24 +76,25 @@ private fun AbilityScores(creatureVM: CreatureVM) {
     val pattern = remember { Regex("^[0-9]*\\.*\\-?[0-9]+\$") }
 
     Column {
-        creatureVM.abilityScores.forEach { ability ->
+        creatureVM.abilityScores.forEach { abilityInfo ->
+            val (ability, info) = abilityInfo // read about Kotlin decompose
             key(ability.name) {
                 Row {
                     TextField(
                         value = TextFieldValue(
-                            ability.score.toString(),
-                            selection = TextRange(ability.score.toString().length)
+                            info.score.toString(),
+                            selection = TextRange(info.score.toString().length)
                 ),
                 onValueChange = {
                             when {
-                                it.text.isEmpty() -> ability.score = 0
-                                it.text.matches(pattern) -> ability.score = it.text.toInt()
-                                else -> ability.score = ability.score}
+                                it.text.isEmpty() -> info.score = 0
+                                it.text.matches(pattern) -> info.score = it.text.toInt()
+                                else -> info.score = info.score}
                 },
                 label = { Text(ability.name) },
             )
 
-                    val mod = ability.modifier
+                    val mod = info.modifier
                     Text(text = if (mod < 0) mod.toString() else "+$mod")
                 }
             }
