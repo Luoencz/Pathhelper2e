@@ -41,7 +41,7 @@ class CreatureVM {
     )
 }
 
-enum class Ability() {
+enum class Ability {
     Strength,
     Dexterity,
     Constitution,
