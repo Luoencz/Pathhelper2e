@@ -25,6 +25,11 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                     value = creatureVM.creatureName.value,
                     onValueChange = { creatureVM.creatureName.value = it },
                     label = { Text("Name") })
+                 TextField(
+                    value = creatureVM.creatureLevel.value.toString(),
+                    onValueChange = {creatureVM.creatureLevel.value = it.toInt()},
+                    label = { Text("Level") }
+                )
                 Spacer(Modifier.weight(1f))
                 Button(
                     onClick = { applicationVM.page.value = Pages.HomePage },
@@ -67,7 +72,8 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
 
 @Composable
 private fun AbilityScores(creatureVM: CreatureVM) {
-    val pattern = remember { Regex("^\\d+\$") }
+    //val pattern = remember { Regex("^\\d+\$") }
+    val pattern = remember { Regex("^[0-9]*\\.*\\-?[0-9]+\$") }
 
     Column {
         creatureVM.abilityScores.forEach { ability ->
@@ -77,16 +83,15 @@ private fun AbilityScores(creatureVM: CreatureVM) {
                         value = TextFieldValue(
                             ability.score.toString(),
                             selection = TextRange(ability.score.toString().length)
-                        ),
-                        onValueChange = {
+                ),
+                onValueChange = {
                             when {
                                 it.text.isEmpty() -> ability.score = 0
                                 it.text.matches(pattern) -> ability.score = it.text.toInt()
-                                else -> ability.score = ability.score
-                            }
-                        },
-                        label = { Text(ability.name) },
-                    )
+                                else -> ability.score = ability.score}
+                },
+                label = { Text(ability.name) },
+            )
 
                     val mod = ability.modifier
                     Text(text = if (mod < 0) mod.toString() else "+$mod")
@@ -119,9 +124,10 @@ private fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
     ) {
         items(items.size) { index ->
             Column {
-                Text(items[index].title, modifier = Modifier.absolutePadding(top = 5.dp))
-                DropdownWithColor(creatureVM.proficiencies[items[index]] ?: Proficiency.Untrained, {
-                    creatureVM.proficiencies[items[index]] = it
+                val skill = items[index]
+                Text(skill.title + "        " + creatureVM.skillModifiers[skill], modifier = Modifier.absolutePadding(top = 5.dp))
+                DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
+                    creatureVM.proficiencies[skill] = it
                 }, Proficiency.values())
             }
         }
@@ -171,23 +177,12 @@ fun <T : ColorDropdownItem> DropdownWithColor(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
-    creatureTraits.forEachIndexed { index, value ->
-        OutlinedTextField(
-            value,
-            { creatureTraits[index] = it },
-            modifier = Modifier
-                .width(180.dp)
-                .then(
-                    if (index != creatureTraits.size - 1)
-                        Modifier.padding(horizontal = 5.dp)
-                    else
-                        Modifier.padding(start = 5.dp)
-                )
-        )
-    }
-    Column(verticalArrangement = Arrangement.Top) {
+    val list = creatureTraits
+
+    Column(verticalArrangement = Arrangement.Top, modifier = Modifier.padding(start = 10.dp)) {
         Button(
             onClick = { creatureTraits.add("") },
             Modifier.size(27.5f.dp),
@@ -201,6 +196,23 @@ private fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
             contentPadding = PaddingValues(2.dp),
         ) {
             Text("-", textAlign = TextAlign.Center, fontSize = 7.sp)
+        }
+    }
+
+    LazyVerticalGrid(cells = GridCells.Adaptive(160.dp)) {
+        items(list.size) { index ->
+            OutlinedTextField(
+                list[index],
+                { creatureTraits[index] = it },
+                modifier = Modifier
+                    .width(180.dp)
+                    .then(
+                        if (index == 0)
+                            Modifier.padding(end = 5.dp)
+                        else
+                            Modifier.padding(horizontal = 5.dp)
+                    )
+            )
         }
     }
 }

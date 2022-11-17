@@ -1,20 +1,50 @@
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
+import kotlin.math.floor
 
 class ApplicationVM {
     val page = mutableStateOf(Pages.HomePage)
 }
 
 class CreatureVM {
-    val creatureName = mutableStateOf(TextFieldValue(""))
+    val creatureName = mutableStateOf("")
+    val creatureLevel = mutableStateOf(0)
 
     val creatureRarity = mutableStateOf(Rarities.Common)
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
-    val creatureSecondaryTraits = mutableStateListOf("")
+    val creatureSecondaryTraits = mutableStateListOf("", "")
 
-    val proficiencies = mutableStateMapOf<Skill, Proficiency>()
+    val proficiencies = mutableStateMapOf<Skill, Proficiency>().apply {
+        Skill.values().forEach {
+            put(it, Proficiency.Untrained)
+        }
+    }
+
+    val skillModifiers by derivedStateOf {
+        proficiencies.mapValues { skillProficiency ->
+            val (skill, proficiency) = skillProficiency
+            when (skill) {
+                Skill.Acrobatics -> abilityScores.first { it.name == "Dexterity" }.modifier
+                Skill.Arcana -> 0
+                Skill.Athletics -> 0
+                Skill.Crafting -> 0
+                Skill.Deception -> 0
+                Skill.Diplomacy -> 0
+                Skill.Intimidation -> 0
+                Skill.Medicine -> 0
+                Skill.Nature -> 0
+                Skill.Occultism -> 0
+                Skill.Performance -> 0
+                Skill.Religion -> 0
+                Skill.Society -> 0
+                Skill.Stealth -> 0
+                Skill.Survival -> 0
+                Skill.Thievery -> 0
+            }
+        }
+    }
 
     val abilityScores = listOf(
         AbilityScore(10, "Strength"),
@@ -28,19 +58,19 @@ class CreatureVM {
 }
 
 enum class Proficiency(override val color: Color) : ColorDropdownItem {
-    Untrained(Color.Transparent), Trained(Color.White), Expert(Color.Yellow), Master(Color.Cyan), Legendary(Color.Magenta)
+    Untrained(Color.Transparent),
+    Trained(Color.White),
+    Expert(Color.Yellow),
+    Master(Color.Cyan),
+    Legendary(Color.Magenta)
 }
 
 class AbilityScore(score: Int, val name: String) {
     var score by mutableStateOf(score, neverEqualPolicy())
 
     val modifier by derivedStateOf {
-        (this.score - 10) / 2
+        floor((this.score - 10) / 2.0).toInt()
     }
-}
-
-class CreatureAbilityScores() {
-
 }
 
 enum class Skill(
