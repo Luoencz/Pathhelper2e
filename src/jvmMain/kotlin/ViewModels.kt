@@ -1,6 +1,5 @@
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
 import kotlin.math.floor
 
 class ApplicationVM {
@@ -25,26 +24,12 @@ class CreatureVM {
     val skillModifiers by derivedStateOf {
         proficiencies.mapValues { skillProficiency ->
             val (skill, proficiency) = skillProficiency
-            when (skill) {
-                Skill.Acrobatics -> abilityScores[Ability.Dexterity]!!.modifier
-                Skill.Arcana -> 0
-                Skill.Athletics -> 0
-                Skill.Crafting -> 0
-                Skill.Deception -> 0
-                Skill.Diplomacy -> 0
-                Skill.Intimidation -> 0
-                Skill.Medicine -> 0
-                Skill.Nature -> 0
-                Skill.Occultism -> 0
-                Skill.Performance -> 0
-                Skill.Religion -> 0
-                Skill.Society -> 0
-                Skill.Stealth -> 0
-                Skill.Survival -> 0
-                Skill.Thievery -> 0
-            }
+            calculateSkillModifier(skill.keyAbility, proficiency)
         }
     }
+
+    private fun calculateSkillModifier(keyAbility: Ability, proficiency: Proficiency) =
+        abilityScores[keyAbility]!!.modifier + (creatureLevel.value * proficiency.levelMultiplier) + proficiency.addition
 
     val abilityScores = mapOf(
         Ability.Strength to AbilityScore(10),
@@ -65,12 +50,12 @@ enum class Ability() {
     Charisma
 }
 
-enum class Proficiency(override val color: Color) : ColorDropdownItem {
-    Untrained(Color.Transparent),
-    Trained(Color.White),
-    Expert(Color.Yellow),
-    Master(Color.Cyan),
-    Legendary(Color.Magenta)
+enum class Proficiency(override val color: Color, val levelMultiplier: Int, val addition: Int) : ColorDropdownItem {
+    Untrained(Color.Transparent, 0, 0),
+    Trained(Color.White, 1, 2),
+    Expert(Color.Yellow, 1, 4),
+    Master(Color.Cyan, 1, 6),
+    Legendary(Color.Magenta, 1, 8)
 }
 
 class AbilityScore(score: Int) {
@@ -82,15 +67,25 @@ class AbilityScore(score: Int) {
 }
 
 enum class Skill(
-    val title: String
+    val title: String,
+    val keyAbility: Ability
 ) {
-    Acrobatics("Acrobatics"), Arcana("Arcana"), Athletics("Athletics"), Crafting("Crafting"), Deception("Deception"), Diplomacy(
-        "Diplomacy"
-    ),
-    Intimidation("Intimidation"), Medicine("Medicine"), Nature("Nature"), Occultism("Occultism"), Performance("Performance"), Religion(
-        "Religion"
-    ),
-    Society("Society"), Stealth("Stealth"), Survival("Survival"), Thievery("Thievery")
+    Acrobatics("Acrobatics", Ability.Dexterity),
+    Arcana("Arcana", Ability.Intelligence),
+    Athletics("Athletics", Ability.Strength),
+    Crafting("Crafting", Ability.Intelligence),
+    Deception("Deception", Ability.Charisma),
+    Diplomacy("Diplomacy", Ability.Charisma),
+    Intimidation("Intimidation", Ability.Charisma),
+    Medicine("Medicine", Ability.Wisdom),
+    Nature("Nature", Ability.Wisdom),
+    Occultism("Occultism", Ability.Intelligence),
+    Performance("Performance", Ability.Charisma),
+    Religion("Religion", Ability.Wisdom),
+    Society("Society", Ability.Charisma),
+    Stealth("Stealth", Ability.Dexterity),
+    Survival("Survival", Ability.Wisdom),
+    Thievery("Thievery", Ability.Dexterity)
 
 }
 
