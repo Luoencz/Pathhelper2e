@@ -1,21 +1,16 @@
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshots.*
+import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.text.*
+import androidx.compose.ui.text.input.*
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.unit.*
 
 @Composable
 public fun AbilityScores(creatureVM: CreatureVM) {
@@ -53,7 +48,7 @@ public fun AbilityScores(creatureVM: CreatureVM) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 public fun experimental_skills_grid(creatureVM: CreatureVM) {
-    LazyVerticalGrid(cells = GridCells.Adaptive(160.dp)) {
+    LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
         items(Skill.values()) { skill ->
             Text(skill.title)
             DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
@@ -69,7 +64,7 @@ public fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
     val items = Skill.values()
 
     LazyVerticalGrid(
-        cells = GridCells.Adaptive(160.dp)
+        columns = GridCells.Adaptive(160.dp)
     ) {
         items(items.size) { index ->
             Column {
@@ -150,7 +145,7 @@ public fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
         }
     }
 
-    LazyVerticalGrid(cells = GridCells.Adaptive(160.dp)) {
+    LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
         items(creatureTraits.size) { index ->
             OutlinedTextField(
                 creatureTraits[index],

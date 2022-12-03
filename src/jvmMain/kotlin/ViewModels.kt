@@ -59,7 +59,7 @@ enum class Proficiency(override val color: Color, val levelMultiplier: Int, val 
 }
 
 class AbilityScore(score: Int) {
-    var score by mutableStateOf(score, neverEqualPolicy())
+    var score by mutableStateOf(score)
 
     val modifier by derivedStateOf {
         floor((this.score - 10) / 2.0).toInt()
