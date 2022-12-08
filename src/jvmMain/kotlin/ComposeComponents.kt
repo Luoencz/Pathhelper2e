@@ -13,9 +13,9 @@ import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 
 @Composable
-public fun AbilityScores(creatureVM: CreatureVM) {
+fun AbilityScores(creatureVM: CreatureVM) {
     //val pattern = remember { Regex("^\\d+\$") }
-    val pattern = remember { Regex("^[0-9]*\\.*\\-?[0-9]+\$") }
+    val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
 
     Column {
         creatureVM.abilityScores.forEach { abilityInfo ->
@@ -45,9 +45,8 @@ public fun AbilityScores(creatureVM: CreatureVM) {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-public fun experimental_skills_grid(creatureVM: CreatureVM) {
+fun experimental_skills_grid(creatureVM: CreatureVM) {
     LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
         items(Skill.values()) { skill ->
             Text(skill.title)
@@ -58,9 +57,8 @@ public fun experimental_skills_grid(creatureVM: CreatureVM) {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-public fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
+fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
     val items = Skill.values()
 
     LazyVerticalGrid(
@@ -82,7 +80,7 @@ public fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
 }
 
 @Composable
-public fun skills_grid(creatureVM: CreatureVM) {
+fun skills_grid(creatureVM: CreatureVM) {
     Row {
         Skill.values().forEach { skill ->
             Column {
@@ -96,7 +94,7 @@ public fun skills_grid(creatureVM: CreatureVM) {
 }
 
 @Composable
-public fun <T : ColorDropdownItem> DropdownWithColor(
+fun <T : ColorDropdownItem> DropdownWithColor(
     selected: T, onValueChanged: (T) -> Unit, values: Array<T>
 ) {
     var showDropdown by remember { mutableStateOf(false) }
@@ -124,41 +122,45 @@ public fun <T : ColorDropdownItem> DropdownWithColor(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-public fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
-
-    Column(verticalArrangement = Arrangement.Top, modifier = Modifier.padding(start = 10.dp)) {
-        Button(
-            onClick = { creatureTraits.add("") },
-            androidx.compose.ui.Modifier.size(27.5f.dp),
-            contentPadding = PaddingValues(2.dp),
-        ) {
-            Text(text = "+", textAlign = TextAlign.Center, fontSize = 7.sp)
-        }
-        Button(
-            onClick = { creatureTraits.removeAt(creatureTraits.size - 1) },
-            androidx.compose.ui.Modifier.size(27.5f.dp),
-            contentPadding = PaddingValues(2.dp),
-        ) {
-            Text("-", textAlign = TextAlign.Center, fontSize = 7.sp)
-        }
-    }
-
+fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
     LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
-        items(creatureTraits.size) { index ->
-            OutlinedTextField(
-                creatureTraits[index],
-                { creatureTraits[index] = it },
-                modifier = androidx.compose.ui.Modifier
-                    .width(180.dp)
-                    .then(
-                        if (index == 0)
-                            Modifier.padding(end = 5.dp)
+        items(creatureTraits.size+1) { index ->
+            if (index < creatureTraits.size) {
+                OutlinedTextField(
+                    creatureTraits[index],
+                    { creatureTraits[index] = it },
+                    modifier = Modifier
+                        /*.then(
+                        if (index == creatureTraits.size-1)
+                            Modifier.padding(start = 5.dp, end = 5.dp)
                         else
                             Modifier.padding(horizontal = 5.dp)
-                    )
-            )
+                    )*/
+                        .padding(horizontal = 5.dp)
+                )
+            }
+
+            if (index == creatureTraits.size) {
+                Column(verticalArrangement = Arrangement.Top) {
+                    Button(
+                        onClick = { creatureTraits.add("") },
+                        Modifier.size(27.5f.dp),
+                        contentPadding = PaddingValues(2.dp),
+                    ) {
+                        Text(text = "+", textAlign = TextAlign.Center, fontSize = 7.sp)
+                    }
+                    Button(
+                        onClick = { creatureTraits.removeAt(creatureTraits.size - 1) },
+                        Modifier.size(27.5f.dp),
+                        contentPadding = PaddingValues(2.dp),
+                    ) {
+                        Text("-", textAlign = TextAlign.Center, fontSize = 7.sp)
+                    }
+                }
+            }
+
+
         }
     }
 }
