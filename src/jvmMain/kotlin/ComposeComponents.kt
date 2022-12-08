@@ -11,6 +11,7 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.window.Popup
 
 @Composable
 fun AbilityScores(creatureVM: CreatureVM) {
@@ -60,7 +61,6 @@ fun experimental_skills_grid(creatureVM: CreatureVM) {
 @Composable
 fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
     val items = Skill.values()
-
     LazyVerticalGrid(
         columns = GridCells.Adaptive(160.dp)
     ) {
@@ -102,10 +102,15 @@ fun <T : ColorDropdownItem> DropdownWithColor(
     Box(Modifier.wrapContentSize()) {
         Text(
             selected.name,
-            Modifier.size(180.dp, 55.dp).background(selected.color).border(1.dp, Color.Gray),
+            Modifier
+                .size(180.dp, 55.dp)
+                .background(selected.color)
+                .border(1.dp, Color.Gray),
         )
         Button(onClick = { showDropdown = !showDropdown }, content = { Text("^") },
-            modifier = Modifier.align(Alignment.CenterEnd).padding(3.dp)
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(3.dp)
         )
         DropdownMenu(
             expanded = showDropdown,
@@ -116,6 +121,44 @@ fun <T : ColorDropdownItem> DropdownWithColor(
                     showDropdown = false
                 }) {
                     Text(it.name)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun LevelChoice(creatureVM: CreatureVM) {
+    var popupControl by remember { mutableStateOf(false) }
+
+    Text(
+        creatureVM.creatureLevel.value.toString(),
+        Modifier
+            .size(180.dp, 55.dp)
+            .background(Color.Gray)
+            .border(1.dp, Color.Gray),
+    )
+    Button(onClick = {popupControl = true}, content = {Text("^")})
+
+    if (popupControl)
+    Popup(focusable = true, onDismissRequest = {popupControl = false}) {
+        Column(Modifier.padding(end = 30.dp,top = 80.dp).background(Color.Gray)) {
+            Text(
+                "Choose level of the creature!",
+                Modifier
+                    .padding(bottom = 5.dp)
+                    .background(Color.Gray)
+            )
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(70.dp),
+            ) {
+                items(22) { index ->
+                    Button(onClick = {
+                        creatureVM.creatureLevel.value = index - 1
+                        popupControl = false
+                    }, Modifier.padding(5.dp)) {
+                        Text((index - 1).toString())
+                    }
                 }
             }
         }
