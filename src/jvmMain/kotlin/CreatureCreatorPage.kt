@@ -66,8 +66,9 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                     { creatureVM.creatureSize.value = it },
                     enumValues()
                 )
-                SecondaryTraits(creatureVM.creatureSecondaryTraits)
+
             }
+            SecondaryTraits(creatureVM.creatureSecondaryTraits)
 
             Text("ABILITY SCORES")
 

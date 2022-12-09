@@ -99,13 +99,13 @@ fun <T : ColorDropdownItem> DropdownWithColor(
 ) {
     var showDropdown by remember { mutableStateOf(false) }
 
-    Box(Modifier.wrapContentSize()) {
+    Box(Modifier.wrapContentSize().padding(end = 10.dp)) {
         Text(
             selected.name,
             Modifier
-                .size(180.dp, 55.dp)
+                .size(170.dp, 55.dp)
                 .background(selected.color)
-                .border(1.dp, Color.Gray),
+                .border(1.dp, Color.Gray)
         )
         Button(onClick = { showDropdown = !showDropdown }, content = { Text("^") },
             modifier = Modifier
@@ -137,12 +137,13 @@ fun LevelChoice(creatureVM: CreatureVM) {
             .size(180.dp, 55.dp)
             .background(Color.Gray)
             .border(1.dp, Color.Gray),
+        textAlign = TextAlign.Left
     )
     Button(onClick = {popupControl = true}, content = {Text("^")})
 
     if (popupControl)
     Popup(focusable = true, onDismissRequest = {popupControl = false}) {
-        Column(Modifier.padding(end = 30.dp,top = 80.dp).background(Color.Gray)) {
+        Column(Modifier.padding(end = 30.dp,top = 60.dp).background(Color.Gray)) {
             Text(
                 "Choose level of the creature!",
                 Modifier
@@ -152,7 +153,7 @@ fun LevelChoice(creatureVM: CreatureVM) {
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(70.dp),
             ) {
-                items(22) { index ->
+                items(27) { index ->
                     Button(onClick = {
                         creatureVM.creatureLevel.value = index - 1
                         popupControl = false
@@ -173,14 +174,7 @@ fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
                 OutlinedTextField(
                     creatureTraits[index],
                     { creatureTraits[index] = it },
-                    modifier = Modifier
-                        /*.then(
-                        if (index == creatureTraits.size-1)
-                            Modifier.padding(start = 5.dp, end = 5.dp)
-                        else
-                            Modifier.padding(horizontal = 5.dp)
-                    )*/
-                        .padding(horizontal = 5.dp)
+                    modifier = Modifier.padding(end = 10.dp)
                 )
             }
 
@@ -202,8 +196,6 @@ fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
                     }
                 }
             }
-
-
         }
     }
 }
