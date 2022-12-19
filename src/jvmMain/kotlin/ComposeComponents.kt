@@ -15,30 +15,31 @@ import androidx.compose.ui.window.Popup
 
 @Composable
 fun AbilityScores(creatureVM: CreatureVM) {
-    //val pattern = remember { Regex("^\\d+\$") }
     val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
 
     Column {
         creatureVM.abilityScores.forEach { abilityInfo ->
-            val (ability, info) = abilityInfo // read about Kotlin decompose
+            val (ability, abilityScoreInfo) = abilityInfo // read about Kotlin decompose
             key(ability.name) {
                 Row {
+                    //Ability score element
                     TextField(
                         value = TextFieldValue(
-                            info.score.toString(),
-                            selection = TextRange(info.score.toString().length)
+                            abilityScoreInfo.score.toString(),
+                            //selection = TextRange(abilityScoreInfo.score.toString().length)
                         ),
                         onValueChange = {
                             when {
-                                it.text.isEmpty() -> info.score = 0
-                                it.text.matches(pattern) -> info.score = it.text.toInt()
-                                else -> info.score = info.score
+                                it.text.isEmpty() -> abilityScoreInfo.score = 0
+                                it.text.matches(pattern) -> abilityScoreInfo.score = it.text.toInt()
+                                //Force recompose
+                                else -> abilityScoreInfo.score = abilityScoreInfo.score
                             }
                         },
                         label = { Text(ability.name) },
                     )
 
-                    val mod = info.modifier
+                    val mod = abilityScoreInfo.modifier
                     Text(text = if (mod < 0) mod.toString() else "+$mod")
                 }
             }
@@ -47,19 +48,7 @@ fun AbilityScores(creatureVM: CreatureVM) {
 }
 
 @Composable
-fun experimental_skills_grid(creatureVM: CreatureVM) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
-        items(Skill.values()) { skill ->
-            Text(skill.title)
-            DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
-                creatureVM.proficiencies[skill] = it
-            }, Proficiency.values())
-        }
-    }
-}
-
-@Composable
-fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
+fun Skills_Grid(creatureVM: CreatureVM) {
     val items = Skill.values()
     LazyVerticalGrid(
         columns = GridCells.Adaptive(160.dp)
@@ -71,20 +60,6 @@ fun ExperimentalSkillsGrid2(creatureVM: CreatureVM) {
                     skill.title + "        " + creatureVM.skillModifiers[skill],
                     modifier = Modifier.absolutePadding(top = 5.dp)
                 )
-                DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
-                    creatureVM.proficiencies[skill] = it
-                }, Proficiency.values())
-            }
-        }
-    }
-}
-
-@Composable
-fun skills_grid(creatureVM: CreatureVM) {
-    Row {
-        Skill.values().forEach { skill ->
-            Column {
-                Text(skill.title)
                 DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
                     creatureVM.proficiencies[skill] = it
                 }, Proficiency.values())

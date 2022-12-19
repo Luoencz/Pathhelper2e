@@ -21,14 +21,17 @@ class CreatureVM {
         }
     }
 
+    val perceptionProficiency = mutableStateOf(Proficiency.Untrained)
+    val perceptionModifier by derivedStateOf {  calculateProficiencyModifier(Ability.Wisdom, perceptionProficiency.value)  }
+
     val skillModifiers by derivedStateOf {
         proficiencies.mapValues { skillProficiency ->
             val (skill, proficiency) = skillProficiency
-            calculateSkillModifier(skill.keyAbility, proficiency)
+            calculateProficiencyModifier(skill.keyAbility, proficiency)
         }
     }
 
-    private fun calculateSkillModifier(keyAbility: Ability, proficiency: Proficiency) =
+    private fun calculateProficiencyModifier(keyAbility: Ability, proficiency: Proficiency) =
         abilityScores[keyAbility]!!.modifier + (creatureLevel.value * proficiency.levelMultiplier) + proficiency.addition
 
     val abilityScores = mapOf(
