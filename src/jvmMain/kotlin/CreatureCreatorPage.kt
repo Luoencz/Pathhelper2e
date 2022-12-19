@@ -2,6 +2,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
 
@@ -60,10 +61,18 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             //Secondary Traits
             SecondaryTraits(creatureVM.creatureSecondaryTraits)
 
-            Text("ABILITY SCORES")
+            //Ability Scores and Perception
+            Row {
+                Column {
+                    Text("ABILITY SCORES")
+                    AbilityScores(creatureVM)
+                }
 
-            //Ability Scores
-            AbilityScores(creatureVM)
+                Column(Modifier.padding(start = 40.dp)) {
+                    Text("PERCEPTION")
+                    Perception(creatureVM)
+                }
+            }
 
             Text("SKILLS")
 

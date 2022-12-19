@@ -10,7 +10,7 @@ class CreatureVM {
     val creatureName = mutableStateOf("")
     val creatureLevel = mutableStateOf(0)
 
-    val creatureRarity = mutableStateOf(Rarities.Common)
+    val creatureRarity = mutableStateOf(Rarity.Common)
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
     val creatureSecondaryTraits = mutableStateListOf("", "")
@@ -23,6 +23,9 @@ class CreatureVM {
 
     val perceptionProficiency = mutableStateOf(Proficiency.Untrained)
     val perceptionModifier by derivedStateOf {  calculateProficiencyModifier(Ability.Wisdom, perceptionProficiency.value)  }
+    val vision = mutableStateOf(VisionType.Normal)
+    val perceptionSecondaryTraits = mutableStateListOf(PerceptionSecondaryTrait())
+
 
     val skillModifiers by derivedStateOf {
         proficiencies.mapValues { skillProficiency ->
@@ -52,6 +55,7 @@ enum class Ability {
     Wisdom,
     Charisma
 }
+
 
 enum class Proficiency(override val color: Color, val levelMultiplier: Int, val addition: Int) : ColorDropdownItem {
     Untrained(Color.Transparent, 0, 0),
@@ -110,9 +114,26 @@ enum class Size(override val color: Color) : ColorDropdownItem {
     )
 }
 
-enum class Rarities(override val color: Color) : ColorDropdownItem {
+enum class Rarity(override val color: Color) : ColorDropdownItem {
     Common(Color.White), Uncommon(Color.Yellow), Rare(Color.Cyan), Unique(Color.Magenta)
 }
+
+enum class VisionType(name: String, override val color: Color) : ColorDropdownItem {
+    Normal("Normal", Color.White), LowLightVision("Low-light vision", Color.Gray), DarkVision("Darkvision", Color.Cyan)
+}
+
+class PerceptionSecondaryTrait(name: String = "", range: Int = 0, sensePrecision: SensePrecision = SensePrecision.Precise) {
+    var name by mutableStateOf(name)
+    var range by mutableStateOf(range)
+    var sensePrecision by mutableStateOf(sensePrecision)
+}
+
+enum class SensePrecision(override val color: Color): ColorDropdownItem {
+    Precise(Color.White),
+    Imprecise(Color.White),
+    Vague(Color.White)
+}
+
 
 enum class Pages {
     HomePage, CreatureCreatorPage
