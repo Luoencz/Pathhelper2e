@@ -71,6 +71,9 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 Column(Modifier.padding(start = 40.dp)) {
                     Text("PERCEPTION")
                     Perception(creatureVM)
+                    
+                    Text("LANGUAGES", modifier = Modifier.padding(top = 20.dp))
+                    SecondaryTraits(creatureTraits = creatureVM.creatureLanguages)
                 }
             }
 

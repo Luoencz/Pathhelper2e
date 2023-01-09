@@ -246,8 +246,11 @@ fun PerceptionTraits(creatureVM: CreatureVM) {
                                 else -> trait.range = trait.range
                             }
                         },
-                        modifier = Modifier.width(70.dp).padding(0.dp)
+                        modifier = Modifier
+                            .width(70.dp)
+                            .padding(0.dp)
                     )
+                    Text(text = "ft")
                 }
             }
 

@@ -26,6 +26,8 @@ class CreatureVM {
     val vision = mutableStateOf(VisionType.Normal)
     val perceptionSecondaryTraits = mutableStateListOf(PerceptionSecondaryTrait())
 
+    val creatureLanguages = mutableStateListOf("","")
+
 
     val skillModifiers by derivedStateOf {
         proficiencies.mapValues { skillProficiency ->
