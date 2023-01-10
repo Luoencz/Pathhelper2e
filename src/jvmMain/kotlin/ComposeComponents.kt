@@ -1,6 +1,7 @@
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.*
@@ -50,14 +51,14 @@ fun AbilityScores(creatureVM: CreatureVM) {
 @Composable
 fun Skills_Grid(creatureVM: CreatureVM) {
     val items = Skill.values()
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(160.dp)
+    LazyVerticalGrid(columns = GridCells.Adaptive(120.dp),
+       // modifier = Modifier.height(200.dp)
     ) {
         items(items.size) { index ->
             Column {
                 val skill = items[index]
                 Text(
-                    skill.title + "        " + creatureVM.skillModifiers[skill],
+                    skill.title + ":  " + creatureVM.skillModifiers[skill],
                     modifier = Modifier.absolutePadding(top = 5.dp)
                 )
                 DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
@@ -69,27 +70,33 @@ fun Skills_Grid(creatureVM: CreatureVM) {
 }
 
 @Composable
-fun <T : ColorDropdownItem> DropdownWithColor(
-    selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Int = 170, altName: String? = null
+fun <T : DropdownItem> DropdownWithColor(
+    selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Dp = 120.dp, color: Color = Color.Transparent
 ) {
     var showDropdown by remember { mutableStateOf(false) }
+    var backgroundColor = if (selected is ColorDropdownItem) selected.color else color
 
     Box(
         Modifier
-            .wrapContentSize()
             .padding(end = 10.dp)
+            .height(30.dp),
+            contentAlignment = Alignment.Center
     ) {
         Text(
-            altName ?: selected.name,
+            if (selected is SpecialNameDropdownItem) selected.altName else selected.name,
             Modifier
-                .size(size.dp, 55.dp)
-                .background(selected.color)
+                .size(size, 55.dp)
+                .background(backgroundColor)
                 .border(1.dp, Color.Gray)
+                .padding(3.dp)
+                .wrapContentHeight()
         )
-        Button(onClick = { showDropdown = !showDropdown }, content = { Text("^") },
+        Button(onClick = { showDropdown = !showDropdown }, content = { Text("^", textAlign = TextAlign.Center, fontSize = 7.sp) },
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .padding(3.dp)
+                .size(27.5f.dp),
+            contentPadding = PaddingValues(2.dp)
         )
         DropdownMenu(
             expanded = showDropdown,
@@ -99,7 +106,7 @@ fun <T : ColorDropdownItem> DropdownWithColor(
                     onValueChanged(it)
                     showDropdown = false
                 }) {
-                    Text(it.name)
+                    Text(if (it is SpecialNameDropdownItem) it.altName else it.name)
                 }
             }
         }
@@ -110,15 +117,24 @@ fun <T : ColorDropdownItem> DropdownWithColor(
 fun LevelChoice(creatureVM: CreatureVM) {
     var popupControl by remember { mutableStateOf(false) }
 
-    Text(
-        creatureVM.creatureLevel.value.toString(),
-        Modifier
-            .size(180.dp, 55.dp)
-            .background(Color.Gray)
-            .border(1.dp, Color.Gray),
-        textAlign = TextAlign.Left
-    )
-    Button(onClick = { popupControl = true }, content = { Text("^") })
+    Box(contentAlignment = Alignment.Center) {
+        Text(
+            creatureVM.creatureLevel.value.toString(),
+            Modifier
+                .size(65.dp, 55.dp)
+                .background(Color.Gray)
+                .border(1.dp, Color.Gray)
+                .padding(3.dp)
+                .wrapContentHeight(),
+            textAlign = TextAlign.Left
+        )
+        Button(onClick = { popupControl = !popupControl }, content = { Text("^", textAlign = TextAlign.Center, fontSize = 7.sp) },
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(3.dp)
+                .size(27.5f.dp),
+            contentPadding = PaddingValues(2.dp))
+    }
 
     if (popupControl)
         Popup(focusable = true, onDismissRequest = { popupControl = false }) {
@@ -135,6 +151,7 @@ fun LevelChoice(creatureVM: CreatureVM) {
                 )
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(70.dp),
+                   // modifier = Modifier.height(100.dp)
                 ) {
                     items(27) { index ->
                         Button(onClick = {
@@ -151,7 +168,9 @@ fun LevelChoice(creatureVM: CreatureVM) {
 
 @Composable
 fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
+    LazyVerticalGrid(columns = GridCells.Adaptive(160.dp),
+        //modifier = Modifier.height(100.dp)
+    ) {
         items(creatureTraits.size + 1) { index ->
             if (index < creatureTraits.size) {
                 OutlinedTextField(
@@ -188,13 +207,13 @@ fun Perception(creatureVM: CreatureVM) {
     Row {
         Column {
             Text(
-                "Perception:" + "        " + creatureVM.perceptionModifier,
+                "Perception:   ${creatureVM.perceptionModifier}",
                 modifier = Modifier.absolutePadding(top = 5.dp)
             )
             DropdownWithColor(
                 selected = creatureVM.perceptionProficiency.value,
                 onValueChanged = { creatureVM.perceptionProficiency.value = it },
-                values = Proficiency.values()
+                values = Proficiency.values(),
             )
         }
         Column {
@@ -203,8 +222,7 @@ fun Perception(creatureVM: CreatureVM) {
                 selected = creatureVM.vision.value,
                 onValueChanged = { creatureVM.vision.value = it },
                 values = VisionType.values(),
-                size = 200,
-                altName = creatureVM.vision.value.name
+                size = 170.dp,
             )
         }
     }
@@ -218,7 +236,9 @@ fun PerceptionTraits(creatureVM: CreatureVM) {
     val perceptionSecondaryTraits = creatureVM.perceptionSecondaryTraits
     val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
 
-    LazyVerticalGrid(columns = GridCells.Adaptive(360.dp)) {
+    LazyVerticalGrid(columns = GridCells.Adaptive(270.dp),
+        //modifier = Modifier.height(100.dp)
+    ) {
         items(perceptionSecondaryTraits.size + 1) { index ->
             if (index < perceptionSecondaryTraits.size) {
                 val trait = perceptionSecondaryTraits[index]
@@ -228,29 +248,35 @@ fun PerceptionTraits(creatureVM: CreatureVM) {
                         { trait.name = it },
                         modifier = Modifier.width(200.dp)
                     )
-                    DropdownWithColor(
-                        selected = trait.sensePrecision,
-                        onValueChanged = { trait.sensePrecision = it },
-                        values = SensePrecision.values()
-                    )
-                    OutlinedTextField(
-                        value = TextFieldValue(
-                            "${trait.range}",
-                            selection = TextRange(trait.range.toString().length + 2)
-                        ),
-                        onValueChange = {
-                            when {
-                                it.text.isEmpty() -> trait.range = 0
-                                it.text.matches(pattern) -> trait.range = it.text.toInt()
-                                //Force recompose
-                                else -> trait.range = trait.range
+                    Column {
+                        DropdownWithColor(
+                            selected = trait.sensePrecision,
+                            onValueChanged = { trait.sensePrecision = it },
+                            values = SensePrecision.values(),
+                        )
+                        Row {
+                            Box(Modifier.border(1.dp, Color.Gray)) {
+                            BasicTextField(
+                                value = TextFieldValue(
+                                    "${trait.range}",
+                                    selection = TextRange(trait.range.toString().length + 2),
+                                ),
+                                onValueChange = {
+                                    when {
+                                        it.text.isEmpty() -> trait.range = 0
+                                        it.text.matches(pattern) -> trait.range = it.text.toInt()
+                                        //Force recompose
+                                        else -> trait.range = trait.range
+                                    }
+                                },
+                                modifier = Modifier
+                                    .width(70.dp)
+                                    .height(26.dp)
+                            )
                             }
-                        },
-                        modifier = Modifier
-                            .width(70.dp)
-                            .padding(0.dp)
-                    )
-                    Text(text = "ft")
+                            Text(text = "ft")
+                        }
+                    }
                 }
             }
 

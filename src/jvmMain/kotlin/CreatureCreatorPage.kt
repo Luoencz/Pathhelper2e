@@ -1,4 +1,7 @@
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -12,7 +15,9 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
 
     MaterialTheme {
         Column(
-            Modifier.padding(15.dp)
+            Modifier
+                .padding(15.dp)
+                //.verticalScroll(rememberScrollState())
         ) {
             Row(Modifier.fillMaxWidth()) {
                 //Creature Name
@@ -48,12 +53,14 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 DropdownWithColor(
                     creatureVM.creatureAlignment.value,
                     { creatureVM.creatureAlignment.value = it },
-                    enumValues()
+                    enumValues(),
+                    size = 80.dp
                 )
                 DropdownWithColor(
                     creatureVM.creatureSize.value,
                     { creatureVM.creatureSize.value = it },
-                    enumValues()
+                    enumValues(),
+                    size = 130.dp
                 )
 
             }
@@ -62,7 +69,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             SecondaryTraits(creatureVM.creatureSecondaryTraits)
 
             //Ability Scores and Perception
-            Row {
+            Row(Modifier.padding(top = 10.dp)) {
                 Column {
                     Text("ABILITY SCORES")
                     AbilityScores(creatureVM)
@@ -77,7 +84,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 }
             }
 
-            Text("SKILLS")
+            Text("SKILLS", Modifier.padding(top = 10.dp))
 
             //Skills Grid
             Skills_Grid(creatureVM)

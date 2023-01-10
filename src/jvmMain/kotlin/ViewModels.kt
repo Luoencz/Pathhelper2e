@@ -28,7 +28,6 @@ class CreatureVM {
 
     val creatureLanguages = mutableStateListOf("","")
 
-
     val skillModifiers by derivedStateOf {
         proficiencies.mapValues { skillProficiency ->
             val (skill, proficiency) = skillProficiency
@@ -98,29 +97,31 @@ enum class Skill(
 
 }
 
-interface ColorDropdownItem {
+interface ColorDropdownItem: DropdownItem {
     val color: Color
+}
+interface DropdownItem {
     val name: String
 }
 
-enum class Alignment(override val color: Color) : ColorDropdownItem {
-    LG(Color.Green), NG(Color.Green), CG(Color.Green), LN(Color.Green), NN(Color.Green), TN(Color.Green), CN(Color.Green), LE(
-        Color.Green
-    ),
-    NE(Color.Green), CE(Color.Green)
+interface SpecialNameDropdownItem: DropdownItem {
+    val altName: String
 }
 
-enum class Size(override val color: Color) : ColorDropdownItem {
-    Tiny(Color.LightGray), Small(Color.LightGray), Medium(Color.LightGray), Large(Color.LightGray), Huge(Color.LightGray), Gargantuan(
-        Color.LightGray
-    )
+enum class Alignment: DropdownItem {
+    LG, NG, CG, LN, NN, TN, CN, LE,
+    NE, CE
+}
+
+enum class Size : DropdownItem {
+    Tiny, Small, Medium, Large, Huge, Gargantuan
 }
 
 enum class Rarity(override val color: Color) : ColorDropdownItem {
     Common(Color.White), Uncommon(Color.Yellow), Rare(Color.Cyan), Unique(Color.Magenta)
 }
 
-enum class VisionType(name: String, override val color: Color) : ColorDropdownItem {
+enum class VisionType(override val altName: String, override val color: Color) : ColorDropdownItem, SpecialNameDropdownItem {
     Normal("Normal", Color.White), LowLightVision("Low-light vision", Color.Gray), DarkVision("Darkvision", Color.Cyan)
 }
 
@@ -130,10 +131,10 @@ class PerceptionSecondaryTrait(name: String = "", range: Int = 0, sensePrecision
     var sensePrecision by mutableStateOf(sensePrecision)
 }
 
-enum class SensePrecision(override val color: Color): ColorDropdownItem {
-    Precise(Color.White),
-    Imprecise(Color.White),
-    Vague(Color.White)
+enum class SensePrecision : DropdownItem {
+    Precise,
+    Imprecise,
+    Vague
 }
 
 
