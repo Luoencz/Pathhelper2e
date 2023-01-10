@@ -22,11 +22,16 @@ class CreatureVM {
     }
 
     val perceptionProficiency = mutableStateOf(Proficiency.Untrained)
-    val perceptionModifier by derivedStateOf {  calculateProficiencyModifier(Ability.Wisdom, perceptionProficiency.value)  }
+    val perceptionModifier by derivedStateOf {
+        calculateProficiencyModifier(
+            Ability.Wisdom,
+            perceptionProficiency.value
+        )
+    }
     val vision = mutableStateOf(VisionType.Normal)
     val perceptionSecondaryTraits = mutableStateListOf(PerceptionSecondaryTrait())
 
-    val creatureLanguages = mutableStateListOf("","")
+    val creatureLanguages = mutableStateListOf("", "")
 
     val skillModifiers by derivedStateOf {
         proficiencies.mapValues { skillProficiency ->
@@ -97,18 +102,19 @@ enum class Skill(
 
 }
 
-interface ColorDropdownItem: DropdownItem {
+interface ColorDropdownItem : DropdownItem {
     val color: Color
 }
+
 interface DropdownItem {
     val name: String
 }
 
-interface SpecialNameDropdownItem: DropdownItem {
+interface SpecialNameDropdownItem : DropdownItem {
     val altName: String
 }
 
-enum class Alignment: DropdownItem {
+enum class Alignment : DropdownItem {
     LG, NG, CG, LN, NN, TN, CN, LE,
     NE, CE
 }
@@ -121,11 +127,16 @@ enum class Rarity(override val color: Color) : ColorDropdownItem {
     Common(Color.White), Uncommon(Color.Yellow), Rare(Color.Cyan), Unique(Color.Magenta)
 }
 
-enum class VisionType(override val altName: String, override val color: Color) : ColorDropdownItem, SpecialNameDropdownItem {
+enum class VisionType(override val altName: String, override val color: Color) : ColorDropdownItem,
+    SpecialNameDropdownItem {
     Normal("Normal", Color.White), LowLightVision("Low-light vision", Color.Gray), DarkVision("Darkvision", Color.Cyan)
 }
 
-class PerceptionSecondaryTrait(name: String = "", range: Int = 0, sensePrecision: SensePrecision = SensePrecision.Precise) {
+class PerceptionSecondaryTrait(
+    name: String = "",
+    range: Int = 0,
+    sensePrecision: SensePrecision = SensePrecision.Precise
+) {
     var name by mutableStateOf(name)
     var range by mutableStateOf(range)
     var sensePrecision by mutableStateOf(sensePrecision)
@@ -149,3 +160,9 @@ fun navigate(applicationVM: ApplicationVM) {
         Pages.CreatureCreatorPage -> creatureCreatorPage(applicationVM)
     }
 }
+
+enum class StatTier {
+    Terrible, Low, Moderate, High, Extreme
+}
+
+
