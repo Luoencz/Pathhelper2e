@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import models.ApplicationVM
 
 @Composable
 fun homePage(applicationVM: ApplicationVM) {

@@ -1,10 +1,12 @@
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.*
+import androidx.compose.ui.*
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.unit.*
+import components.*
+import models.*
+import views.*
 
 @Composable
 fun creatureCreatorPage(applicationVM: ApplicationVM) {
@@ -12,8 +14,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
 
     MaterialTheme {
         Column(
-            Modifier
-                .padding(15.dp)
+            Modifier.padding(15.dp)
             //.verticalScroll(rememberScrollState())
         ) {
             Row(Modifier.fillMaxWidth()) {
@@ -65,11 +66,11 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             //Secondary Traits
             SecondaryTraits(creatureVM.creatureSecondaryTraits)
 
-            //Ability Scores and Perception
+            //data.Ability Scores and Perception
             Row(Modifier.padding(top = 10.dp)) {
                 Column {
                     Text("ABILITY SCORES")
-                    AbilityScores(creatureVM)
+                    AbilityGrid(creatureVM)
                 }
 
                 Column(Modifier.padding(start = 40.dp)) {
