@@ -17,18 +17,17 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import components.DropdownWithColor
+import components.*
 
 @Composable
 fun PerceptionTraits(creatureVM: CreatureVM) {
     val perceptionSecondaryTraits = creatureVM.perceptionSecondaryTraits
     val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
-
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(300.dp),
-        //modifier = Modifier.height(100.dp)
-    ) {
-        items(perceptionSecondaryTraits.size + 1) { index ->
+    
+    HorizontalFlow {
+        var i = 0
+        while (i <= perceptionSecondaryTraits.size + 1) {
+            val index = i
             if (index < perceptionSecondaryTraits.size) {
                 val trait = perceptionSecondaryTraits[index]
                 Row {
@@ -87,6 +86,7 @@ fun PerceptionTraits(creatureVM: CreatureVM) {
                     }
                 }
             }
+            i++
         }
     }
 }
