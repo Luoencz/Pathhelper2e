@@ -1,57 +1,79 @@
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import kotlin.math.floor
 
 class ApplicationVM {
     val page = mutableStateOf(Pages.HomePage)
 }
 
 class CreatureVM {
-    val creatureName = mutableStateOf("")
-    val creatureLevel = mutableStateOf(0)
+    var creatureName by mutableStateOf("")
+    var creatureLevel by mutableStateOf(0)
 
     val creatureRarity = mutableStateOf(Rarity.Common)
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
+
     val creatureSecondaryTraits = mutableStateListOf("", "")
 
-    val proficiencies = mutableStateMapOf<Skill, Proficiency>().apply {
-        Skill.values().forEach {
-            put(it, Proficiency.Untrained)
-        }
-    }
+    var perceptionTier by mutableStateOf(StatTier.Moderate)
 
-    val perceptionProficiency = mutableStateOf(Proficiency.Untrained)
     val perceptionModifier by derivedStateOf {
-        calculateProficiencyModifier(
-            Ability.Wisdom,
-            perceptionProficiency.value
-        )
+        perceptionTable[creatureLevel]!![perceptionTier]!!
     }
     val vision = mutableStateOf(VisionType.Normal)
     val perceptionSecondaryTraits = mutableStateListOf(PerceptionSecondaryTrait())
 
     val creatureLanguages = mutableStateListOf("", "")
 
-    val skillModifiers by derivedStateOf {
-        proficiencies.mapValues { skillProficiency ->
-            val (skill, proficiency) = skillProficiency
-            calculateProficiencyModifier(skill.keyAbility, proficiency)
+    var skillModifiers by mutableStateOf(SkillMap(creatureVM = this, mutableMap = skillTable)) //TODO Doesn't update when level is changed
+
+    var abilityModifiers by mutableStateOf(AbilityMap(creatureVM = this, mutableMap = abilityModifiersTable)) //TODO Make generic function
+}
+
+class SkillMap (var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Map<StatTier, Int>>) {
+    var map = Skill.values().map { it to Pair(mutableMap[creatureVM.creatureLevel]!![StatTier.Moderate]!!,StatTier.Moderate) }.toMutableStateMap()
+    fun ChangeToStatTier(skill: Skill, statTier: StatTier) {
+        map[skill] = Pair(mutableMap[creatureVM.creatureLevel]!![statTier]!!,statTier)
+    }
+    fun ChangeToModValue(skill: Skill, mod: Int) {
+            mutableMap[creatureVM.creatureLevel]!!.entries.forEach {
+                if (mod >= it.value || mod >= mutableMap[creatureVM.creatureLevel]!![StatTier.Extreme]!!) {
+                    val tier = it.key
+                    map[skill] = Pair(mod,tier)
+                    return
+                }
+            }
+
+    }
+}
+
+class AbilityMap (var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Map<StatTier, Int>>) {
+    var map = Ability.values().map { it to Pair(mutableMap[creatureVM.creatureLevel]!![StatTier.Moderate]!!,StatTier.Moderate) }.toMutableStateMap()
+    fun ChangeToStatTier(ability: Ability, statTier: StatTier) {
+        map[ability] = Pair(mutableMap[creatureVM.creatureLevel]!![statTier]!!,statTier)
+    }
+    fun ChangeToModValue(ability: Ability, mod: Int) {
+        if (mod <= mutableMap[creatureVM.creatureLevel]!![StatTier.Low]!!) {
+            val tier = StatTier.Low
+            map[ability] = Pair(mod, tier)
+        } else {
+            mutableMap[creatureVM.creatureLevel]!!.entries.forEach {
+                if (mod >= it.value) {
+                    val tier = it.key
+                    map[ability] = Pair(mod, tier)
+                    map.entries.forEach {
+                        println(it.key)
+                        println(it.value.first)
+                        println(it.value.second)
+                        println("----")
+                    }
+                    return
+                }
+            }
         }
     }
-
-    private fun calculateProficiencyModifier(keyAbility: Ability, proficiency: Proficiency) =
-        abilityScores[keyAbility]!!.modifier + (creatureLevel.value * proficiency.levelMultiplier) + proficiency.addition
-
-    val abilityScores = mapOf(
-        Ability.Strength to AbilityScore(10),
-        Ability.Dexterity to AbilityScore(10),
-        Ability.Constitution to AbilityScore(10),
-        Ability.Intelligence to AbilityScore(10),
-        Ability.Wisdom to AbilityScore(10),
-        Ability.Charisma to AbilityScore(10)
-    )
 }
+
 
 enum class Ability {
     Strength,
@@ -62,7 +84,6 @@ enum class Ability {
     Charisma
 }
 
-
 enum class Proficiency(override val color: Color, val levelMultiplier: Int, val addition: Int) : ColorDropdownItem {
     Untrained(Color.Transparent, 0, 0),
     Trained(Color.White, 1, 2),
@@ -71,35 +92,25 @@ enum class Proficiency(override val color: Color, val levelMultiplier: Int, val 
     Legendary(Color.Magenta, 1, 8)
 }
 
-class AbilityScore(score: Int) {
-    var score by mutableStateOf(score)
-
-    val modifier by derivedStateOf {
-        floor((this.score - 10) / 2.0).toInt()
-    }
-}
-
 enum class Skill(
-    val title: String,
-    val keyAbility: Ability
-) {
-    Acrobatics("Acrobatics", Ability.Dexterity),
-    Arcana("Arcana", Ability.Intelligence),
-    Athletics("Athletics", Ability.Strength),
-    Crafting("Crafting", Ability.Intelligence),
-    Deception("Deception", Ability.Charisma),
-    Diplomacy("Diplomacy", Ability.Charisma),
-    Intimidation("Intimidation", Ability.Charisma),
-    Medicine("Medicine", Ability.Wisdom),
-    Nature("Nature", Ability.Wisdom),
-    Occultism("Occultism", Ability.Intelligence),
-    Performance("Performance", Ability.Charisma),
-    Religion("Religion", Ability.Wisdom),
-    Society("Society", Ability.Charisma),
-    Stealth("Stealth", Ability.Dexterity),
-    Survival("Survival", Ability.Wisdom),
-    Thievery("Thievery", Ability.Dexterity)
 
+) {
+    Acrobatics,
+    Arcana,
+    Athletics,
+    Crafting,
+    Deception,
+    Diplomacy,
+    Intimidation,
+    Medicine,
+    Nature,
+    Occultism,
+    Performance,
+    Religion,
+    Society,
+    Stealth,
+    Survival,
+    Thievery
 }
 
 interface ColorDropdownItem : DropdownItem {
@@ -161,8 +172,8 @@ fun navigate(applicationVM: ApplicationVM) {
     }
 }
 
-enum class StatTier {
-    Terrible, Low, Moderate, High, Extreme
+enum class StatTier: DropdownItem {
+   Extreme, High, Moderate, Low, Terrible
 }
 
 

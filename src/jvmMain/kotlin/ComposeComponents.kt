@@ -19,29 +19,33 @@ fun AbilityScores(creatureVM: CreatureVM) {
     val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
 
     Column {
-        creatureVM.abilityScores.forEach { abilityInfo ->
-            val (ability, abilityScoreInfo) = abilityInfo // read about Kotlin decompose
+        creatureVM.abilityModifiers.map.forEach { abilityInfo ->
+            var (ability, abilityScoreInfo: Pair<Int,StatTier>) = abilityInfo // read about Kotlin decompose
             key(ability.name) {
                 Row {
+                    Box {
+                        TextField(
+                            value = TextFieldValue(
+                                abilityScoreInfo.first.toString(),
+                                selection = TextRange(abilityScoreInfo.toString().length)
+                            ),
+                            onValueChange = {
+                                when {
+                                    it.text.isEmpty() -> creatureVM.abilityModifiers.ChangeToModValue(ability,0)
+                                    it.text.matches(pattern) -> creatureVM.abilityModifiers.ChangeToModValue(ability,it.text.toInt())
+                                    //Force recompose
+                                    else -> creatureVM.abilityModifiers.ChangeToModValue(ability,creatureVM.abilityModifiers.map[ability]!!.first)
+                                }
+                            },
+                            label = { Text(ability.name) },
+                        )
+                        Row(modifier = Modifier.align(Alignment.CenterEnd)) {
+                            DropdownWithColor(creatureVM.abilityModifiers.map[ability]!!.second, {
+                                creatureVM.abilityModifiers.ChangeToStatTier(ability,it)
+                            }, StatTier.values())
+                        }
+                    }
                     //Ability score element
-                    TextField(
-                        value = TextFieldValue(
-                            abilityScoreInfo.score.toString(),
-                            selection = TextRange(abilityScoreInfo.score.toString().length)
-                        ),
-                        onValueChange = {
-                            when {
-                                it.text.isEmpty() -> abilityScoreInfo.score = 0
-                                it.text.matches(pattern) -> abilityScoreInfo.score = it.text.toInt()
-                                //Force recompose
-                                else -> abilityScoreInfo.score = abilityScoreInfo.score
-                            }
-                        },
-                        label = { Text(ability.name) },
-                    )
-
-                    val mod = abilityScoreInfo.modifier
-                    Text(text = if (mod < 0) mod.toString() else "+$mod")
                 }
             }
         }
@@ -49,7 +53,7 @@ fun AbilityScores(creatureVM: CreatureVM) {
 }
 
 @Composable
-fun Skills_Grid(creatureVM: CreatureVM) {
+fun SkillsGrid(creatureVM: CreatureVM) {
     val items = Skill.values()
     LazyVerticalGrid(columns = GridCells.Adaptive(120.dp),
        // modifier = Modifier.height(200.dp)
@@ -57,13 +61,14 @@ fun Skills_Grid(creatureVM: CreatureVM) {
         items(items.size) { index ->
             Column {
                 val skill = items[index]
+                val mod = creatureVM.skillModifiers.map[skill]!!.first
                 Text(
-                    skill.title + ":  " + creatureVM.skillModifiers[skill],
-                    modifier = Modifier.absolutePadding(top = 5.dp)
-                )
-                DropdownWithColor(creatureVM.proficiencies[skill] ?: Proficiency.Untrained, {
-                    creatureVM.proficiencies[skill] = it
-                }, Proficiency.values())
+                   skill.name + ": " + if (mod >= 0) "+$mod" else "-$mod",
+                   modifier = Modifier.absolutePadding(top = 5.dp)
+               )
+                DropdownWithColor(creatureVM.skillModifiers.map[skill]!!.second, {
+                    creatureVM.skillModifiers.ChangeToStatTier(skill,it)
+                }, arrayOf(StatTier.Extreme,StatTier.High, StatTier.Moderate, StatTier.Low))
             }
         }
     }
@@ -119,7 +124,7 @@ fun LevelChoice(creatureVM: CreatureVM) {
 
     Box(contentAlignment = Alignment.Center) {
         Text(
-            creatureVM.creatureLevel.value.toString(),
+            creatureVM.creatureLevel.toString(),
             Modifier
                 .size(65.dp, 55.dp)
                 .background(Color.Gray)
@@ -153,9 +158,9 @@ fun LevelChoice(creatureVM: CreatureVM) {
                     columns = GridCells.Adaptive(70.dp),
                    // modifier = Modifier.height(100.dp)
                 ) {
-                    items(27) { index ->
+                    items(26) { index ->
                         Button(onClick = {
-                            creatureVM.creatureLevel.value = index - 1
+                            creatureVM.creatureLevel = index - 1
                             popupControl = false
                         }, Modifier.padding(5.dp)) {
                             Text((index - 1).toString())
@@ -203,17 +208,17 @@ fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
 }
 
 @Composable
-fun Perception(creatureVM: CreatureVM) {
+fun PerceptionMod(creatureVM: CreatureVM) {
     Row {
         Column {
             Text(
-                "Perception:   ${creatureVM.perceptionModifier}",
+                "Perception:   +${creatureVM.perceptionModifier}",
                 modifier = Modifier.absolutePadding(top = 5.dp)
             )
             DropdownWithColor(
-                selected = creatureVM.perceptionProficiency.value,
-                onValueChanged = { creatureVM.perceptionProficiency.value = it },
-                values = Proficiency.values(),
+                selected = creatureVM.perceptionTier,
+                onValueChanged = { creatureVM.perceptionTier = it },
+                values = StatTier.values(),
             )
         }
         Column {
@@ -236,7 +241,7 @@ fun PerceptionTraits(creatureVM: CreatureVM) {
     val perceptionSecondaryTraits = creatureVM.perceptionSecondaryTraits
     val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
 
-    LazyVerticalGrid(columns = GridCells.Adaptive(270.dp),
+    LazyVerticalGrid(columns = GridCells.Adaptive(300.dp),
         //modifier = Modifier.height(100.dp)
     ) {
         items(perceptionSecondaryTraits.size + 1) { index ->

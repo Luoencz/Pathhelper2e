@@ -1,11 +1,7 @@
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
 
@@ -22,8 +18,8 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             Row(Modifier.fillMaxWidth()) {
                 //Creature Name
                 TextField(
-                    value = creatureVM.creatureName.value,
-                    onValueChange = { creatureVM.creatureName.value = it },
+                    value = creatureVM.creatureName,
+                    onValueChange = { creatureVM.creatureName = it },
                     label = { Text("Name") })
 
                 //Level Choice
@@ -77,7 +73,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
 
                 Column(Modifier.padding(start = 40.dp)) {
                     Text("PERCEPTION")
-                    Perception(creatureVM)
+                    PerceptionMod(creatureVM)
                     
                     Text("LANGUAGES", modifier = Modifier.padding(top = 20.dp))
                     SecondaryTraits(creatureTraits = creatureVM.creatureLanguages)
@@ -87,7 +83,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             Text("SKILLS", Modifier.padding(top = 10.dp))
 
             //Skills Grid
-            Skills_Grid(creatureVM)
+            SkillsGrid(creatureVM)
         }
     }
 }
