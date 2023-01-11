@@ -25,34 +25,62 @@ class CreatureVM {
 
     val creatureLanguages = mutableStateListOf("", "")
 
-    var skillModifiers by mutableStateOf(SkillMap(creatureVM = this, mutableMap = skillTable)) //TODO Doesn't update when level is changed
+    var skillModifiers by mutableStateOf(
+        SkillMap(
+            creatureVM = this,
+            mutableMap = skillTable
+        )
+    ) //TODO Doesn't update when level is changed
 
-    var abilityModifiers by mutableStateOf(AbilityMap(creatureVM = this, mutableMap = abilityModifiersTable)) //TODO Make generic function
+    var abilityModifiers by mutableStateOf(
+        AbilityMap(
+            creatureVM = this,
+            mutableMap = abilityModifiersTable
+        )
+    ) //TODO Make generic function
 }
 
-class SkillMap (var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Map<StatTier, Int>>) {
-    var map = Skill.values().map { it to Pair(mutableMap[creatureVM.creatureLevel]!![StatTier.Moderate]!!,StatTier.Moderate) }.toMutableStateMap()
-    fun ChangeToStatTier(skill: Skill, statTier: StatTier) {
-        map[skill] = Pair(mutableMap[creatureVM.creatureLevel]!![statTier]!!,statTier)
+class SkillMap(var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Map<StatTier, Int>>) {
+    var map = Skill.values()
+        .map { it to Pair(mutableMap[creatureVM.creatureLevel]!![StatTier.Moderate]!!, StatTier.Moderate) }
+        .toMutableStateMap()
+
+    fun changeToStatTier(skill: Skill, statTier: StatTier) {
+        map[skill] = Pair(mutableMap[creatureVM.creatureLevel]!![statTier]!!, statTier)
     }
-    fun ChangeToModValue(skill: Skill, mod: Int) {
+
+    fun changeToModValue(skill: Skill, mod: Int) {
+        if (mod <= mutableMap[creatureVM.creatureLevel]!![StatTier.Terrible]!!) {
+            val tier = StatTier.Terrible
+            map[skill] = Pair(mod, tier)
+        } else {
             mutableMap[creatureVM.creatureLevel]!!.entries.forEach {
-                if (mod >= it.value || mod >= mutableMap[creatureVM.creatureLevel]!![StatTier.Extreme]!!) {
+                if (mod >= it.value) {
                     val tier = it.key
-                    map[skill] = Pair(mod,tier)
+                    map[skill] = Pair(mod, tier)
+                    /*map.entries.forEach {
+                        println(it.key)
+                        println(it.value.first)
+                        println(it.value.second)
+                        println("----")
+                    }*/
                     return
                 }
             }
-
+        }
     }
 }
 
-class AbilityMap (var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Map<StatTier, Int>>) {
-    var map = Ability.values().map { it to Pair(mutableMap[creatureVM.creatureLevel]!![StatTier.Moderate]!!,StatTier.Moderate) }.toMutableStateMap()
-    fun ChangeToStatTier(ability: Ability, statTier: StatTier) {
-        map[ability] = Pair(mutableMap[creatureVM.creatureLevel]!![statTier]!!,statTier)
+class AbilityMap(var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Map<StatTier, Int>>) {
+    var map = Ability.values()
+        .map { it to Pair(mutableMap[creatureVM.creatureLevel]!![StatTier.Moderate]!!, StatTier.Moderate) }
+        .toMutableStateMap()
+
+    fun changeToStatTier(ability: Ability, statTier: StatTier) {
+        map[ability] = Pair(mutableMap[creatureVM.creatureLevel]!![statTier]!!, statTier)
     }
-    fun ChangeToModValue(ability: Ability, mod: Int) {
+
+    fun changeToModValue(ability: Ability, mod: Int) {
         if (mod <= mutableMap[creatureVM.creatureLevel]!![StatTier.Low]!!) {
             val tier = StatTier.Low
             map[ability] = Pair(mod, tier)
@@ -61,12 +89,12 @@ class AbilityMap (var creatureVM: CreatureVM, val mutableMap: MutableMap<Int, Ma
                 if (mod >= it.value) {
                     val tier = it.key
                     map[ability] = Pair(mod, tier)
-                    map.entries.forEach {
+                    /*map.entries.forEach {
                         println(it.key)
                         println(it.value.first)
                         println(it.value.second)
                         println("----")
-                    }
+                    }*/
                     return
                 }
             }
@@ -84,17 +112,7 @@ enum class Ability {
     Charisma
 }
 
-enum class Proficiency(override val color: Color, val levelMultiplier: Int, val addition: Int) : ColorDropdownItem {
-    Untrained(Color.Transparent, 0, 0),
-    Trained(Color.White, 1, 2),
-    Expert(Color.Yellow, 1, 4),
-    Master(Color.Cyan, 1, 6),
-    Legendary(Color.Magenta, 1, 8)
-}
-
-enum class Skill(
-
-) {
+enum class Skill {
     Acrobatics,
     Arcana,
     Athletics,
@@ -172,8 +190,8 @@ fun navigate(applicationVM: ApplicationVM) {
     }
 }
 
-enum class StatTier: DropdownItem {
-   Extreme, High, Moderate, Low, Terrible
+enum class StatTier : DropdownItem {
+    Extreme, High, Moderate, Low, Terrible
 }
 
 

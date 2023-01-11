@@ -90,5 +90,5 @@ val abilityModifiersTable = """-1 +3 +3 +2 +0
 22 +11 +10 +8 +6
 23 +11 +10 +8 +6
 24 +13 +12 +9 +7""".toStatisticsTable(
-    tiers = listOf(StatTier.Extreme,StatTier.High, StatTier.Moderate, StatTier.Low)
+    tiers = listOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low)
 ) { it.toInt() }.toMutableMap()

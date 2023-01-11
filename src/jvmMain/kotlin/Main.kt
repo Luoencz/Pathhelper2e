@@ -5,7 +5,7 @@ import androidx.compose.ui.window.application
 
 @Composable
 fun App() {
-    val applicationVM =  remember { ApplicationVM() }
+    val applicationVM = remember { ApplicationVM() }
     navigate(applicationVM)
 }
 

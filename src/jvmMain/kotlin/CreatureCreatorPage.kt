@@ -1,9 +1,10 @@
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.unit.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun creatureCreatorPage(applicationVM: ApplicationVM) {
@@ -13,7 +14,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
         Column(
             Modifier
                 .padding(15.dp)
-                //.verticalScroll(rememberScrollState())
+            //.verticalScroll(rememberScrollState())
         ) {
             Row(Modifier.fillMaxWidth()) {
                 //Creature Name
@@ -74,7 +75,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 Column(Modifier.padding(start = 40.dp)) {
                     Text("PERCEPTION")
                     PerceptionMod(creatureVM)
-                    
+
                     Text("LANGUAGES", modifier = Modifier.padding(top = 20.dp))
                     SecondaryTraits(creatureTraits = creatureVM.creatureLanguages)
                 }
