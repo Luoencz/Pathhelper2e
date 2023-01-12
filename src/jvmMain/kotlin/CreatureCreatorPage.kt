@@ -69,7 +69,7 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
             //data.Ability Scores and Perception
             Row(Modifier.padding(top = 10.dp)) {
                 Column {
-                    Text("ABILITY SCORES")
+                    Text("ABILITY MODIFIERS")
                     AbilityGrid(creatureVM)
                 }
 
