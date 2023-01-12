@@ -1,7 +1,6 @@
 package views
 
 import data.Ability
-import models.CreatureVM
 import components.DropdownWithColor
 import abilityModifiersTable
 import androidx.compose.foundation.layout.Box
@@ -13,12 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.input.TextFieldValue
+import models.*
 
 @Composable
-fun AbilityGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
-    val pattern = remember { Regex("^[0-9]*\\.*-?[0-9]+\$") }
+fun AbilityGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
     val items = Ability.values()
 
     Column(modifier) {
@@ -26,20 +26,17 @@ fun AbilityGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
             Row {
                 Box {
                     TextField(
-                        value = TextFieldValue(
-                            creatureVM.abilityModifiers.modByStat(ability).toString(),
-                            selection = TextRange(creatureVM.abilityModifiers.modByStat(ability).toString().length)
-                        ),
+                        value = creatureVM.abilityModifiers.modByStat(ability).toString(),
                         onValueChange = {
                             when {
-                                it.text.isEmpty() -> creatureVM.abilityModifiers.changeToMod(ability, 0)
-                                it.text.matches(pattern) -> creatureVM.abilityModifiers.changeToMod(
+                                it.isEmpty() -> creatureVM.abilityModifiers.changeToMod(ability, 0)
+                                it.toIntOrNull() != null -> creatureVM.abilityModifiers.changeToMod(
                                     ability,
-                                    it.text.toInt()
+                                    it.toInt()
                                 )
-                                //else -> creatureVM.abilityModifiers.changeToMod(ability,creatureVM.abilityModifiers.modByStat(ability))
                             }
                         },
+                        textStyle = if (creatureVM.abilityModifiers.setups[ability] is StatSetup.Modifier) TextStyle(fontWeight = FontWeight.Bold) else TextStyle.Default,
                         label = { Text(text = ability.name) }
                     )
                     Row(modifier = Modifier.align(Alignment.CenterEnd)) {
