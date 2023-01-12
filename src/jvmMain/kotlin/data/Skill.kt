@@ -1,6 +1,8 @@
 package data
 
-enum class Skill {
+import components.*
+
+enum class Skill: DropdownItem {
     Acrobatics,
     Arcana,
     Athletics,

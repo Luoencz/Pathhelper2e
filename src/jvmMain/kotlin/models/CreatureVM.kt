@@ -1,17 +1,15 @@
 package models
 
-import data.Ability
+import AC
 import Alignment
 import PerceptionSecondaryTrait
 import Rarity
+import SavingThrow
 import Size
-import data.Skill
 import StatTier
 import VisionType
-import abilityModifiersTable
 import androidx.compose.runtime.*
-import perceptionTable
-import skillTable
+import data.*
 
 class CreatureVM {
     var creatureName by mutableStateOf("")
@@ -20,6 +18,24 @@ class CreatureVM {
     val creatureRarity = mutableStateOf(Rarity.Common)
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
+
+    val creatureHP = StatMap(
+        creatureVM = this,
+        table = acModifiersTable,
+        values = HP.values()
+    )
+
+    val creatureAC = StatMap(
+        creatureVM = this,
+        table = acModifiersTable,
+        values = AC.values()
+    )
+
+    val creatureSavingThrows = StatMap(
+        creatureVM = this,
+        table = savingThrowsTable,
+        values = SavingThrow.values()
+    )
 
     val creatureSecondaryTraits = mutableStateListOf("", "")
 
@@ -33,10 +49,11 @@ class CreatureVM {
 
     val creatureLanguages = mutableStateListOf("", "")
 
+    val skills = mutableStateListOf(Skill.Arcana)
     val skillModifiers = StatMap(
         creatureVM = this,
         table = skillTable,
-        values = Skill.values()
+        values = emptyArray<Skill>()
     )
     //TODO Doesn't update when level is changed
 
@@ -44,7 +61,6 @@ class CreatureVM {
         creatureVM = this,
         table = abilityModifiersTable,
         values = Ability.values()
-
     )
     //TODO Make generic function
 }

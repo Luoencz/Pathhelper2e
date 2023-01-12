@@ -4,9 +4,6 @@ import components.ColorDropdownItem
 import components.DropdownItem
 import components.SpecialNameDropdownItem
 import models.ApplicationVM
-import models.CreatureVM
-
-
 
 
 enum class Alignment : DropdownItem {
@@ -20,6 +17,18 @@ enum class Size : DropdownItem {
 
 enum class Rarity(override val color: Color) : ColorDropdownItem {
     Common(Color.White), Uncommon(Color.Yellow), Rare(Color.Cyan), Unique(Color.Magenta)
+}
+
+enum class AC {
+    AC
+}
+
+enum class HP {
+    HP
+}
+
+enum class SavingThrow {
+    Reflex, Will, Fortitude
 }
 
 enum class VisionType(override val altName: String, override val color: Color) : ColorDropdownItem,

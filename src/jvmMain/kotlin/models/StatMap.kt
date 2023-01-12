@@ -12,12 +12,12 @@ sealed interface StatSetup {
 }
 
 class StatMap<T:Enum<T>>(val creatureVM: CreatureVM, val table: MutableMap<Int, Map<StatTier, Int>>, values: Array<T>) {
-    val setups: SnapshotStateMap<T, StatSetup> =
+    var setups: SnapshotStateMap<T, StatSetup> =
         values.map { it to StatSetup.Tier(StatTier.Moderate) }.toMutableStateMap()
 
     @Composable
     fun modByStat(key: T): Int {
-        val setup = setups[key]!!
+        val setup = setups[key] ?: StatSetup.Tier(StatTier.Moderate)
         return when (setup) {
             is StatSetup.Modifier -> setup.value
             is StatSetup.Tier -> table[creatureVM.creatureLevel]!![setup.tier]!!
@@ -26,7 +26,7 @@ class StatMap<T:Enum<T>>(val creatureVM: CreatureVM, val table: MutableMap<Int, 
 
     @Composable
     fun tierByStat(key: T): StatTier {
-        val setup = setups[key]!!
+        val setup = setups[key] ?: StatSetup.Tier(StatTier.Moderate)
         val tiers = table[0]!!.keys
         return when (setup) {
             is StatSetup.Modifier -> tiers.firstOrNull {

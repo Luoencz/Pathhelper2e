@@ -38,33 +38,40 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 )
             }
 
+            Row {
+                Column(Modifier.weight(0.5f)) {
+                    Text("TRAITS")
 
-            Text("TRAITS")
+                    //Primary traits
+                    Row(Modifier.padding(vertical = 3.dp)) {
+                        DropdownWithColor(
+                            creatureVM.creatureRarity.value,
+                            { creatureVM.creatureRarity.value = it },
+                            enumValues()
+                        )
+                        DropdownWithColor(
+                            creatureVM.creatureAlignment.value,
+                            { creatureVM.creatureAlignment.value = it },
+                            enumValues(),
+                            size = 80.dp
+                        )
+                        DropdownWithColor(
+                            creatureVM.creatureSize.value,
+                            { creatureVM.creatureSize.value = it },
+                            enumValues(),
+                            size = 130.dp
+                        )
+                    }
 
-            //Primary traits
-            Row(Modifier.padding(vertical = 3.dp)) {
-                DropdownWithColor(
-                    creatureVM.creatureRarity.value,
-                    { creatureVM.creatureRarity.value = it },
-                    enumValues()
-                )
-                DropdownWithColor(
-                    creatureVM.creatureAlignment.value,
-                    { creatureVM.creatureAlignment.value = it },
-                    enumValues(),
-                    size = 80.dp
-                )
-                DropdownWithColor(
-                    creatureVM.creatureSize.value,
-                    { creatureVM.creatureSize.value = it },
-                    enumValues(),
-                    size = 130.dp
-                )
+                    //Secondary Traits
+                    SecondaryTraits(creatureVM.creatureSecondaryTraits)
+                }
 
+                Column(Modifier.weight(0.5f)) {
+                    DefenseStats(creatureVM = creatureVM)
+                }
             }
 
-            //Secondary Traits
-            SecondaryTraits(creatureVM.creatureSecondaryTraits)
 
             //data.Ability Scores and Perception
             Row(Modifier.padding(top = 10.dp)) {
@@ -82,10 +89,12 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                 }
             }
 
-            Text("SKILLS", Modifier.padding(top = 10.dp))
+            Column {
+                Text("SKILLS", Modifier.padding(top = 10.dp))
 
-            //Skills Grid
-            SkillsGrid(creatureVM)
+                //Skills Grid
+                SkillsGrid(creatureVM)
+            }
         }
     }
 }
