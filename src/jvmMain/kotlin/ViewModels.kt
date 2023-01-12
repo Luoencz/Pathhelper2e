@@ -4,6 +4,7 @@ import components.ColorDropdownItem
 import components.DropdownItem
 import components.SpecialNameDropdownItem
 import models.ApplicationVM
+import pages.*
 
 
 enum class Alignment : DropdownItem {
@@ -54,14 +55,15 @@ enum class SensePrecision : DropdownItem {
 
 
 enum class Pages {
-    HomePage, CreatureCreatorPage
+    HomePage, CreatureMainStatsPage, CreatureAbilitiesAndActionsPage
 }
 
 @Composable
 fun navigate(applicationVM: ApplicationVM) {
     when (applicationVM.page.value) {
+        Pages.CreatureAbilitiesAndActionsPage -> creatureAbilitiesAndActions(applicationVM)
         Pages.HomePage -> homePage(applicationVM)
-        Pages.CreatureCreatorPage -> creatureCreatorPage(applicationVM)
+        Pages.CreatureMainStatsPage -> creatureMainStats(applicationVM)
     }
 }
 

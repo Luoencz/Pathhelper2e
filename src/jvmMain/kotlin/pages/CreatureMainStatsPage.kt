@@ -1,3 +1,7 @@
+package pages
+
+import Pages
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -9,24 +13,26 @@ import models.*
 import views.*
 
 @Composable
-fun creatureCreatorPage(applicationVM: ApplicationVM) {
-    val creatureVM = remember { CreatureVM() }
+fun creatureMainStats(applicationVM: ApplicationVM) {
+    val creatureVM = remember { applicationVM.creatureVM }
 
     MaterialTheme {
         Column(
-            Modifier.padding(15.dp)
-            //.verticalScroll(rememberScrollState())
+            Modifier
+                .padding(15.dp)
+                .verticalScroll(rememberScrollState())
         ) {
             Row(Modifier.fillMaxWidth()) {
-                //Creature Name
-                TextField(
-                    value = creatureVM.creatureName,
-                    onValueChange = { creatureVM.creatureName = it },
-                    label = { Text("Name") })
-
-                //Level Choice
-                LevelChoice(creatureVM = creatureVM)
-
+                Button(
+                    onClick = {  },
+                    content = { Text(text = "Main Stats") },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(25, 77, 37))
+                )
+                Button(
+                    onClick = { applicationVM.page.value = Pages.CreatureAbilitiesAndActionsPage },
+                    content = { Text(text = "Passive abilities and Actions") },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
+                )
                 //Spacer moves exit button to the right end of the screen
                 Spacer(Modifier.weight(1f))
 
@@ -36,6 +42,16 @@ fun creatureCreatorPage(applicationVM: ApplicationVM) {
                     content = { Text("x") },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
                 )
+            }
+            Row {
+                //Creature Name
+                TextField(
+                    value = creatureVM.creatureName,
+                    onValueChange = { creatureVM.creatureName = it },
+                    label = { Text("Name") })
+
+                //Level Choice
+                LevelChoice(creatureVM = creatureVM)
             }
 
             Row {
