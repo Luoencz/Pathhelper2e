@@ -21,7 +21,7 @@ class CreatureVM {
 
     val creatureHP = StatMap(
         creatureVM = this,
-        table = acModifiersTable,
+        table = hpTable,
         values = HP.values()
     )
 
@@ -37,7 +37,7 @@ class CreatureVM {
         values = SavingThrow.values()
     )
 
-    val creatureSecondaryTraits = mutableStateListOf("", "")
+    var creatureSecondaryTraits = mutableStateListOf("")
 
     var perceptionTier by mutableStateOf(StatTier.Moderate)
 

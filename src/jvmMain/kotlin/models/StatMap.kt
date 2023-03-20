@@ -15,7 +15,6 @@ class StatMap<T:Enum<T>>(val creatureVM: CreatureVM, val table: MutableMap<Int, 
     var setups: SnapshotStateMap<T, StatSetup> =
         values.map { it to StatSetup.Tier(StatTier.Moderate) }.toMutableStateMap()
 
-    @Composable
     fun modByStat(key: T): Int {
         val setup = setups[key] ?: StatSetup.Tier(StatTier.Moderate)
         return when (setup) {
@@ -24,7 +23,6 @@ class StatMap<T:Enum<T>>(val creatureVM: CreatureVM, val table: MutableMap<Int, 
         }
     }
 
-    @Composable
     fun tierByStat(key: T): StatTier {
         val setup = setups[key] ?: StatSetup.Tier(StatTier.Moderate)
         val tiers = table[0]!!.keys

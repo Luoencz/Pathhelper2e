@@ -18,27 +18,26 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 
 @Composable
-fun LevelChoice(creatureVM: CreatureVM) {
+fun LevelChoice(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
     var popupControl by remember { mutableStateOf(false) }
 
-    Box(contentAlignment = Alignment.Center) {
-        Text(
-            creatureVM.creatureLevel.toString(),
-            Modifier
-                .size(65.dp, 55.dp)
-                .background(Color.Gray)
-                .border(1.dp, Color.Gray)
-                .padding(3.dp)
-                .wrapContentHeight(),
-            textAlign = TextAlign.Left
-        )
+    Box(contentAlignment = Alignment.Center, modifier = Modifier) {
         Button(
             onClick = { popupControl = !popupControl },
-            content = { Text("^", textAlign = TextAlign.Center, fontSize = 7.sp) },
+            content = { Text(
+                creatureVM.creatureLevel.toString(),
+                Modifier
+                    .size(50.dp, 30.dp)
+                    .background(Color.Gray)
+                    .border(1.dp, Color.Gray)
+                    .padding(3.dp,0.dp,0.dp,0.dp)
+                    .wrapContentHeight(),
+                textAlign = TextAlign.Left,
+            ) },
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .padding(3.dp)
-                .size(27.5f.dp),
+                .size(30f.dp),
             contentPadding = PaddingValues(2.dp)
         )
     }

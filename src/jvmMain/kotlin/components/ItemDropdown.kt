@@ -11,10 +11,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 interface ColorDropdownItem : DropdownItem {
     val color: Color
@@ -28,34 +26,28 @@ interface SpecialNameDropdownItem : DropdownItem {
     val altName: String
 }
 @Composable
-fun <T : DropdownItem> DropdownWithColor(
-    selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Dp = 120.dp, color: Color = Color.Transparent
+fun <T : DropdownItem> ItemDropdown(
+    selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Dp = 120.dp, color: Color = Color.Transparent, modifier: Modifier = Modifier
 ) {
     var showDropdown by remember { mutableStateOf(false) }
-    val backgroundColor = if (selected is ColorDropdownItem) selected.color else color
+    //val backgroundColor = if (selected is ColorDropdownItem) selected.color else color
 
     Box(
-        Modifier
-            .padding(end = 10.dp)
-            .height(30.dp),
+        modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            if (selected is SpecialNameDropdownItem) selected.altName else selected.name,
-            Modifier
-                .size(size, 55.dp)
-                .background(backgroundColor)
-                .border(1.dp, Color.Gray)
-                .padding(3.dp)
-                .wrapContentHeight()
-        )
         Button(
             onClick = { showDropdown = !showDropdown },
-            content = { Text("^", textAlign = TextAlign.Center, fontSize = 7.sp) },
+            content = { Text(
+                if (selected is SpecialNameDropdownItem) selected.altName else selected.name,
+                Modifier
+                    .wrapContentWidth()
+            ) },
             modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(3.dp)
-                .size(27.5f.dp),
+                .align(Alignment.Center)
+                .wrapContentWidth()
+                .widthIn(100.dp)
+                .height(25.dp),
             contentPadding = PaddingValues(2.dp)
         )
         DropdownMenu(

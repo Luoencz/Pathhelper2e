@@ -11,7 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import components.DropdownWithColor
+import components.ItemDropdown
 import PerceptionSecondaryTrait
 import SensePrecision
 import androidx.compose.foundation.border
@@ -34,7 +34,7 @@ fun PerceptionMod(creatureVM: CreatureVM) {
                 "Perception:   +${creatureVM.perceptionModifier}",
                 modifier = Modifier.absolutePadding(top = 5.dp)
             )
-            DropdownWithColor(
+            ItemDropdown(
                 selected = creatureVM.perceptionTier,
                 onValueChanged = { creatureVM.perceptionTier = it },
                 values = StatTier.values(),
@@ -42,7 +42,7 @@ fun PerceptionMod(creatureVM: CreatureVM) {
         }
         Column {
             Text(" ", modifier = Modifier.absolutePadding(top = 5.dp))
-            DropdownWithColor(
+            ItemDropdown(
                 selected = creatureVM.vision.value,
                 onValueChanged = { creatureVM.vision.value = it },
                 values = VisionType.values(),
@@ -73,7 +73,7 @@ fun PerceptionTraits(creatureVM: CreatureVM) {
                         modifier = Modifier.width(200.dp)
                     )
                     Column {
-                        DropdownWithColor(
+                        ItemDropdown(
                             selected = trait.sensePrecision,
                             onValueChanged = { trait.sensePrecision = it },
                             values = SensePrecision.values(),

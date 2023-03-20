@@ -1,6 +1,7 @@
 package views
 
 import AC
+import HP
 import SavingThrow
 import StatTier
 import androidx.compose.foundation.*
@@ -18,83 +19,47 @@ import models.*
 
 @Composable
 fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
-    Column(modifier) {
-        Text("DEFENSE")
+    Column(modifier.padding(top = 3.dp)) {
         Row {
-            Column {
+            Column(horizontalAlignment = Alignment.CenterHorizontally,modifier = Modifier.padding(start = 3.dp)) {
                 Row {
-                    Text(text = "AC:")
-
-                    BasicTextField(
-                        value = creatureVM.creatureAC.modByStat(AC.AC).toString(),
-                        modifier = Modifier
-                            .border(1.dp, Color.Gray)
-                            .size(20.dp, 20.dp)
-                            .wrapContentHeight()
-                            .padding(2.dp)
-                            .wrapContentWidth(),
-                        textStyle = if (creatureVM.creatureAC.setups[AC.AC] is StatSetup.Modifier) TextStyle(
-                            fontWeight = FontWeight.Bold
-                        ) else TextStyle.Default,
-                        onValueChange = {
-                            when {
-                                it.isEmpty() -> creatureVM.creatureAC.changeToMod(AC.AC, 0)
-                                it.toIntOrNull() != null -> creatureVM.creatureAC.changeToMod(
-                                    AC.AC,
-                                    it.toInt()
-                                )
-                            }
+                Text(text = "AC:")
+                BasicTextField(
+                    value = creatureVM.creatureAC.modByStat(AC.AC).toString(),
+                    modifier = Modifier
+                        .border(1.dp, Color.Gray)
+                        .size(20.dp, 20.dp)
+                        .wrapContentHeight()
+                        .padding(2.dp)
+                        .wrapContentWidth(),
+                    textStyle = if (creatureVM.creatureAC.setups[AC.AC] is StatSetup.Modifier) TextStyle(
+                        fontWeight = FontWeight.Bold
+                    ) else TextStyle.Default,
+                    onValueChange = {
+                        when {
+                            it.isEmpty() -> creatureVM.creatureAC.changeToMod(AC.AC, 0)
+                            it.toIntOrNull() != null -> creatureVM.creatureAC.changeToMod(
+                                AC.AC,
+                                it.toInt()
+                            )
                         }
-                    )
+                    }
+                )
                 }
-                DropdownWithColor(creatureVM.creatureAC.tierByStat(AC.AC), {
+                ItemDropdown(creatureVM.creatureAC.tierByStat(AC.AC), {
                     creatureVM.creatureAC.changeToStatTier(AC.AC, it)
                 }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low))
             }
-            Column {
-                SavingThrow.values().forEach { savingThrow ->
-                    Row {
-                        Text(text = "${savingThrow.name}:")
-
-                        BasicTextField(
-                            value = creatureVM.creatureSavingThrows.modByStat(savingThrow).toString(),
-                            modifier = Modifier
-                                .border(1.dp, Color.Gray)
-                                .size(20.dp, 20.dp)
-                                .wrapContentHeight()
-                                .padding(2.dp)
-                                .wrapContentWidth(),
-                            textStyle = if (creatureVM.creatureSavingThrows.setups[savingThrow] is StatSetup.Modifier) TextStyle(
-                                fontWeight = FontWeight.Bold
-                            ) else TextStyle.Default,
-                            onValueChange = {
-                                when {
-                                    it.isEmpty() -> creatureVM.creatureSavingThrows.changeToMod(savingThrow, 0)
-                                    it.toIntOrNull() != null -> creatureVM.creatureSavingThrows.changeToMod(
-                                        savingThrow,
-                                        it.toInt()
-                                    )
-                                }
-                            }
-                        )
-                    }
-                    DropdownWithColor(creatureVM.creatureSavingThrows.tierByStat(savingThrow), {
-                        creatureVM.creatureSavingThrows.changeToStatTier(savingThrow, it)
-                    }, StatTier.values())
-                }
-            }
-            Column {
+            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
                 Row {
                     Text(text = "HP:")
-
                     BasicTextField(
                         value = creatureVM.creatureHP.modByStat(HP.HP).toString(),
                         modifier = Modifier
                             .border(1.dp, Color.Gray)
-                            .size(20.dp, 20.dp)
-                            .wrapContentHeight()
-                            .padding(2.dp)
-                            .wrapContentWidth(),
+                            .wrapContentWidth()
+                            .size(28.dp,20.dp)
+                            .padding(2.dp),
                         textStyle = if (creatureVM.creatureHP.setups[HP.HP] is StatSetup.Modifier) TextStyle(
                             fontWeight = FontWeight.Bold
                         ) else TextStyle.Default,
@@ -107,11 +72,43 @@ fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                                 )
                             }
                         }
+                    )}
+                    ItemDropdown(creatureVM.creatureHP.tierByStat(HP.HP), {
+                        creatureVM.creatureHP.changeToStatTier(HP.HP, it)
+                    }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))
+                }
+        }
+    }
+    Row(Modifier.padding(top = 3.dp)) {
+        SavingThrow.values().forEach { savingThrow ->
+            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
+                Row {
+                    Text(text = "${savingThrow.name}:")
+                    BasicTextField(
+                        value = creatureVM.creatureSavingThrows.modByStat(savingThrow).toString(),
+                        modifier = Modifier
+                            .border(1.dp, Color.Gray)
+                            .size(20.dp, 20.dp)
+                            .wrapContentHeight()
+                            .padding(2.dp)
+                            .wrapContentWidth(),
+                        textStyle = if (creatureVM.creatureSavingThrows.setups[savingThrow] is StatSetup.Modifier) TextStyle(
+                            fontWeight = FontWeight.Bold
+                        ) else TextStyle.Default,
+                        onValueChange = {
+                            when {
+                                it.isEmpty() -> creatureVM.creatureSavingThrows.changeToMod(savingThrow, 0)
+                                it.toIntOrNull() != null -> creatureVM.creatureSavingThrows.changeToMod(
+                                    savingThrow,
+                                    it.toInt()
+                                )
+                            }
+                        }
                     )
                 }
-                DropdownWithColor(creatureVM.creatureHP.tierByStat(HP.HP), {
-                    creatureVM.creatureHP.changeToStatTier(HP.HP, it)
-                }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))
+                ItemDropdown(creatureVM.creatureSavingThrows.tierByStat(savingThrow), {
+                    creatureVM.creatureSavingThrows.changeToStatTier(savingThrow, it)
+                }, StatTier.values())
             }
         }
     }
