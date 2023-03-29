@@ -1,24 +1,19 @@
 package views
 
-import data.Ability
-import components.ItemDropdown
-import data.abilityModifiersTable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
+import androidx.compose.ui.unit.*
+import components.*
+import data.*
 import models.*
 
 @Composable
 fun AbilityGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
     val keys = Ability.values()
-    Column(modifier) {
+    Row(modifier) {
         keys.forEach { key ->
             AbilityView(creatureVM, key)
         }
@@ -27,40 +22,23 @@ fun AbilityGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO 
 
 @Composable
 private fun AbilityView(creatureVM: CreatureVM, key: Ability) {
-    Row {
-        Box {
-            var currentValue by remember(creatureVM.abilityModifiers.setups[key]) {
-                mutableStateOf(creatureVM.abilityModifiers.modByStat(key).toString())
-            }
-            var errorState by remember {
-                mutableStateOf(false)
-            }
-
-            TextField(
-                value = currentValue,
-                onValueChange = {
-                    currentValue = it
-                    when (val intValue = it.toIntOrNull()) {
-                        null -> {
-                            errorState = true
-                        }
-
-                        else -> {
-                            errorState = false
-                            creatureVM.abilityModifiers.changeToMod(key, intValue)
-                        }
-                    }
-                },
-                textStyle = if (creatureVM.abilityModifiers.setups[key] is StatSetup.Modifier) TextStyle(
-                    fontWeight = FontWeight.Bold
-                ) else TextStyle.Default,
-                label = { Text(text = key.name) }
-            )
-            Row(modifier = Modifier.align(Alignment.CenterEnd)) {
-                ItemDropdown(creatureVM.abilityModifiers.tierByStat(key), {
-                    creatureVM.abilityModifiers.changeToStatTier(key, it)
-                }, abilityModifiersTable[0]!!.keys.toTypedArray())
-            }
-        }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(1.5.dp)
+    ) {
+        NumericTextField(
+            value = creatureVM.abilityModifiers.modByStat(key),
+            label = key.name,
+            textStyle = when (creatureVM.abilityModifiers.setups[key]) {
+                is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
+                null, is StatSetup.Tier -> TextStyle.Default
+            },
+            modifier = Modifier.width(101.9.dp),
+            onIntValueChange = { creatureVM.abilityModifiers.changeToMod(key, it) },
+            explicitlySigned = true
+        )
+        ItemDropdown(creatureVM.abilityModifiers.tierByStat(key), {
+            creatureVM.abilityModifiers.changeToStatTier(key, it)
+        }, abilityModifiersTable[0]!!.keys.toTypedArray())
     }
 }

@@ -30,7 +30,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 Modifier
                     .fillMaxWidth()
                     .border(width = 1.dp, Color.Black, RoundedCornerShape(20))
-                    .padding(10.dp, 0.dp)) {
+                    .padding(10.dp, 0.dp)
+            ) {
                 Button(
                     onClick = {  },
                     content = { Text(text = "Main Stats") },
@@ -54,9 +55,9 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
 
             Row {
                 Row(
-                    Modifier
-                        .border(width = 1.dp, Color.Black, RoundedCornerShape(20))
-                        .padding(10.dp, 0.dp), verticalAlignment = Alignment.CenterVertically
+                        //Modifier.border(width = 1.dp, Color.Black, RoundedCornerShape(20))
+                        //.padding(10.dp, 0.dp),
+                        verticalAlignment = Alignment.CenterVertically
                 ) {
                     //Creature Name
                     OutlinedTextField(
