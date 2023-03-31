@@ -1,13 +1,13 @@
 package models
 
-import AC
-import Alignment
-import PerceptionSecondaryTrait
-import Rarity
-import SavingThrow
-import Size
-import StatTier
-import VisionType
+import GeneralTrait
+import data.AC
+import data.Alignment
+import data.Perception
+import PerceptionTrait
+import data.Rarity
+import data.SavingThrow
+import data.Size
 import androidx.compose.runtime.*
 import data.*
 
@@ -37,15 +37,15 @@ class CreatureVM {
         values = SavingThrow.values()
     )
 
-    var creatureSecondaryTraits = mutableStateListOf("")
+    var creatureSecondaryTraits = mutableStateListOf<GeneralTrait>()
 
-    var perceptionTier by mutableStateOf(StatTier.Moderate)
+    val creaturePerception = StatMap(
+        creatureVM = this,
+        table = perceptionTable,
+        values = Perception.values()
+    )
 
-    val perceptionModifier by derivedStateOf {
-        perceptionTable[creatureLevel]!![perceptionTier]!!
-    }
-    val vision = mutableStateOf(VisionType.Normal)
-    val perceptionSecondaryTraits = mutableStateListOf(PerceptionSecondaryTrait())
+    val perceptionTraits = mutableStateListOf<PerceptionTrait>()
 
     val creatureLanguages = mutableStateListOf("", "")
 

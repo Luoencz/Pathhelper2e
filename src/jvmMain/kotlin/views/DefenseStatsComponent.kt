@@ -1,16 +1,13 @@
 package views
 
-import AC
-import HP
-import SavingThrow
-import StatTier
-import androidx.compose.foundation.*
+import data.AC
+import data.HP
+import data.SavingThrow
+import data.StatTier
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
-import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
@@ -19,19 +16,19 @@ import models.*
 
 @Composable
 fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
-    Column(modifier.padding(top = 3.dp)) {
+    Column(modifier.padding(top = 8.dp)) {
         Row {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
                 NumericTextField(
                     value = creatureVM.creatureAC.modByStat(AC.AC),
-                    label = "Armor Class",
+                    onIntValueChange = { creatureVM.creatureAC.changeToMod(AC.AC, it) },
+                    modifier = Modifier.width(85.dp),
                     textStyle = when (creatureVM.creatureAC.setups[AC.AC]) {
                         is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                         null, is StatSetup.Tier -> TextStyle.Default
                     },
-                    modifier = Modifier.width(101.9.dp),
-                    onIntValueChange = { creatureVM.creatureAC.changeToMod(AC.AC, it) },
-                    explicitlySigned = false
+                    explicitlySigned = false,
+                    label = { Text(text = "Armor Class") }
                 )
                 ItemDropdown(creatureVM.creatureAC.tierByStat(AC.AC), {
                     creatureVM.creatureAC.changeToStatTier(AC.AC, it)
@@ -40,33 +37,33 @@ fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
                     NumericTextField(
                         value = creatureVM.creatureHP.modByStat(HP.HP),
-                        label = "Hit Points",
+                        onIntValueChange = { creatureVM.creatureHP.changeToMod(HP.HP, it) },
+                        modifier = Modifier.width(85.dp),
                         textStyle = when (creatureVM.creatureHP.setups[HP.HP]) {
                             is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                             null, is StatSetup.Tier -> TextStyle.Default
                         },
-                        modifier = Modifier.width(101.9.dp),
-                        onIntValueChange = { creatureVM.creatureHP.changeToMod(HP.HP, it) },
+                        label = { Text(text = "Hit Points") },
                     )
                     ItemDropdown(creatureVM.creatureHP.tierByStat(HP.HP), {
                         creatureVM.creatureHP.changeToStatTier(HP.HP, it)
                     }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))
             }
         }
-        Row(Modifier.padding(top = 3.dp)) {
+        Row(Modifier.padding(top = 8.dp)) {
             SavingThrow.values().forEach { savingThrow ->
                 Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
                     Row {
                         NumericTextField(
                             value = creatureVM.creatureSavingThrows.modByStat(savingThrow),
-                            label = savingThrow.name,
+                            onIntValueChange = { creatureVM.creatureSavingThrows.changeToMod(savingThrow, it) },
+                            modifier = Modifier.width(85.dp),
                             textStyle = when (creatureVM.creatureSavingThrows.setups[savingThrow]) {
                                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                                 null, is StatSetup.Tier -> TextStyle.Default
                             },
-                            modifier = Modifier.width(101.9.dp),
-                            onIntValueChange = { creatureVM.creatureSavingThrows.changeToMod(savingThrow, it) },
-                            explicitlySigned = true
+                            explicitlySigned = true,
+                            label = { Text(text = savingThrow.name) }
                         )
                     }
                     ItemDropdown(creatureVM.creatureSavingThrows.tierByStat(savingThrow), {

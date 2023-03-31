@@ -1,6 +1,6 @@
 package models
 
-import StatTier
+import data.StatTier
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.runtime.toMutableStateMap

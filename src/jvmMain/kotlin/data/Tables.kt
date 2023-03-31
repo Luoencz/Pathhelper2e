@@ -1,6 +1,6 @@
 package data
 
-import StatTier
+import data.StatTier
 
 val perceptionTable = """-1 +9 +8 +5 +2 +0
 0 +10 +9 +6 +3 +1

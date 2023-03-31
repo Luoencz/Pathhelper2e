@@ -1,8 +1,15 @@
 package data
 
-import components.*
+enum class Ability {
+    Strength,
+    Dexterity,
+    Constitution,
+    Intelligence,
+    Wisdom,
+    Charisma
+}
 
-enum class Skill: DropdownItem {
+enum class Skill: NamedObject {
     Acrobatics,
     Arcana,
     Athletics,

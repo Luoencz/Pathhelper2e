@@ -1,20 +1,25 @@
 package components
 
+import androidx.compose.foundation.interaction.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.focus.*
 import androidx.compose.ui.text.*
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.*
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun NumericTextField(
     value: Int,
-    label: String,
     onIntValueChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = LocalTextStyle.current,
-    explicitlySigned: Boolean = false
+    explicitlySigned: Boolean = false,
+    label: @Composable (() -> Unit)
 ) {
     var focused by mutableStateOf(false)
 
@@ -30,7 +35,8 @@ fun NumericTextField(
         currentValue = "+$currentValue"
     }
 
-    OutlinedTextField(
+    val interactionSource = remember { MutableInteractionSource() }
+    BasicTextField(
         value = currentValue,
         modifier = modifier.onFocusChanged { focus ->
                     focused = focus.isFocused
@@ -54,9 +60,24 @@ fun NumericTextField(
                 }
             }
         },
+        interactionSource = interactionSource,
         textStyle = textStyle.copy(fontSize = 20.sp),
-        isError = errorState,
-        label = { Text(text = label) },
         singleLine = true
-    )
+    ) {
+        TextFieldDefaults.OutlinedTextFieldDecorationBox(
+            value = currentValue,
+            visualTransformation = VisualTransformation.None,
+            innerTextField = it,
+            singleLine = true,
+            enabled = true,
+            label = label,
+            isError = errorState,
+            interactionSource = interactionSource,
+            // keep vertical paddings but change the horizontal
+            contentPadding = TextFieldDefaults.outlinedTextFieldPadding(
+                start = 7.dp, end = 7.dp, top = 4.dp, bottom = 4.dp
+            ),
+            colors = TextFieldDefaults.outlinedTextFieldColors()
+        )
+    }
 }

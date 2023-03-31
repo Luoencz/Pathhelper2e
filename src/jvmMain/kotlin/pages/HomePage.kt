@@ -1,3 +1,6 @@
+package pages
+
+import Pages
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button

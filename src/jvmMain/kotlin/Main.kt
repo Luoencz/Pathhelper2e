@@ -12,8 +12,8 @@ fun App() {
 
 fun main() = application {
     Window(
-        onCloseRequest = ::exitApplication,
-        title = "Pathhelper2e"
+            onCloseRequest = ::exitApplication,
+            title = "Pathhelper2e"
     ) {
         App()
     }

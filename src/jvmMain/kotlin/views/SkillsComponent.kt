@@ -1,6 +1,6 @@
 package views
 
-import StatTier
+import data.StatTier
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.*

@@ -1,15 +1,17 @@
 package pages
 
+import GeneralTrait
 import Pages
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.text.*
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.*
 import components.*
 import models.*
@@ -33,7 +35,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                     .padding(10.dp, 0.dp)
             ) {
                 Button(
-                    onClick = {  },
+                    onClick = { },
                     content = { Text(text = "Main Stats") },
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color(25, 77, 37))
                 )
@@ -53,74 +55,88 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 )
             }
 
-            Row {
-                Row(
-                        //Modifier.border(width = 1.dp, Color.Black, RoundedCornerShape(20))
-                        //.padding(10.dp, 0.dp),
-                        verticalAlignment = Alignment.CenterVertically
+            Row(Modifier.padding(top = 5.dp), verticalAlignment = Alignment.CenterVertically) {
+
+                //Creature Name
+                val interactionSource = remember { MutableInteractionSource() }
+                BasicTextField(
+                    value = creatureVM.creatureName,
+                    onValueChange = { creatureVM.creatureName = it },
+                    interactionSource = interactionSource,
+                    enabled = true,
+                    singleLine = true,
+                    modifier = Modifier
+                        .widthIn(10.dp, Dp.Infinity)
                 ) {
-                    //Creature Name
-                    OutlinedTextField(
+                    TextFieldDefaults.OutlinedTextFieldDecorationBox(
                         value = creatureVM.creatureName,
-                        onValueChange = { creatureVM.creatureName = it },
-                        textStyle = TextStyle.Default.copy(fontSize = 14.sp),
-                        modifier = Modifier
-                            .height(50.dp)
-                            .widthIn(5.dp, Dp.Infinity),
+                        visualTransformation = VisualTransformation.None,
+                        innerTextField = it,
                         singleLine = true,
-                        placeholder = { Text(text = "NAME") }
+                        enabled = true,
+                        label = { Text(text = "Name") },
+                        interactionSource = interactionSource,
+                        // keep vertical paddings but change the horizontal
+                        contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
+                            start = 8.dp, end = 8.dp
+                        ),
+                        colors = TextFieldDefaults.outlinedTextFieldColors()
                     )
-
-                    //Level Choice
-                    LevelChoice(creatureVM = creatureVM)
-                    Text(text = ": Level")
-
-                    Column(
-                        Modifier.padding(6.dp, 0.dp, 0.dp, 0.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(text = "Rarity")
-                        ItemDropdown(
-                            creatureVM.creatureRarity.value,
-                            { creatureVM.creatureRarity.value = it },
-                            enumValues(),
-                        )
-                    }
-
-                    Column(
-                        Modifier.padding(3.dp, 0.dp, 0.dp, 0.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(text = "Alignment")
-                        ItemDropdown(
-                            creatureVM.creatureAlignment.value,
-                            { creatureVM.creatureAlignment.value = it },
-                            enumValues(),
-                            size = 80.dp
-                        )
-                    }
-
-                    Column(
-                        Modifier.padding(3.dp, 0.dp, 0.dp, 0.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(text = "Size")
-
-                        ItemDropdown(
-                            creatureVM.creatureSize.value,
-                            { creatureVM.creatureSize.value = it },
-                            enumValues(),
-                            size = 130.dp
-                        )
-                    }
                 }
-                //SecondaryTraits(creatureVM.creatureSecondaryTraits)
-                SecondaryTraitsComponentV2(creatureVM = creatureVM)
+
+                //Level Choice
+                LevelChoice(creatureVM = creatureVM)
+                Text(text = ": Level")
+
+                Column(
+                    Modifier.padding(start = 6.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "Rarity")
+                    ItemDropdown(
+                        creatureVM.creatureRarity.value,
+                        { creatureVM.creatureRarity.value = it },
+                        enumValues(),
+                    )
+                }
+
+                Column(
+                    Modifier.padding(start = 3.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "Alignment")
+                    ItemDropdown(
+                        creatureVM.creatureAlignment.value,
+                        { creatureVM.creatureAlignment.value = it },
+                        enumValues(),
+                    )
+                }
+
+                Column(
+                    Modifier.padding(start = 3.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "Size")
+
+                    ItemDropdown(
+                        creatureVM.creatureSize.value,
+                        { creatureVM.creatureSize.value = it },
+                        enumValues(),
+                    )
+                }
+
+                //Secondary Traits
+                NamedList(
+                    modifier = Modifier.padding(start = 15.dp),
+                    traitsList = creatureVM.creatureSecondaryTraits,
+                    lambdaConstructor = {GeneralTrait(it)}
+                ) { androidx.compose.material.Text(text = "Trait") }
             }
 
             Row {
                 Column(Modifier.weight(0.5f)) {
-                    DefenseStats(creatureVM = creatureVM)
+                    Text("ABILITY MODIFIERS")
+                    AbilitiesStats(creatureVM, Modifier.padding(top = 6.dp))
                 }
             }
 
@@ -128,13 +144,13 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
             //data.Ability Scores and Perception
             Row(Modifier.padding(top = 10.dp)) {
                 Column {
-                    Text("ABILITY MODIFIERS")
-                    AbilityGrid(creatureVM)
+                    Text("DEFENSE STATS")
+                    DefenseStats(creatureVM = creatureVM)
                 }
 
                 Column(Modifier.padding(start = 40.dp)) {
                     Text("PERCEPTION")
-                    PerceptionMod(creatureVM)
+                    PerceptionStats(creatureVM, Modifier.padding(top = 8.dp))
 
                     Text("LANGUAGES", modifier = Modifier.padding(top = 20.dp))
                     SecondaryTraits(creatureTraits = creatureVM.creatureLanguages)

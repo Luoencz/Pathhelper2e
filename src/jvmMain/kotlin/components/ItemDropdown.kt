@@ -1,7 +1,5 @@
 package components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.DropdownMenu
@@ -11,23 +9,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.*
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import data.*
 
-interface ColorDropdownItem : DropdownItem {
-    val color: Color
-}
-
-interface DropdownItem {
-    val name: String
-}
-
-interface SpecialNameDropdownItem : DropdownItem {
-    val altName: String
-}
 @Composable
-fun <T : DropdownItem> ItemDropdown(
-    selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Dp = 120.dp, color: Color = Color.Transparent, modifier: Modifier = Modifier
+fun <T : NamedObject> ItemDropdown(
+    selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Modifier = Modifier.size(width = 85.dp, height = 25.dp), color: Color = Color.Transparent, modifier: Modifier = Modifier
 ) {
     var showDropdown by remember { mutableStateOf(false) }
     //val backgroundColor = if (selected is ColorDropdownItem) selected.color else color
@@ -39,15 +28,15 @@ fun <T : DropdownItem> ItemDropdown(
         Button(
             onClick = { showDropdown = !showDropdown },
             content = { Text(
-                if (selected is SpecialNameDropdownItem) selected.altName else selected.name,
+                if (selected is SpecialNameNamedObject) selected.altName else selected.name,
                 Modifier
                     .wrapContentWidth()
             ) },
-            modifier = Modifier
+            modifier = size
                 .align(Alignment.Center)
-                .wrapContentWidth()
-                .widthIn(100.dp)
-                .height(25.dp),
+                //.wrapContentWidth()
+                //.widthIn()
+                    ,
             contentPadding = PaddingValues(2.dp)
         )
         DropdownMenu(
@@ -58,7 +47,7 @@ fun <T : DropdownItem> ItemDropdown(
                     onValueChanged(it)
                     showDropdown = false
                 }) {
-                    Text(if (it is SpecialNameDropdownItem) it.altName else it.name)
+                    Text(if (it is SpecialNameNamedObject) it.altName else it.name)
                 }
             }
         }
