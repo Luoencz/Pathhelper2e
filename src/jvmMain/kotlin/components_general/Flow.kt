@@ -58,8 +58,9 @@ fun HorizontalFlow(
         }
         val contentHeight = rowHeights.sum() + verticalSpacingPx * (stripes.size - 1)
 
+        val contentWidth = stripes.maxOf { stripe -> stripe.sumOf { placeables[it].width } }
         layout(
-            constraints.constrainWidth(constraints.minWidth),
+            constraints.constrainWidth(contentWidth),
             constraints.constrainHeight(contentHeight)
         ) {
             val verticalPositions = IntArray(stripes.size)
