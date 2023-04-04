@@ -17,7 +17,7 @@ import models.*
 @Composable
 fun Senses_Component(creatureVM: CreatureVM) {
     NamedList(traitsList = creatureVM.perceptionTraits,
-        lambdaConstructor = { name -> PerceptionTrait(name) },
+        lambdaConstructor = ::PerceptionTrait,
         content =
         { namedObject ->
                 NamedBubble(
