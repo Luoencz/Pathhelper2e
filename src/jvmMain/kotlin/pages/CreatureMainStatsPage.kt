@@ -24,7 +24,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
         Column(
             Modifier
                 .padding(15.dp)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Row(
                 Modifier
@@ -53,7 +54,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 )
             }
 
-            Row(Modifier.padding(top = 5.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
 
                 //Creature Name
                 Name_Component(creatureVM)
@@ -107,7 +108,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 ) { Text(text = "Trait") }
             }
 
-            Row(Modifier.padding(top = 6.dp)) {
+            Row() {
                 Column {
                     Text("Ability Modifiers")
                     AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
@@ -123,7 +124,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 }
             }
 
-            Row(Modifier.padding(top = 6.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Column {
                     Text("AC, HP & Saving Throws")
                     Row(Modifier.padding(top = 6.dp)) {
@@ -132,7 +133,6 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                         SavingThrows_Component(creatureVM = creatureVM)
                     }
                 }
-                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                 Column {
                     Text("Resistances & Weaknesses")
                     Row(Modifier.padding(top = 6.dp)) {
@@ -141,14 +141,14 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 }
             }
 
-            Column(Modifier.padding(top = 6.dp)) {
+            Column {
                 Text("Languages")
                 Row(Modifier.padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
                     Languages_Component(creatureVM)
                 }
             }
 
-            Column(Modifier.padding(top = 6.dp)) {
+            Column {
                 Text("Skills")
                 Skills_Component(creatureVM,Modifier.padding(top = 6.dp))
             }
