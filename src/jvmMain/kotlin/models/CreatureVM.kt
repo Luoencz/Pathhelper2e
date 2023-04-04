@@ -52,13 +52,13 @@ class CreatureVM {
 
     val creatureReceivedDamageModifiers = mutableStateListOf<ReceivedDamageModifierTrait>()
 
-    val skills = mutableStateListOf(Skill.Arcana)
-
+    val proficientSkills = Skill.values().map { it to false }.toMutableStateMap()
     val skillModifiers = StatMap(
         creatureVM = this,
         table = skillTable,
-        values = emptyArray<Skill>()
+        values = Skill.values()
     )
+
     val abilityModifiers = StatMap(
         creatureVM = this,
         table = abilityModifiersTable,

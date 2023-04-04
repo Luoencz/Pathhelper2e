@@ -2,14 +2,17 @@ package components_unique
 
 import data.StatTier
 import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import components_general.*
@@ -17,76 +20,80 @@ import data.*
 import models.*
 
 @Composable
-fun Skills_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
-    val availableSkillsToPick by derivedStateOf { Skill.values().filter { !creatureVM.skills.contains(it) } }
-
-    HorizontalFlow(modifier) {
-        var i = 0
-        while (i <= creatureVM.skills.size) {
-            var index = i
-            if (i < creatureVM.skills.size) {
-                var skill = creatureVM.skills[index]
-                Column(Modifier.padding(end = 5.dp)) {
-                    Row {
-                        TextDropdown(
-                            selected = creatureVM.skills[index], onValueChanged = {
-                                val oldSkill = creatureVM.skills[index]
-                                creatureVM.skillModifiers.setups.remove(oldSkill)
-                                creatureVM.skills[index] = it
-                            },
-                            values = availableSkillsToPick.toTypedArray()
-                        )
-                        Text(": ")
-                        BasicTextField(
-                            value = creatureVM.skillModifiers.modByStat(skill).toString(),
-                            modifier = Modifier
-                                .border(1.dp, Color.Gray)
-                                .size(20.dp, 20.dp)
-                                .wrapContentHeight()
-                                .padding(2.dp)
-                                .wrapContentWidth(),
-                            textStyle = if (creatureVM.skillModifiers.setups[skill] is StatSetup.Modifier) TextStyle(
-                                fontWeight = FontWeight.Bold
-                            ) else TextStyle.Default,
-                            onValueChange = {
-                                when {
-                                    it.isEmpty() -> creatureVM.skillModifiers.changeToMod(skill, 0)
-                                    it.toIntOrNull() != null -> creatureVM.skillModifiers.changeToMod(
-                                        skill,
-                                        it.toInt()
-                                    )
-                                }
-                            }
-                        )
-                    }
-                    TextDropdown(creatureVM.skillModifiers.tierByStat(skill), {
-                        creatureVM.skillModifiers.changeToStatTier(skill, it)
-                    }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low))
-                }
-            } else {
-                Column(verticalArrangement = Arrangement.Top) {
-                    Button(
-                        onClick = {
-                            creatureVM.skills.add(availableSkillsToPick[0])
-                        },
-                        Modifier.size(27.5f.dp),
-                        contentPadding = PaddingValues(2.dp),
-                    ) {
-                        Text(text = "+", textAlign = TextAlign.Center, fontSize = 7.sp)
-                    }
-                    Button(
-                        onClick = {
-                            val skill = creatureVM.skills.removeLast()
-                            creatureVM.skillModifiers.setups.remove(skill)
-                        },
-                        Modifier.size(27.5f.dp),
-                        contentPadding = PaddingValues(2.dp),
-                    ) {
-                        Text("-", textAlign = TextAlign.Center, fontSize = 7.sp)
-                    }
-                }
-            }
-            i++
+fun Skills_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state 
+    HorizontalFlow(modifier = modifier) {
+        creatureVM.skillModifiers.setups.keys.forEach { skill ->
+            SkillView(skill = skill, creatureVM = creatureVM)
+            Spacer(modifier = Modifier.padding(horizontal = 1.dp))
         }
     }
 }
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun SkillView(skill: Skill, creatureVM: CreatureVM, modifier: Modifier = Modifier) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isHovered by interactionSource.collectIsHoveredAsState()
+
+    Box(modifier = modifier
+        .hoverable(interactionSource = interactionSource)
+        .wrapContentSize()) {
+        if (creatureVM.proficientSkills[skill]!!) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                NumericTextField(
+                    value = creatureVM.skillModifiers.modByStat(skill),
+                    onIntValueChange = { creatureVM.skillModifiers.changeToMod(skill, it) },
+                    modifier = Modifier.width(85.dp),
+                    textStyle = when (creatureVM.skillModifiers.setups[skill]) {
+                        is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
+                        null, is StatSetup.Tier -> TextStyle.Default
+                    },
+                    explicitlySigned = false
+                ) { Text(text = skill.name) }
+                TextDropdown(creatureVM.skillModifiers.tierByStat(skill), {
+                    creatureVM.skillModifiers.changeToStatTier(skill, it)
+                }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))
+            }
+        } else {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                val defaultValue = "~"
+                BasicTextField(value = defaultValue, onValueChange = {}, readOnly = true, modifier = Modifier.width(85.dp), textStyle = TextStyle(fontSize = 20.sp, textAlign = TextAlign.Center)) {
+                    TextFieldDefaults.OutlinedTextFieldDecorationBox(
+                        value = defaultValue,
+                        innerTextField = it,
+                        enabled = false,
+                        singleLine = true,
+                        label = { Text(text = skill.name) },
+                        visualTransformation = VisualTransformation.None,
+                        interactionSource = interactionSource,
+                        contentPadding = TextFieldDefaults.outlinedTextFieldPadding(
+                                start = 0.dp, end = 0.dp, top = 4.dp, bottom = 4.dp
+                        ),
+                    )
+                }
+                Box() {
+                    Button(
+                        onClick = {},
+                        content = { Text("Not Prof.") },
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .width(85.dp)
+                            .height(25.dp),
+                        contentPadding = PaddingValues(2.dp)
+                    )
+                }
+            }
+        }
+        if (isHovered) {
+            Button(
+                content = { Text(text = "x") },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+                onClick = { creatureVM.proficientSkills[skill] = !creatureVM.proficientSkills[skill]!! },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .size(15.dp)
+            )
+        }
+    }
+}
+

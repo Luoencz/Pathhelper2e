@@ -149,7 +149,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
             }
 
             Column(Modifier.padding(top = 6.dp)) {
-                Text("SKILLS")
+                Text("Skills")
                 Skills_Component(creatureVM,Modifier.padding(top = 6.dp))
             }
 
