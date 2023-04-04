@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import PerceptionTrait
 import androidx.compose.foundation.*
@@ -10,7 +10,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
-import components.*
+import components_general.*
 import data.*
 import models.*
 
@@ -20,10 +20,9 @@ fun Senses_Component(creatureVM: CreatureVM) {
         lambdaConstructor = { name -> PerceptionTrait(name) },
         content =
         { namedObject ->
-            Row(verticalAlignment = Alignment.CenterVertically) {
                 NamedBubble(
                     trait = namedObject,
-                    modifier = Modifier.padding(horizontal = 1.dp),
+                    modifier = Modifier.padding(end = 2.dp),
                     traitsList = creatureVM.perceptionTraits,
                     content = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -59,7 +58,6 @@ fun Senses_Component(creatureVM: CreatureVM) {
                         }
                     }
                 )
-            }
         },
         label = { Text(text = "Sense") }
     )

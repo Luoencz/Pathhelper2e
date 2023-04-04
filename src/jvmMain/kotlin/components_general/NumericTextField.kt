@@ -1,4 +1,4 @@
-package components
+package components_general
 
 import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.text.*

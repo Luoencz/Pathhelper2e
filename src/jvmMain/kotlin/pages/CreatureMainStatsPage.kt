@@ -3,21 +3,19 @@ package pages
 import BasicNamedObject
 import Pages
 import androidx.compose.foundation.*
-import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
-import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.text.input.*
+import androidx.compose.ui.layout.*
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.unit.*
-import components.*
+import components_general.*
 import models.*
-import views.*
+import components_unique.*
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun creatureMainStats(applicationVM: ApplicationVM) {
     val creatureVM = remember { applicationVM.creatureVM }
@@ -58,35 +56,10 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
             Row(Modifier.padding(top = 5.dp), verticalAlignment = Alignment.CenterVertically) {
 
                 //Creature Name
-                val interactionSource = remember { MutableInteractionSource() }
-                BasicTextField(
-                    value = creatureVM.creatureName,
-                    onValueChange = { creatureVM.creatureName = it },
-                    interactionSource = interactionSource,
-                    enabled = true,
-                    singleLine = true,
-                    modifier = Modifier
-                        .widthIn(10.dp, Dp.Infinity)
-                ) {
-                    TextFieldDefaults.OutlinedTextFieldDecorationBox(
-                        value = creatureVM.creatureName,
-                        visualTransformation = VisualTransformation.None,
-                        innerTextField = it,
-                        singleLine = true,
-                        enabled = true,
-                        label = { Text(text = "Name") },
-                        interactionSource = interactionSource,
-                        // keep vertical paddings but change the horizontal
-                        contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                            start = 8.dp, end = 8.dp
-                        ),
-                        colors = TextFieldDefaults.outlinedTextFieldColors()
-                    )
-                }
+                Name_Component(creatureVM)
 
                 //Level Choice
                 CL_Component(creatureVM = creatureVM)
-                Text(text = ": Level")
 
                 Column(
                     Modifier.padding(start = 6.dp),
@@ -122,7 +95,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                         creatureVM.creatureSize.value,
                         { creatureVM.creatureSize.value = it },
                         enumValues(),
-                        size = Modifier.size(100.dp,25.dp)
+                        size = Modifier.size(100.dp, 25.dp)
                     )
                 }
 
@@ -130,53 +103,57 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 NamedList(
                     modifier = Modifier.padding(start = 15.dp),
                     traitsList = creatureVM.creatureSecondaryTraits,
-                    lambdaConstructor = {BasicNamedObject(it)}
-                ) { androidx.compose.material.Text(text = "Trait") }
+                    lambdaConstructor = { BasicNamedObject(it) }
+                ) { Text(text = "Trait") }
             }
 
-            Row {
-                Column(Modifier.weight(0.5f)) {
+            Row(Modifier.padding(top = 6.dp)) {
+                Column {
                     Text("ABILITY MODIFIERS")
-                    AbilitiesStats(creatureVM, Modifier.padding(top = 6.dp))
+                    AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
+                }
+                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                Column {
+                    Text("DEFENSE")
+                    Row(Modifier.padding(top = 6.dp)) {
+                        AC_Component(creatureVM = creatureVM, Modifier.padding(end = 3.dp))
+                        HP_Component(creatureVM = creatureVM, Modifier.padding(end = 6.dp))
+                        SavingThrows_Component(creatureVM = creatureVM)
+                    }
                 }
             }
 
-
-            //data.Ability Scores and Perception
-            Column(Modifier.padding(top = 10.dp)) {
-                Text("DEFENSE STATS")
-                Column(Modifier.padding(top = 8.dp)) {
-                    Row {
-                        AC_Component(creatureVM = creatureVM)
-                        HP_Component(creatureVM = creatureVM)
-                    }
-                    SavingThrows_Component(creatureVM = creatureVM)
-                }
-
-                Text("PERCEPTION", Modifier.padding(top = 10.dp))
-                Row(Modifier.padding(top = 8.dp, start = 3.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Row {
+            Row(Modifier.padding(top = 6.dp)) {
+                val localDensity = LocalDensity.current
+                var columnHeight by remember { mutableStateOf(0.dp) }
+                Column {
+                    Text("PERCEPTION")
+                    Row(
+                        Modifier
+                            .padding(top = 6.dp)
+                            .onGloballyPositioned { layoutCoordinates ->
+                                columnHeight = with(localDensity) { layoutCoordinates.size.height.toDp() }
+                            }, verticalAlignment = Alignment.CenterVertically) {
                         Perception_Component(creatureVM)
-                    }
-                    Row {
                         Senses_Component(creatureVM)
                     }
                 }
-
-                Text("LANGUAGES", modifier = Modifier.padding(top = 10.dp))
-                NamedList(
-                    modifier = Modifier.padding(top = 8.dp),
-                    traitsList = creatureVM.creatureLanguages,
-                    lambdaConstructor = { BasicNamedObject(it) },
-                    label = { Text(text = "Language") }
-                )
+                Column(Modifier.padding(start = 10.dp)) {
+                    Text("LANGUAGES")
+                    Row(
+                        Modifier
+                            .padding(top = 6.dp)
+                            .height(columnHeight), verticalAlignment = Alignment.CenterVertically) {
+                        Languages_Component(creatureVM)
+                    }
+                }
             }
 
-            Column {
-                Text("SKILLS", Modifier.padding(top = 10.dp))
-                Skills_Component(creatureVM)
+            Column(Modifier.padding(top = 6.dp)) {
+                Text("SKILLS")
+                Skills_Component(creatureVM,Modifier.padding(top = 6.dp))
             }
+
         }
     }
 }
-

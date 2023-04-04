@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -8,20 +8,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import components.*
+import components_general.*
 import data.*
 import models.*
 
 @Composable
-fun SavingThrows_Component(creatureVM: CreatureVM) {
-    Row(Modifier.padding(top = 8.dp)) {
+fun SavingThrows_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
+    Row(modifier) {
         SavingThrow.values().forEach { savingThrow ->
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
                 Row {
                     NumericTextField(
                         value = creatureVM.creatureSavingThrows.modByStat(savingThrow),
                         onIntValueChange = { creatureVM.creatureSavingThrows.changeToMod(savingThrow, it) },
-                        modifier = androidx.compose.ui.Modifier.width(85.dp),
+                        modifier = Modifier.width(85.dp),
                         textStyle = when (creatureVM.creatureSavingThrows.setups[savingThrow]) {
                             is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                             null, is StatSetup.Tier -> TextStyle.Default

@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import models.CreatureVM
 import androidx.compose.foundation.background
@@ -69,4 +69,6 @@ fun CL_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                 }
             }
         }
+
+    Text(text = ": Level")
 }

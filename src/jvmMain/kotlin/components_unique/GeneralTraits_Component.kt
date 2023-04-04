@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import components.*
+import components_general.*
 
 @Composable
 fun GeneralTraits_Component(creatureTraits: SnapshotStateList<String>) {

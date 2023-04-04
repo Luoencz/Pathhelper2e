@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import data.StatTier
 import androidx.compose.foundation.*
@@ -12,7 +12,7 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
-import components.*
+import components_general.*
 import data.*
 import models.*
 

@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -9,12 +9,12 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
-import components.*
+import components_general.*
 import data.*
 import models.*
 
 @Composable
-fun AbilitiesStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
+fun AbilitiesStats_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
     val keys = Ability.values()
     Row(modifier) {
         keys.forEach { key ->

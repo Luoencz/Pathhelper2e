@@ -1,4 +1,4 @@
-package views
+package components_unique
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -7,7 +7,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import components.*
+import components_general.*
 import data.*
 import models.*
 
@@ -17,7 +17,7 @@ fun Perception_Component(creatureVM: CreatureVM) {
         NumericTextField(
             value = creatureVM.creaturePerception.modByStat(Perception.Perception),
             onIntValueChange = { creatureVM.creaturePerception.changeToMod(Perception.Perception, it) },
-            modifier = androidx.compose.ui.Modifier.width(85.dp),
+            modifier = Modifier.width(85.dp),
             textStyle = when (creatureVM.creaturePerception.setups[Perception.Perception]) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
