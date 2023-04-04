@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import components.*
 
 @Composable
-fun SecondaryTraits(creatureTraits: SnapshotStateList<String>) {
+fun GeneralTraits_Component(creatureTraits: SnapshotStateList<String>) {
     HorizontalFlow {
         var i = 0
         while (i <= creatureTraits.size) {

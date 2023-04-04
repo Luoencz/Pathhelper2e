@@ -17,7 +17,7 @@ import data.*
 import models.*
 
 @Composable
-fun SkillsGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
+fun Skills_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
     val availableSkillsToPick by derivedStateOf { Skill.values().filter { !creatureVM.skills.contains(it) } }
 
     HorizontalFlow(modifier) {

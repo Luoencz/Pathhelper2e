@@ -85,7 +85,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 }
 
                 //Level Choice
-                LevelChoice(creatureVM = creatureVM)
+                CL_Component(creatureVM = creatureVM)
                 Text(text = ": Level")
 
                 Column(
@@ -144,24 +144,37 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
 
             //data.Ability Scores and Perception
             Column(Modifier.padding(top = 10.dp)) {
-                    Text("DEFENSE STATS")
-                    DefenseStats(creatureVM = creatureVM)
+                Text("DEFENSE STATS")
+                Column(Modifier.padding(top = 8.dp)) {
+                    Row {
+                        AC_Component(creatureVM = creatureVM)
+                        HP_Component(creatureVM = creatureVM)
+                    }
+                    SavingThrows_Component(creatureVM = creatureVM)
+                }
 
-                    Text("PERCEPTION", Modifier.padding(top = 10.dp))
-                    PerceptionStats(creatureVM, Modifier.padding(top = 8.dp, start = 3.dp))
+                Text("PERCEPTION", Modifier.padding(top = 10.dp))
+                Row(Modifier.padding(top = 8.dp, start = 3.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Row {
+                        Perception_Component(creatureVM)
+                    }
+                    Row {
+                        Senses_Component(creatureVM)
+                    }
+                }
 
-                    Text("LANGUAGES", modifier = Modifier.padding(top = 10.dp))
-                    NamedList(
-                        modifier = Modifier.padding(top = 8.dp),
-                        traitsList = creatureVM.creatureLanguages,
-                        lambdaConstructor = {BasicNamedObject(it)},
-                        label = { Text(text = "Language")}
-                    )
+                Text("LANGUAGES", modifier = Modifier.padding(top = 10.dp))
+                NamedList(
+                    modifier = Modifier.padding(top = 8.dp),
+                    traitsList = creatureVM.creatureLanguages,
+                    lambdaConstructor = { BasicNamedObject(it) },
+                    label = { Text(text = "Language") }
+                )
             }
 
             Column {
                 Text("SKILLS", Modifier.padding(top = 10.dp))
-                SkillsGrid(creatureVM)
+                Skills_Component(creatureVM)
             }
         }
     }

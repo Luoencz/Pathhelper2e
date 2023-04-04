@@ -14,11 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 
 @Composable
-fun LevelChoice(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
+fun CL_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
     var popupControl by remember { mutableStateOf(false) }
 
     Box(contentAlignment = Alignment.Center, modifier = Modifier) {
