@@ -5,6 +5,8 @@ import data.AC
 import data.Alignment
 import data.Perception
 import PerceptionTrait
+import ReceivedDamageModifierTrait
+import ReceivedDamageModifierType
 import data.Rarity
 import data.SavingThrow
 import data.Size
@@ -19,16 +21,18 @@ class CreatureVM {
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
 
-    val creatureHP = StatMap(
-        creatureVM = this,
-        table = hpTable,
-        values = HP.values()
-    )
+    var creatureSecondaryTraits = mutableStateListOf<BasicNamedObject>()
 
     val creatureAC = StatMap(
         creatureVM = this,
         table = acModifiersTable,
         values = AC.values()
+    )
+
+    val creatureHP = StatMap(
+        creatureVM = this,
+        table = hpTable,
+        values = HP.values()
     )
 
     val creatureSavingThrows = StatMap(
@@ -37,30 +41,27 @@ class CreatureVM {
         values = SavingThrow.values()
     )
 
-    var creatureSecondaryTraits = mutableStateListOf<BasicNamedObject>()
-
     val creaturePerception = StatMap(
         creatureVM = this,
         table = perceptionTable,
         values = Perception.values()
     )
-
     val perceptionTraits = mutableStateListOf<PerceptionTrait>()
 
     val creatureLanguages = mutableStateListOf<BasicNamedObject>()
 
+    val creatureReceivedDamageModifiers = mutableStateListOf<ReceivedDamageModifierTrait>()
+
     val skills = mutableStateListOf(Skill.Arcana)
+
     val skillModifiers = StatMap(
         creatureVM = this,
         table = skillTable,
         values = emptyArray<Skill>()
     )
-    //TODO Doesn't update when level is changed
-
     val abilityModifiers = StatMap(
         creatureVM = this,
         table = abilityModifiersTable,
         values = Ability.values()
     )
-    //TODO Make generic function
 }

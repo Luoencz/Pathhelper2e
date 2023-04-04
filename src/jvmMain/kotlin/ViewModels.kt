@@ -12,10 +12,23 @@ class PerceptionTrait(
     var sensePrecision by mutableStateOf(sensePrecision)
 }
 
+class ReceivedDamageModifierTrait(
+    override var name: String = "",
+    traitValue: Int = 0,
+    receivedDamageModifierType: ReceivedDamageModifierType = ReceivedDamageModifierType.Resistance
+) : NamedObject {
+    var traitValue by mutableStateOf(traitValue)
+        //if (receivedDamageModifierType == ReceivedDamageModifierType.Immunity) mutableStateOf(null) else mutableStateOf(traitValue)
+    var receivedDamageModifierType by mutableStateOf(receivedDamageModifierType)
+}
+
 class BasicNamedObject(
     override var name: String
 ): NamedObject
 
+enum class ReceivedDamageModifierType: NamedObject {
+    Immunity, Resistance, Weakness
+}
 
 enum class Pages {
     HomePage, CreatureMainStatsPage, CreatureAbilitiesAndActionsPage

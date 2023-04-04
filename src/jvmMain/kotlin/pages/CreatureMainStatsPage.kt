@@ -109,43 +109,42 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
 
             Row(Modifier.padding(top = 6.dp)) {
                 Column {
-                    Text("ABILITY MODIFIERS")
+                    Text("Ability Modifiers")
                     AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
                 }
                 Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                 Column {
-                    Text("DEFENSE")
+                    Text("Perception")
+                    Row(Modifier.padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Perception_Component(creatureVM)
+                        Spacer(modifier = Modifier.padding(horizontal = 3.dp))
+                        Senses_Component(creatureVM)
+                    }
+                }
+            }
+
+            Row(Modifier.padding(top = 6.dp)) {
+                Column {
+                    Text("AC, HP & Saving Throws")
                     Row(Modifier.padding(top = 6.dp)) {
                         AC_Component(creatureVM = creatureVM, Modifier.padding(end = 3.dp))
                         HP_Component(creatureVM = creatureVM, Modifier.padding(end = 6.dp))
                         SavingThrows_Component(creatureVM = creatureVM)
                     }
                 }
-            }
-
-            Row(Modifier.padding(top = 6.dp)) {
-                val localDensity = LocalDensity.current
-                var columnHeight by remember { mutableStateOf(0.dp) }
+                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                 Column {
-                    Text("PERCEPTION")
-                    Row(
-                        Modifier
-                            .padding(top = 6.dp)
-                            .onGloballyPositioned { layoutCoordinates ->
-                                columnHeight = with(localDensity) { layoutCoordinates.size.height.toDp() }
-                            }, verticalAlignment = Alignment.CenterVertically) {
-                        Perception_Component(creatureVM)
-                        Senses_Component(creatureVM)
+                    Text("Resistances & Weaknesses")
+                    Row(Modifier.padding(top = 6.dp)) {
+                        ResistancesAndWeaknesses_Component(creatureVM = creatureVM)
                     }
                 }
-                Column(Modifier.padding(start = 10.dp)) {
-                    Text("LANGUAGES")
-                    Row(
-                        Modifier
-                            .padding(top = 6.dp)
-                            .height(columnHeight), verticalAlignment = Alignment.CenterVertically) {
-                        Languages_Component(creatureVM)
-                    }
+            }
+
+            Column(Modifier.padding(top = 6.dp)) {
+                Text("Languages")
+                Row(Modifier.padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Languages_Component(creatureVM)
                 }
             }
 

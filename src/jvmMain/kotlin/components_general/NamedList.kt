@@ -39,7 +39,8 @@ fun <T: NamedObject>NamedList(
     },
     label: @Composable () -> Unit = { Text(text = "New Trait") }
 ) {
-    HorizontalFlow(verticalArrangement = Arrangement.Center, modifier = modifier)
+    //(verticalArrangement = Arrangement.Center, modifier = modifier)
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier)
     {
         traitsList.forEach {
             content(it)
