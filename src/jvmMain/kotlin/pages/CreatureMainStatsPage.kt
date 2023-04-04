@@ -1,6 +1,6 @@
 package pages
 
-import GeneralTrait
+import BasicNamedObject
 import Pages
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
@@ -93,7 +93,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(text = "Rarity")
-                    ItemDropdown(
+                    TextDropdown(
                         creatureVM.creatureRarity.value,
                         { creatureVM.creatureRarity.value = it },
                         enumValues(),
@@ -105,7 +105,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(text = "Alignment")
-                    ItemDropdown(
+                    TextDropdown(
                         creatureVM.creatureAlignment.value,
                         { creatureVM.creatureAlignment.value = it },
                         enumValues(),
@@ -118,10 +118,11 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 ) {
                     Text(text = "Size")
 
-                    ItemDropdown(
+                    TextDropdown(
                         creatureVM.creatureSize.value,
                         { creatureVM.creatureSize.value = it },
                         enumValues(),
+                        size = Modifier.size(100.dp,25.dp)
                     )
                 }
 
@@ -129,7 +130,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 NamedList(
                     modifier = Modifier.padding(start = 15.dp),
                     traitsList = creatureVM.creatureSecondaryTraits,
-                    lambdaConstructor = {GeneralTrait(it)}
+                    lambdaConstructor = {BasicNamedObject(it)}
                 ) { androidx.compose.material.Text(text = "Trait") }
             }
 
@@ -142,25 +143,24 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
 
 
             //data.Ability Scores and Perception
-            Row(Modifier.padding(top = 10.dp)) {
-                Column {
+            Column(Modifier.padding(top = 10.dp)) {
                     Text("DEFENSE STATS")
                     DefenseStats(creatureVM = creatureVM)
-                }
 
-                Column(Modifier.padding(start = 40.dp)) {
-                    Text("PERCEPTION")
-                    PerceptionStats(creatureVM, Modifier.padding(top = 8.dp))
+                    Text("PERCEPTION", Modifier.padding(top = 10.dp))
+                    PerceptionStats(creatureVM, Modifier.padding(top = 8.dp, start = 3.dp))
 
-                    Text("LANGUAGES", modifier = Modifier.padding(top = 20.dp))
-                    SecondaryTraits(creatureTraits = creatureVM.creatureLanguages)
-                }
+                    Text("LANGUAGES", modifier = Modifier.padding(top = 10.dp))
+                    NamedList(
+                        modifier = Modifier.padding(top = 8.dp),
+                        traitsList = creatureVM.creatureLanguages,
+                        lambdaConstructor = {BasicNamedObject(it)},
+                        label = { Text(text = "Language")}
+                    )
             }
 
             Column {
                 Text("SKILLS", Modifier.padding(top = 10.dp))
-
-                //Skills Grid
                 SkillsGrid(creatureVM)
             }
         }

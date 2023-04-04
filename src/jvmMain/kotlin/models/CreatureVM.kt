@@ -1,6 +1,6 @@
 package models
 
-import GeneralTrait
+import BasicNamedObject
 import data.AC
 import data.Alignment
 import data.Perception
@@ -37,7 +37,7 @@ class CreatureVM {
         values = SavingThrow.values()
     )
 
-    var creatureSecondaryTraits = mutableStateListOf<GeneralTrait>()
+    var creatureSecondaryTraits = mutableStateListOf<BasicNamedObject>()
 
     val creaturePerception = StatMap(
         creatureVM = this,
@@ -47,7 +47,7 @@ class CreatureVM {
 
     val perceptionTraits = mutableStateListOf<PerceptionTrait>()
 
-    val creatureLanguages = mutableStateListOf("", "")
+    val creatureLanguages = mutableStateListOf<BasicNamedObject>()
 
     val skills = mutableStateListOf(Skill.Arcana)
     val skillModifiers = StatMap(

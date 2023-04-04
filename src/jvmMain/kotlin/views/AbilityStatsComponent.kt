@@ -7,6 +7,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import components.*
 import data.*
@@ -36,10 +37,9 @@ private fun AbilityView(creatureVM: CreatureVM, key: Ability, modifier: Modifier
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },
-            explicitlySigned = true,
-            label = { Text(text = key.name) }
-        )
-        ItemDropdown(creatureVM.abilityModifiers.tierByStat(key), {
+            explicitlySigned = true
+        ) { Text(text = key.name, textAlign = TextAlign.Center) }
+        TextDropdown(creatureVM.abilityModifiers.tierByStat(key), {
             creatureVM.abilityModifiers.changeToStatTier(key, it)
         }, abilityModifiersTable[0]!!.keys.toTypedArray())
     }

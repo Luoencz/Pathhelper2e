@@ -12,7 +12,7 @@ class PerceptionTrait(
     var sensePrecision by mutableStateOf(sensePrecision)
 }
 
-class GeneralTrait(
+class BasicNamedObject(
     override var name: String
 ): NamedObject
 

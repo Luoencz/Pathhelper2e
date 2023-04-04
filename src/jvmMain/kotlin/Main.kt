@@ -1,8 +1,6 @@
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
-import models.ApplicationVM
+import androidx.compose.runtime.*
+import androidx.compose.ui.window.*
+import models.*
 
 @Composable
 fun App() {
@@ -12,8 +10,9 @@ fun App() {
 
 fun main() = application {
     Window(
-            onCloseRequest = ::exitApplication,
-            title = "Pathhelper2e"
+        onCloseRequest = ::exitApplication,
+        state = rememberWindowState(WindowPlacement.Maximized),
+        title = "Pathhelper2e"
     ) {
         App()
     }

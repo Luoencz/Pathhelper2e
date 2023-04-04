@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import components.ItemDropdown
+import components.TextDropdown
 import PerceptionTrait
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.ui.Alignment
@@ -22,26 +22,25 @@ import models.*
 
 @Composable
 fun PerceptionStats(creatureVM: CreatureVM, modifier: Modifier) {
-    Column(modifier) {
+    Row(modifier, verticalAlignment = Alignment.CenterVertically) {
         Row {
             Column {
                 NumericTextField(
                     value = creatureVM.creaturePerception.modByStat(Perception.Perception),
                     onIntValueChange = { creatureVM.creaturePerception.changeToMod(Perception.Perception, it) },
-                    modifier = Modifier.width(103.dp),
+                    modifier = Modifier.width(85.dp),
                     textStyle = when (creatureVM.creaturePerception.setups[Perception.Perception]) {
                         is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                         null, is StatSetup.Tier -> TextStyle.Default
                     },
-                    explicitlySigned = true,
-                    label = { Text(text = "Perception") }
-                )
-                ItemDropdown(creatureVM.creaturePerception.tierByStat(Perception.Perception), {
+                    explicitlySigned = true
+                ) { Text(text = "Perception") }
+                TextDropdown(creatureVM.creaturePerception.tierByStat(Perception.Perception), {
                     creatureVM.creaturePerception.changeToStatTier(Perception.Perception, it)
                 }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))
             }
         }
-        Row(Modifier.padding(top = 10.dp)) {
+        Row() {
             //PerceptionTraits(creatureVM)
             NamedList(traitsList = creatureVM.perceptionTraits,
                 lambdaConstructor = { name -> PerceptionTrait(name)},
@@ -60,14 +59,14 @@ fun PerceptionStats(creatureVM: CreatureVM, modifier: Modifier) {
                                             modifier = Modifier
                                                 .widthIn(1.dp, Dp.Infinity).padding(start = 3.dp, end = 3.dp).border(1.dp, Color.Gray, RoundedCornerShape(10)).padding(5.dp)
                                         )
-                                        ItemDropdown(
+                                        TextDropdown(
                                             selected = creatureVM.perceptionTraits.find { it.name == namedObject.name }!!.sensePrecision,
                                             onValueChanged = {
                                                 creatureVM.perceptionTraits.find { it.name == namedObject.name }!!.sensePrecision =
                                                     it
                                             },
                                             values = SensePrecision.values(),
-                                            size = Modifier.size(80.dp, 35.dp)
+                                            size = Modifier.size(85.dp, 35.dp)
                                         )
                                         NumericTextField(
                                             value = creatureVM.perceptionTraits.find { it.name == namedObject.name }!!.range,
@@ -75,15 +74,15 @@ fun PerceptionStats(creatureVM: CreatureVM, modifier: Modifier) {
                                                 creatureVM.perceptionTraits.find { it.name == namedObject.name }!!.range =
                                                     it
                                             },
-                                            label = { Text(text = "Range") },
-                                            modifier = Modifier.width(70.dp).padding(start = 3.dp, end = 3.dp)
-                                        )
+                                            modifier = Modifier.width(68.dp).padding(start = 3.dp, end = 0.5.dp)
+                                        ) { Text(text = "Range") }
+                                        Text(text = "ft", color = Color.Gray)
                                     }
                                 }
                             )
                     }
                 },
-                label = {Text(text = "New Sense")}
+                label = {Text(text = "Sense")}
             )
         }
     }

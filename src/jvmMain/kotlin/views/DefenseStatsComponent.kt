@@ -27,10 +27,9 @@ fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                         is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                         null, is StatSetup.Tier -> TextStyle.Default
                     },
-                    explicitlySigned = false,
-                    label = { Text(text = "Armor Class") }
-                )
-                ItemDropdown(creatureVM.creatureAC.tierByStat(AC.AC), {
+                    explicitlySigned = false
+                ) { Text(text = "Armor Class") }
+                TextDropdown(creatureVM.creatureAC.tierByStat(AC.AC), {
                     creatureVM.creatureAC.changeToStatTier(AC.AC, it)
                 }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low))
             }
@@ -43,9 +42,8 @@ fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                             is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                             null, is StatSetup.Tier -> TextStyle.Default
                         },
-                        label = { Text(text = "Hit Points") },
-                    )
-                    ItemDropdown(creatureVM.creatureHP.tierByStat(HP.HP), {
+                    ) { Text(text = "Hit Points") }
+                TextDropdown(creatureVM.creatureHP.tierByStat(HP.HP), {
                         creatureVM.creatureHP.changeToStatTier(HP.HP, it)
                     }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))
             }
@@ -62,11 +60,10 @@ fun DefenseStats(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                                 null, is StatSetup.Tier -> TextStyle.Default
                             },
-                            explicitlySigned = true,
-                            label = { Text(text = savingThrow.name) }
-                        )
+                            explicitlySigned = true
+                        ) { Text(text = savingThrow.name) }
                     }
-                    ItemDropdown(creatureVM.creatureSavingThrows.tierByStat(savingThrow), {
+                    TextDropdown(creatureVM.creatureSavingThrows.tierByStat(savingThrow), {
                         creatureVM.creatureSavingThrows.changeToStatTier(savingThrow, it)
                     }, StatTier.values())
                 }

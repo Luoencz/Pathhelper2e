@@ -78,8 +78,8 @@ fun <T: NamedObject>NamedList(
                 label = label,
                 interactionSource = interactionSource,
                 // keep vertical paddings but change the horizontal
-                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                    start = 8.dp, end = 8.dp
+                contentPadding = TextFieldDefaults.outlinedTextFieldPadding(
+                    start = 7.dp, end = 7.dp
                 ),
                 colors = TextFieldDefaults.outlinedTextFieldColors()
             )

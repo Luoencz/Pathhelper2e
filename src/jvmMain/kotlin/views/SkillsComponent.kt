@@ -28,7 +28,7 @@ fun SkillsGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO F
                 var skill = creatureVM.skills[index]
                 Column(Modifier.padding(end = 5.dp)) {
                     Row {
-                        ItemDropdown(
+                        TextDropdown(
                             selected = creatureVM.skills[index], onValueChanged = {
                                 val oldSkill = creatureVM.skills[index]
                                 creatureVM.skillModifiers.setups.remove(oldSkill)
@@ -59,7 +59,7 @@ fun SkillsGrid(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO F
                             }
                         )
                     }
-                    ItemDropdown(creatureVM.skillModifiers.tierByStat(skill), {
+                    TextDropdown(creatureVM.skillModifiers.tierByStat(skill), {
                         creatureVM.skillModifiers.changeToStatTier(skill, it)
                     }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low))
                 }

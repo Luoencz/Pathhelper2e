@@ -9,13 +9,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.*
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import data.*
 
 @Composable
-fun <T : NamedObject> ItemDropdown(
+fun <T : NamedObject> TextDropdown(
     selected: T, onValueChanged: (T) -> Unit, values: Array<T>, size: Modifier = Modifier.size(width = 85.dp, height = 25.dp), color: Color = Color.Transparent, modifier: Modifier = Modifier
 ) {
     var showDropdown by remember { mutableStateOf(false) }
