@@ -69,7 +69,6 @@ class CreatureVM {
         values = knownLore.toTypedArray()
     )
 
-
     val abilityModifiers = StatMap(
         creatureVM = this,
         table = abilityModifiersTable,
