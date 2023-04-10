@@ -105,10 +105,10 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                     modifier = Modifier.padding(start = 15.dp),
                     traitsList = creatureVM.creatureSecondaryTraits,
                     lambdaConstructor = { BasicNamedObject(it) }
-                ) { Text(text = "Trait") }
+                )
             }
 
-            Row() {
+            Row {
                 Column {
                     Text("Ability Modifiers")
                     AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
@@ -116,9 +116,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                 Column {
                     Text("Perception")
-                    Row(Modifier.padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Row(Modifier.padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(3.dp)) {
                         Perception_Component(creatureVM)
-                        Spacer(modifier = Modifier.padding(horizontal = 3.dp))
                         Senses_Component(creatureVM)
                     }
                 }
@@ -131,6 +130,15 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                         AC_Component(creatureVM = creatureVM, Modifier.padding(end = 3.dp))
                         HP_Component(creatureVM = creatureVM, Modifier.padding(end = 6.dp))
                         SavingThrows_Component(creatureVM = creatureVM)
+                    }
+                }
+                Column {
+                    Text("Speed")
+                    Row(Modifier.padding(top = 6.dp)) {
+                        NumericTextField(
+                            value = creatureVM.creatureSpeed.value,
+                            modifier = Modifier.width(50.dp),
+                            onIntValueChange = { creatureVM.creatureSpeed.value = it }) {}
                     }
                 }
                 Column {
@@ -148,9 +156,10 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 }
             }
 
-            Column {
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text("Skills")
-                Skills_Component(creatureVM,Modifier.padding(top = 6.dp))
+                Skills_Component(creatureVM = creatureVM)
+                Lore_Component(creatureVM = creatureVM)
             }
 
         }

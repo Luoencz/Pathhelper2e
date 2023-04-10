@@ -23,6 +23,8 @@ class CreatureVM {
 
     var creatureSecondaryTraits = mutableStateListOf<BasicNamedObject>()
 
+    val creatureSpeed = mutableStateOf(25)
+
     val creatureAC = StatMap(
         creatureVM = this,
         table = acModifiersTable,
@@ -46,6 +48,7 @@ class CreatureVM {
         table = perceptionTable,
         values = Perception.values()
     )
+
     val perceptionTraits = mutableStateListOf<PerceptionTrait>()
 
     val creatureLanguages = mutableStateListOf<BasicNamedObject>()
@@ -58,6 +61,14 @@ class CreatureVM {
         table = skillTable,
         values = Skill.values()
     )
+
+    val knownLore = mutableStateListOf<NamedObject>()
+    val loreModifiers = StatMap(
+        creatureVM = this,
+        table = skillTable,
+        values = knownLore.toTypedArray()
+    )
+
 
     val abilityModifiers = StatMap(
         creatureVM = this,

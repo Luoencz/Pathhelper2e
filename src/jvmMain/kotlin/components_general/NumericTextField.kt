@@ -19,7 +19,7 @@ fun NumericTextField(
     modifier: Modifier = Modifier,
     textStyle: TextStyle = LocalTextStyle.current,
     explicitlySigned: Boolean = false,
-    label: @Composable () -> Unit
+    label: (@Composable () -> Unit)?
 ) {
     var focused by mutableStateOf(false)
 

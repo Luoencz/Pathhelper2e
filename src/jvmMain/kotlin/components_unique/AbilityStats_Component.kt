@@ -16,15 +16,15 @@ import models.*
 @Composable
 fun AbilitiesStats_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
     val keys = Ability.values()
-    Row(modifier) {
+    Row(modifier, horizontalArrangement = Arrangement.spacedBy(3.dp)) {
         keys.forEach { key ->
-            AbilityView(creatureVM, key, Modifier.padding(1.5.dp))
+            AbilityView(creatureVM, key)
         }
     }
 }
 
 @Composable
-private fun AbilityView(creatureVM: CreatureVM, key: Ability, modifier: Modifier) {
+private fun AbilityView(creatureVM: CreatureVM, key: Ability, modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier

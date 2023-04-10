@@ -1,9 +1,11 @@
 package components_unique
 
+import BasicNamedObject
 import data.StatTier
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -29,6 +31,47 @@ fun Skills_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //
     }
 }
 
+@Composable
+fun Lore_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
+    NamedList(modifier = modifier, traitsList = creatureVM.knownLore, lambdaConstructor = ::BasicNamedObject, label = { Text(
+        text = "New Lore"
+    )}, content = { key ->
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            NamedBubble(trait = key, modifier = Modifier.padding(end = 2.dp), traitsList = creatureVM.knownLore) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                    Text(
+                        text = it.name,
+                        maxLines = 1,
+                        modifier = Modifier
+                            .widthIn(1.dp, Dp.Infinity)
+                            .padding(start = 3.dp)
+                            .border(1.dp, Color.Gray, RoundedCornerShape(10))
+                            .padding(5.dp)
+                    )
+                        NumericTextField(
+                            value = creatureVM.loreModifiers.modByStat(key),
+                            onIntValueChange = { creatureVM.loreModifiers.changeToMod(key, it) },
+                            modifier = Modifier.width(50.dp),
+                            textStyle = when (creatureVM.loreModifiers.setups[key]) {
+                                is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
+                                null, is StatSetup.Tier -> TextStyle.Default
+                            },
+                            explicitlySigned = true,
+                            label = null
+                        )
+                        TextDropdown(creatureVM.loreModifiers.tierByStat(key), {
+                            creatureVM.loreModifiers.changeToStatTier(key, it)
+                        }, abilityModifiersTable[0]!!.keys.toTypedArray(),
+                        modifier = Modifier.padding(end = 3.dp))
+                }
+            }
+        }
+    }
+    )
+}
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SkillView(skill: Skill, creatureVM: CreatureVM, modifier: Modifier = Modifier) {
@@ -48,7 +91,7 @@ fun SkillView(skill: Skill, creatureVM: CreatureVM, modifier: Modifier = Modifie
                         is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                         null, is StatSetup.Tier -> TextStyle.Default
                     },
-                    explicitlySigned = false
+                    explicitlySigned = true
                 ) { Text(text = skill.name) }
                 TextDropdown(creatureVM.skillModifiers.tierByStat(skill), {
                     creatureVM.skillModifiers.changeToStatTier(skill, it)
@@ -73,7 +116,7 @@ fun SkillView(skill: Skill, creatureVM: CreatureVM, modifier: Modifier = Modifie
                 }
                 Box() {
                     Button(
-                        onClick = {},
+                        onClick = {creatureVM.proficientSkills[skill] = !creatureVM.proficientSkills[skill]!!},
                         content = { Text("Not Prof.") },
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -96,4 +139,3 @@ fun SkillView(skill: Skill, creatureVM: CreatureVM, modifier: Modifier = Modifie
         }
     }
 }
-

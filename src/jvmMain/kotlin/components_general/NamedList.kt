@@ -19,6 +19,7 @@ fun <T: NamedObject>NamedList(
     modifier: Modifier = Modifier,
     traitsList: SnapshotStateList<T>,
     lambdaConstructor: (String) -> T,
+    label: @Composable () -> Unit = { Text(text = "New Trait") },
     content: @Composable (NamedObject) -> Unit = {
         NamedBubble(
             trait = it,
@@ -36,8 +37,7 @@ fun <T: NamedObject>NamedList(
                 }
             }
         )
-    },
-    label: @Composable () -> Unit = { Text(text = "New Trait") }
+    }
 ) {
     //(verticalArrangement = Arrangement.Center, modifier = modifier)
     Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier)

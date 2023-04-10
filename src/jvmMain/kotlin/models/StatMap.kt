@@ -11,7 +11,7 @@ sealed interface StatSetup {
     data class Tier(val tier: StatTier) : StatSetup
 }
 
-class StatMap<T:Enum<T>>(val creatureVM: CreatureVM, val table: MutableMap<Int, Map<StatTier, Int>>, values: Array<T>) {
+class StatMap<T>(val creatureVM: CreatureVM, val table: MutableMap<Int, Map<StatTier, Int>>, values: Array<T>) {
     var setups: SnapshotStateMap<T, StatSetup> =
         values.map { it to StatSetup.Tier(StatTier.Moderate) }.toMutableStateMap()
 
