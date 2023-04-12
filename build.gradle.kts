@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    id("com.google.relay").version("0.3.05")
 }
 
 group = "com.example"

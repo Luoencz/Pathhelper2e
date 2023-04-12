@@ -1,0 +1,4500 @@
+{
+  "name": "main_frame",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "sSiYBat6jTwMMlFrEeMtVF",
+    "node": "1:1543",
+    "version": "3325819346",
+    "component-id": "311aba018f3cd838c88f4bf995eae874f4ba0ae2"
+  },
+  "default": "Main Frame",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Identity"
+      },
+      {
+        "type": "group",
+        "id": "Grid"
+      },
+      {
+        "type": "group",
+        "id": "Ability Modifiers Instance"
+      },
+      {
+        "type": "group",
+        "id": "Saving Throws Instance"
+      },
+      {
+        "type": "group",
+        "id": "AC and HP Instance"
+      },
+      {
+        "type": "group",
+        "id": "Speed and Perception Instance"
+      },
+      {
+        "type": "group",
+        "id": "Frame 19"
+      },
+      {
+        "type": "group",
+        "id": "Properties"
+      },
+      {
+        "type": "image",
+        "id": "Picture"
+      },
+      {
+        "type": "group",
+        "id": "Name"
+      },
+      {
+        "type": "group",
+        "id": "Level"
+      },
+      {
+        "type": "text",
+        "id": "Value"
+      },
+      {
+        "type": "text",
+        "id": "Value1"
+      },
+      {
+        "type": "group",
+        "id": "Skill"
+      },
+      {
+        "type": "group",
+        "id": "General Trait"
+      },
+      {
+        "type": "group",
+        "id": "Modifier Caption"
+      },
+      {
+        "type": "group",
+        "id": "Editor"
+      },
+      {
+        "type": "text",
+        "id": "Acrobatics"
+      },
+      {
+        "type": "group",
+        "id": "Tag"
+      },
+      {
+        "type": "text",
+        "id": "Skill1"
+      },
+      {
+        "type": "group",
+        "id": "Edtior"
+      },
+      {
+        "type": "text",
+        "id": "This skill determines how good creature is in climbing walls"
+      },
+      {
+        "type": "vector",
+        "id": "Border"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame"
+      },
+      {
+        "type": "text",
+        "id": "Value2"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame"
+      },
+      {
+        "type": "text",
+        "id": "Caption"
+      },
+      {
+        "type": "text",
+        "id": "Tier"
+      },
+      {
+        "type": "group",
+        "id": "Modifier Caption1"
+      },
+      {
+        "type": "text",
+        "id": "Acrobatics1"
+      },
+      {
+        "type": "group",
+        "id": "Tag1"
+      },
+      {
+        "type": "text",
+        "id": "Skill2"
+      },
+      {
+        "type": "text",
+        "id": "Ability Modifiers"
+      },
+      {
+        "type": "group",
+        "id": "Frame"
+      },
+      {
+        "type": "group",
+        "id": "Edtior1"
+      },
+      {
+        "type": "group",
+        "id": "Edtior2"
+      },
+      {
+        "type": "group",
+        "id": "Edtior3"
+      },
+      {
+        "type": "group",
+        "id": "Edtior4"
+      },
+      {
+        "type": "group",
+        "id": "Edtior5"
+      },
+      {
+        "type": "group",
+        "id": "Edtior6"
+      },
+      {
+        "type": "vector",
+        "id": "Border1"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame1"
+      },
+      {
+        "type": "text",
+        "id": "Value3"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame1"
+      },
+      {
+        "type": "text",
+        "id": "Caption1"
+      },
+      {
+        "type": "text",
+        "id": "Tier1"
+      },
+      {
+        "type": "vector",
+        "id": "Border2"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame2"
+      },
+      {
+        "type": "text",
+        "id": "Value4"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame2"
+      },
+      {
+        "type": "text",
+        "id": "Caption2"
+      },
+      {
+        "type": "text",
+        "id": "Tier2"
+      },
+      {
+        "type": "vector",
+        "id": "Border3"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame3"
+      },
+      {
+        "type": "text",
+        "id": "Value5"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame3"
+      },
+      {
+        "type": "text",
+        "id": "Caption3"
+      },
+      {
+        "type": "text",
+        "id": "Tier3"
+      },
+      {
+        "type": "vector",
+        "id": "Border4"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame4"
+      },
+      {
+        "type": "text",
+        "id": "Value6"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame4"
+      },
+      {
+        "type": "text",
+        "id": "Caption4"
+      },
+      {
+        "type": "text",
+        "id": "Tier4"
+      },
+      {
+        "type": "vector",
+        "id": "Border5"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame5"
+      },
+      {
+        "type": "text",
+        "id": "Value7"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame5"
+      },
+      {
+        "type": "text",
+        "id": "Caption5"
+      },
+      {
+        "type": "text",
+        "id": "Tier5"
+      },
+      {
+        "type": "vector",
+        "id": "Border6"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame6"
+      },
+      {
+        "type": "text",
+        "id": "Value8"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame6"
+      },
+      {
+        "type": "text",
+        "id": "Caption6"
+      },
+      {
+        "type": "text",
+        "id": "Tier6"
+      },
+      {
+        "type": "group",
+        "id": "Frame 20"
+      },
+      {
+        "type": "text",
+        "id": "Saving Throws"
+      },
+      {
+        "type": "group",
+        "id": "Edtior7"
+      },
+      {
+        "type": "group",
+        "id": "Edtior8"
+      },
+      {
+        "type": "group",
+        "id": "Edtior9"
+      },
+      {
+        "type": "vector",
+        "id": "Border7"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame7"
+      },
+      {
+        "type": "text",
+        "id": "Value9"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame7"
+      },
+      {
+        "type": "text",
+        "id": "Caption7"
+      },
+      {
+        "type": "text",
+        "id": "Tier7"
+      },
+      {
+        "type": "vector",
+        "id": "Border8"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame8"
+      },
+      {
+        "type": "text",
+        "id": "Value10"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame8"
+      },
+      {
+        "type": "text",
+        "id": "Caption8"
+      },
+      {
+        "type": "text",
+        "id": "Tier8"
+      },
+      {
+        "type": "vector",
+        "id": "Border9"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame9"
+      },
+      {
+        "type": "text",
+        "id": "Value11"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame9"
+      },
+      {
+        "type": "text",
+        "id": "Caption9"
+      },
+      {
+        "type": "text",
+        "id": "Tier9"
+      },
+      {
+        "type": "group",
+        "id": "Frame 4"
+      },
+      {
+        "type": "text",
+        "id": "AC and HP"
+      },
+      {
+        "type": "group",
+        "id": "Edtior10"
+      },
+      {
+        "type": "group",
+        "id": "Edtior11"
+      },
+      {
+        "type": "vector",
+        "id": "Border10"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame10"
+      },
+      {
+        "type": "text",
+        "id": "Value12"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame10"
+      },
+      {
+        "type": "text",
+        "id": "Caption10"
+      },
+      {
+        "type": "text",
+        "id": "Tier10"
+      },
+      {
+        "type": "vector",
+        "id": "Border11"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame11"
+      },
+      {
+        "type": "text",
+        "id": "Value13"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame11"
+      },
+      {
+        "type": "text",
+        "id": "Caption11"
+      },
+      {
+        "type": "text",
+        "id": "Tier11"
+      },
+      {
+        "type": "group",
+        "id": "Frame 21"
+      },
+      {
+        "type": "text",
+        "id": "Speed and Perception"
+      },
+      {
+        "type": "group",
+        "id": "Edtior12"
+      },
+      {
+        "type": "group",
+        "id": "Edtior13"
+      },
+      {
+        "type": "vector",
+        "id": "Border12"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame12"
+      },
+      {
+        "type": "text",
+        "id": "Value14"
+      },
+      {
+        "type": "text",
+        "id": "Value15"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame12"
+      },
+      {
+        "type": "text",
+        "id": "Caption12"
+      },
+      {
+        "type": "text",
+        "id": "Tier12"
+      },
+      {
+        "type": "vector",
+        "id": "Border13"
+      },
+      {
+        "type": "group",
+        "id": "Caption Frame13"
+      },
+      {
+        "type": "text",
+        "id": "Value16"
+      },
+      {
+        "type": "group",
+        "id": "Tier Frame13"
+      },
+      {
+        "type": "text",
+        "id": "Caption13"
+      },
+      {
+        "type": "text",
+        "id": "Tier13"
+      },
+      {
+        "type": "text",
+        "id": "Special skills, proficiencies, traits, items and abilities"
+      },
+      {
+        "type": "text",
+        "id": "+"
+      },
+      {
+        "type": "group",
+        "id": "Dropdown Trait"
+      },
+      {
+        "type": "group",
+        "id": "Dropdown Trait1"
+      },
+      {
+        "type": "group",
+        "id": "Dropdown Trait2"
+      },
+      {
+        "type": "text",
+        "id": "Label"
+      },
+      {
+        "type": "text",
+        "id": "Value17"
+      },
+      {
+        "type": "text",
+        "id": "Label1"
+      },
+      {
+        "type": "text",
+        "id": "Value18"
+      },
+      {
+        "type": "text",
+        "id": "Label2"
+      },
+      {
+        "type": "text",
+        "id": "Value19"
+      }
+    ],
+    "modes": {
+      "Main Frame": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Identity",
+              "Grid",
+              "Ability Modifiers Instance",
+              "Saving Throws Instance",
+              "AC and HP Instance",
+              "Speed and Perception Instance",
+              "Frame 19",
+              "Properties"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            }
+          },
+          {
+            "id": "Identity",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "16.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "16.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "200.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "200.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "is-structured": "false",
+            "children": [
+              "Picture",
+              "Name",
+              "Level"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Grid",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "16.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "273.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Skill",
+              "General Trait"
+            ],
+            "item-spacing": "12.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Ability Modifiers Instance",
+            "padding": {
+              "left": "8.0",
+              "right": "8.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "225.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "76.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "470.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Ability Modifiers",
+              "Frame"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Saving Throws Instance",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "379.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "154.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "238.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Frame 20",
+              "Saving Throws"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "AC and HP Instance",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "225.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "154.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "162.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Frame 4",
+              "AC and HP"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Speed and Perception Instance",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "610.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "154.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "156.29998779296875"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Frame 21",
+              "Speed and Perception"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Frame 19",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "16.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "240.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "children": [
+              "Special skills, proficiencies, traits, items and abilities",
+              "+"
+            ],
+            "item-spacing": "12.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Properties",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "229.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "16.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "46.0"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Dropdown Trait",
+              "Dropdown Trait1",
+              "Dropdown Trait2"
+            ],
+            "item-spacing": "32.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Picture",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "10.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "184.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "198.0"
+              }
+            },
+            "image-content": "picture.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Name",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "32.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "-12.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "is-structured": "false",
+            "children": [
+              "Value"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            }
+          },
+          {
+            "id": "Level",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "64.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "188.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "66.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "24.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "is-structured": "false",
+            "children": [
+              "Value1"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            }
+          },
+          {
+            "id": "Value",
+            "margin": {
+              "left": "4.0",
+              "top": "5.0",
+              "right": "3.0",
+              "bottom": "5.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Lesser Death",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Value1",
+            "margin": {
+              "left": "4.0",
+              "top": "5.0",
+              "right": "3.0",
+              "bottom": "5.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Level 2",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Skill",
+            "padding": "12.0",
+            "border-radius": "8.0",
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.2980392156862745",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.16470588235294117"
+              },
+              "blur": "2.0",
+              "offset-x": "1.0",
+              "offset-y": "1.0",
+              "spread": "1.0",
+              "blend-mode": "normal"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "160.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "160.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "main-axis-align": "start",
+            "children": [
+              "Modifier Caption",
+              "Editor"
+            ],
+            "item-spacing": "12.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "50.526315789473635",
+              "saturation": "0.07723577235772365",
+              "value": "0.9647058823529412"
+            }
+          },
+          {
+            "id": "General Trait",
+            "padding": "12.0",
+            "border-radius": "8.0",
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.2980392156862745",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.16470588235294117"
+              },
+              "blur": "2.0",
+              "offset-x": "1.0",
+              "offset-y": "1.0",
+              "spread": "1.0",
+              "blend-mode": "normal"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "160.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "219.3103448275862",
+              "saturation": "0.90625",
+              "value": "0.3764705882352941"
+            },
+            "children": [
+              "Modifier Caption1"
+            ],
+            "item-spacing": "12.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "50.526315789473635",
+              "saturation": "0.07723577235772365",
+              "value": "0.9647058823529412"
+            }
+          },
+          {
+            "id": "Modifier Caption",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Acrobatics",
+              "Tag"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Editor",
+            "is-structured": "false",
+            "children": [
+              "Edtior",
+              "This skill determines how good creature is in climbing walls"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Acrobatics",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "25.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Acrobatics",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tag",
+            "padding": {
+              "left": "4.0",
+              "top": "2.0",
+              "right": "4.0",
+              "bottom": "2.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Skill1"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Skill1",
+            "color": {
+              "alpha": "1.0",
+              "hue": "43.33333333333332",
+              "saturation": "0.07377049180327877",
+              "value": "0.9568627450980393"
+            },
+            "text-content": "Skill",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "text-size": "10.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Edtior",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border",
+              "Caption Frame",
+              "Value2",
+              "Tier Frame"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "This skill determines how good creature is in climbing walls",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "51.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "136.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "47.0"
+              }
+            },
+            "color": {
+              "alpha": "0.4196078431372549",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "This skill determines how good creature is in climbing walls",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border.svg"
+          },
+          {
+            "id": "Caption Frame",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "43.33333333333332",
+              "saturation": "0.07377049180327877",
+              "value": "0.9568627450980393"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value2",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+3",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "Proficiency",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Modifier Caption1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Acrobatics1",
+              "Tag1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Acrobatics1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "25.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Trait Name",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tag1",
+            "padding": {
+              "left": "4.0",
+              "top": "2.0",
+              "right": "4.0",
+              "bottom": "2.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Skill2"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Skill2",
+            "color": {
+              "alpha": "1.0",
+              "hue": "43.33333333333332",
+              "saturation": "0.07377049180327877",
+              "value": "0.9568627450980393"
+            },
+            "text-content": "Trait",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "text-size": "10.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Ability Modifiers",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "166.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "23.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Ability Modifiers",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Frame",
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "461.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Edtior1",
+              "Edtior2",
+              "Edtior3",
+              "Edtior4",
+              "Edtior5",
+              "Edtior6"
+            ],
+            "item-spacing": "8.0"
+          },
+          {
+            "id": "Edtior1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border1",
+              "Caption Frame1",
+              "Value3",
+              "Tier Frame1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior2",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border2",
+              "Caption Frame2",
+              "Value4",
+              "Tier Frame2"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior3",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border3",
+              "Caption Frame3",
+              "Value5",
+              "Tier Frame3"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior4",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border4",
+              "Caption Frame4",
+              "Value6",
+              "Tier Frame4"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior5",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border5",
+              "Caption Frame5",
+              "Value7",
+              "Tier Frame5"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior6",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border6",
+              "Caption Frame6",
+              "Value8",
+              "Tier Frame6"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Border1",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border1.svg"
+          },
+          {
+            "id": "Caption Frame1",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption1"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value3",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+3",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame1",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier1"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption1",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "STR",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border2",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border2.svg"
+          },
+          {
+            "id": "Caption Frame2",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption2"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value4",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+3",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame2",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier2"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption2",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "DEX",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier2",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border3",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border3.svg"
+          },
+          {
+            "id": "Caption Frame3",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption3"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value5",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame3",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier3"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption3",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "CON",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier3",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border4",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border4.svg"
+          },
+          {
+            "id": "Caption Frame4",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption4"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value6",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame4",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier4"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption4",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "INT",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier4",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border5",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border5.svg"
+          },
+          {
+            "id": "Caption Frame5",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption5"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value7",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame5",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier5"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption5",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "WIS",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier5",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border6",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border6.svg"
+          },
+          {
+            "id": "Caption Frame6",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption6"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value8",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame6",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier6"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption6",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "CHA",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier6",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Frame 20",
+            "padding": "8.0",
+            "margin": {
+              "top": "15.0"
+            },
+            "border-radius": "4.0",
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Edtior7",
+              "Edtior8",
+              "Edtior9"
+            ],
+            "item-spacing": "8.0"
+          },
+          {
+            "id": "Saving Throws",
+            "margin": {
+              "left": "8.0",
+              "right": "144.0",
+              "bottom": "46.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Saving Throws",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Edtior7",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border7",
+              "Caption Frame7",
+              "Value9",
+              "Tier Frame7"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior8",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border8",
+              "Caption Frame8",
+              "Value10",
+              "Tier Frame8"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior9",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border9",
+              "Caption Frame9",
+              "Value11",
+              "Tier Frame9"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Border7",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border7.svg"
+          },
+          {
+            "id": "Caption Frame7",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption7"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value9",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame7",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier7"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption7",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "Reflex",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier7",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border8",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border8.svg"
+          },
+          {
+            "id": "Caption Frame8",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption8"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value10",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame8",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier8"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption8",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "Will",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier8",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border9",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border9.svg"
+          },
+          {
+            "id": "Caption Frame9",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption9"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value11",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+2\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame9",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier9"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption9",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "Fort.",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier9",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Frame 4",
+            "padding": "8.0",
+            "margin": {
+              "top": "15.0"
+            },
+            "border-radius": "4.0",
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Edtior10",
+              "Edtior11"
+            ],
+            "item-spacing": "8.0"
+          },
+          {
+            "id": "AC and HP",
+            "margin": {
+              "left": "8.0",
+              "right": "95.0",
+              "bottom": "46.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "AC and HP",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Edtior10",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border10",
+              "Caption Frame10",
+              "Value12",
+              "Tier Frame10"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior11",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border11",
+              "Caption Frame11",
+              "Value13",
+              "Tier Frame11"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Border10",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border10.svg"
+          },
+          {
+            "id": "Caption Frame10",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption10"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value12",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "15\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame10",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier10"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption10",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "AC",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier10",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border11",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border11.svg"
+          },
+          {
+            "id": "Caption Frame11",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption11"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value13",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "24",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame11",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier11"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption11",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "HP",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier11",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Frame 21",
+            "padding": "8.0",
+            "margin": {
+              "top": "15.0"
+            },
+            "border-radius": "4.0",
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Edtior12",
+              "Edtior13"
+            ],
+            "item-spacing": "8.0"
+          },
+          {
+            "id": "Speed and Perception",
+            "margin": {
+              "left": "8.0",
+              "right": "10.29998779296875",
+              "bottom": "46.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Speed and Perception",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Edtior12",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border12",
+              "Caption Frame12",
+              "Value14",
+              "Value15",
+              "Tier Frame12"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Edtior13",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "69.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Border13",
+              "Caption Frame13",
+              "Value16",
+              "Tier Frame13"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Border12",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border12.svg"
+          },
+          {
+            "id": "Caption Frame12",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption12"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value14",
+            "opacity": "0.699999988079071",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "10.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "ft\n",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Value15",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-30.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "20",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame12",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier12"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption12",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "Speed",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier12",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Border13",
+            "margin": {
+              "top": "8.0",
+              "right": "7.0"
+            },
+            "border-radius": "4.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "border13.svg"
+          },
+          {
+            "id": "Caption Frame13",
+            "padding": {
+              "left": "4.0",
+              "right": "4.0"
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "5.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "1.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Caption13"
+            ],
+            "item-spacing": "8.0",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "49.999999999999766",
+              "saturation": "0.023809523809523836",
+              "value": "0.9882352941176471"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Value16",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "-18.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+3",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "right",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier Frame13",
+            "border-radius": "4.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "end",
+                "offset": "1.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "4.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "stroke-width": "1.0",
+            "stroke-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "is-structured": "false",
+            "children": [
+              "Tier13"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "Caption13",
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "Percep.",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Tier13",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "16.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "129.375",
+              "saturation": "0.768",
+              "value": "0.49019607843137253"
+            },
+            "text-content": "E",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "8.0",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Special skills, proficiencies, traits, items and abilities",
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Special skills, proficiencies, traits, items and abilities",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "+",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.16470588235294117"
+            },
+            "text-content": "+",
+            "overflow": "visible",
+            "text-align-vertical": "center",
+            "text-size": "32.0",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Dropdown Trait",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "46.0"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Label",
+              "Value17"
+            ],
+            "item-spacing": "4.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Dropdown Trait1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "46.0"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Label1",
+              "Value18"
+            ],
+            "item-spacing": "4.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Dropdown Trait2",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "46.0"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Label2",
+              "Value19"
+            ],
+            "item-spacing": "4.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Label",
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Rarity",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Value17",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Common",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Label1",
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Rarity",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Value18",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Common",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.171875"
+          },
+          {
+            "id": "Label2",
+            "color": {
+              "alpha": "1.0",
+              "hue": "4.8",
+              "saturation": "0.78125",
+              "value": "0.3764705882352941"
+            },
+            "text-content": "Rarity",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2197265625",
+            "typeface": "Impact"
+          },
+          {
+            "id": "Value19",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Common",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.171875"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Main Frame",
+      "size": {
+        "width": 848.0,
+        "height": 654.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
