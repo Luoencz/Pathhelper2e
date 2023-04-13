@@ -11,6 +11,8 @@ import data.Rarity
 import data.SavingThrow
 import data.Size
 import androidx.compose.runtime.*
+import components_unique.CharacteristicType
+import components_unique.CreatureCharacteristicCard
 import data.*
 
 class CreatureVM {
@@ -74,4 +76,12 @@ class CreatureVM {
         table = abilityModifiersTable,
         values = Ability.values()
     )
+
+    val CreatureCharacteristics = mutableStateListOf<CreatureCharacteristicCard>(CreatureCharacteristicCard.GeneralTraitCharacteristicCard(
+        mutableStateOf("Undead"), type = CharacteristicType.trait, description = ""
+    ),CreatureCharacteristicCard.GeneralTraitCharacteristicCard(
+        mutableStateOf("Dragon"), type = CharacteristicType.trait, description = ""
+    ),CreatureCharacteristicCard.GeneralTraitCharacteristicCard(
+        mutableStateOf("Knight"), type = CharacteristicType.trait, description = ""
+    ))
 }

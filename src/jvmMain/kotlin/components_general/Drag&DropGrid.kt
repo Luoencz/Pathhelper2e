@@ -1,46 +1,19 @@
 package components_general
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
-import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import kotlinx.coroutines.*
-import kotlin.math.absoluteValue
 import kotlin.math.pow
 
-
-sealed interface CreatureCharacteristicCard {
-    data class BasicCharacteristicCard(var name: String) : CreatureCharacteristicCard
-}
-
-@Composable
-fun basicCharacteristicCardComponent(data: MutableState<CreatureCharacteristicCard.BasicCharacteristicCard>) {
-    Box(Modifier.size(200.dp).background(Color.Red)) {
-        Text(data.value.name)
-    }
-}
-
-@Composable
-fun characteristicCard(content: CreatureCharacteristicCard) {
-    when (content) {
-        is CreatureCharacteristicCard.BasicCharacteristicCard -> basicCharacteristicCardComponent(mutableStateOf(content))
-    }
-}
 
 fun <T> MutableList<T>.move(fromIdx: Int, toIdx: Int) {
     val tmp = this[fromIdx]
@@ -59,7 +32,7 @@ fun <T> MutableList<T>.move(fromIdx: Int, toIdx: Int) {
 }
 
 @Composable
-fun dragAndDropGrid(contents: SnapshotStateList<CreatureCharacteristicCard>) {
+fun<T> dragAndDropGrid(contentsData: SnapshotStateList<T>, contentsGenerator: @Composable (T) -> Unit ) {
     val lazyGridState = rememberLazyGridState()
 
     var position by remember {
@@ -76,7 +49,7 @@ fun dragAndDropGrid(contents: SnapshotStateList<CreatureCharacteristicCard>) {
     draggedItem = when {
         changeItem == null -> null
         draggedItem == null -> changeItem
-        else -> changeItem.also { contents.move(draggedItem!!, it!!) }
+        else -> changeItem.also { contentsData.move(draggedItem!!, it!!) }
     }
 
     val indexWithOffset by derivedStateOf {
@@ -89,7 +62,7 @@ fun dragAndDropGrid(contents: SnapshotStateList<CreatureCharacteristicCard>) {
         columns = GridCells.Adaptive(200.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp),
-        modifier = Modifier.pointerInput(Unit) {
+        modifier = Modifier.width(1230.dp).pointerInput(Unit) {
             detectDragGestures(
                 onDragStart = { offset ->
                     lazyGridState.layoutInfo.visibleItemsInfo.find { item ->
@@ -117,7 +90,7 @@ fun dragAndDropGrid(contents: SnapshotStateList<CreatureCharacteristicCard>) {
         },
         state = lazyGridState
     ) {
-        this.itemsIndexed(contents) { index, it ->
+        this.itemsIndexed(contentsData) { index, it ->
             val offset_x by remember {
                 derivedStateOf { indexWithOffset?.takeIf { it.first == index }?.second }
             }
@@ -125,7 +98,7 @@ fun dragAndDropGrid(contents: SnapshotStateList<CreatureCharacteristicCard>) {
                 derivedStateOf { indexWithOffset?.takeIf { it.first == index }?.third }
             }
             Box(Modifier.zIndex(offset_x?.let { 1f } ?: 0f).graphicsLayer { translationX = offset_x ?: 0f }.graphicsLayer {  translationY = offset_y ?: 0f }) {
-                characteristicCard(it)
+               contentsGenerator(it)
             }
         }
     }

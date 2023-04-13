@@ -15,7 +15,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import components_general.dragAndDropGrid
-import components_general.CreatureCharacteristicCard
+import components_unique.CreatureCharacteristicCard
+import components_unique.characteristicCard
 import models.ApplicationVM
 
 @Composable
@@ -60,19 +61,6 @@ fun homePage(applicationVM: ApplicationVM) {
                         }
                     }
                 }
-                val items = mutableStateListOf<CreatureCharacteristicCard>(
-                    CreatureCharacteristicCard.BasicCharacteristicCard("0"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("1"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("2"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("3"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("4"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("5"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("6"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("7"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("8"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("9"),
-                    CreatureCharacteristicCard.BasicCharacteristicCard("10"))
-                dragAndDropGrid(items)
             }
         }
     }

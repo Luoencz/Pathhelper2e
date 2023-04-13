@@ -24,7 +24,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
         Column(
             Modifier
                 .padding(15.dp)
-                .verticalScroll(rememberScrollState()),
+                //.verticalScroll(rememberScrollState())
+            ,
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             Row(
@@ -162,6 +163,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 Lore_Component(creatureVM = creatureVM)
             }
 
+            dragAndDropGrid(creatureVM.CreatureCharacteristics) { characteristicCard(it) }
         }
     }
 }
