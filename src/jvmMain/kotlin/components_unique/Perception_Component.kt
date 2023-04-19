@@ -22,8 +22,9 @@ fun Perception_Component(creatureVM: CreatureVM) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },
-            explicitlySigned = true
-        ) { Text(text = "Perception") }
+            explicitlySigned = true,
+            label = "Perception"
+        )
         TextDropdown(creatureVM.creaturePerception.tierByStat(Perception.Perception), {
             creatureVM.creaturePerception.changeToStatTier(Perception.Perception, it)
         }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible))

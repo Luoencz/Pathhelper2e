@@ -4,29 +4,28 @@ import models.ApplicationVM
 import pages.*
 
 class PerceptionTrait(
-    override var name: String = "",
+    name: String = "",
     range: Int = 0,
     sensePrecision: SensePrecision = SensePrecision.Precise
-): NamedObject {
+) {
     var range by mutableStateOf(range)
     var sensePrecision by mutableStateOf(sensePrecision)
+    var name by mutableStateOf(name)
 }
 
 class ReceivedDamageModifierTrait(
-    override var name: String = "",
+    name: String = "",
     traitValue: Int = 0,
     receivedDamageModifierType: ReceivedDamageModifierType = ReceivedDamageModifierType.Resistance
-) : NamedObject {
+) {
     var traitValue by mutableStateOf(traitValue)
         //if (receivedDamageModifierType == ReceivedDamageModifierType.Immunity) mutableStateOf(null) else mutableStateOf(traitValue)
     var receivedDamageModifierType by mutableStateOf(receivedDamageModifierType)
+    var name by mutableStateOf(name)
 }
 
-class BasicNamedObject(
-    override var name: String
-): NamedObject
 
-enum class ReceivedDamageModifierType: NamedObject {
+enum class ReceivedDamageModifierType {
     Immunity, Resistance, Weakness
 }
 

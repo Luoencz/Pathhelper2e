@@ -42,7 +42,6 @@ fun Senses_Component(creatureVM: CreatureVM) {
                                         it
                                 },
                                 values = SensePrecision.values(),
-                                size = Modifier.size(85.dp, 35.dp)
                             )
                             NumericTextField(
                                 value = creatureVM.perceptionTraits.find { it.name == namedObject.name }!!.range,
@@ -53,7 +52,7 @@ fun Senses_Component(creatureVM: CreatureVM) {
                                 modifier = Modifier
                                     .width(68.dp)
                                     .padding(start = 3.dp, end = 0.5.dp)
-                            ) { Text(text = "Range") }
+                            )
                             Text(text = "ft", color = Color.Gray)
                         }
                     }

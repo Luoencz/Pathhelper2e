@@ -1,6 +1,5 @@
 package components_unique
 
-import PerceptionTrait
 import ReceivedDamageModifierTrait
 import ReceivedDamageModifierType
 import androidx.compose.foundation.*
@@ -13,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
 import components_general.*
-import data.*
 import models.*
 
 @Composable
@@ -45,7 +43,6 @@ fun ResistancesAndWeaknesses_Component(creatureVM: CreatureVM) {
                                     it
                             },
                             values = ReceivedDamageModifierType.values(),
-                            size = Modifier.size(100.dp, 35.dp)
                         )
 
                         if(traitsList.find { it.name == namedObject.name }!!.receivedDamageModifierType != ReceivedDamageModifierType.Immunity) {
@@ -58,7 +55,7 @@ fun ResistancesAndWeaknesses_Component(creatureVM: CreatureVM) {
                                 modifier = Modifier
                                     .width(68.dp)
                                     .padding(start = 3.dp, end = 0.5.dp)
-                            ) { Text(text = "Value") }
+                            )
                         } else {
                             traitsList.find { it.name == namedObject.name }!!.traitValue = 0
                         }

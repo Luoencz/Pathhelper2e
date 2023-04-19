@@ -9,7 +9,7 @@ enum class Ability {
     Charisma
 }
 
-enum class Skill: NamedObject {
+enum class Skill {
     Acrobatics,
     Arcana,
     Athletics,

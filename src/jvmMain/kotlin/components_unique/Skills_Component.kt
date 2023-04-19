@@ -1,6 +1,5 @@
 package components_unique
 
-import BasicNamedObject
 import data.StatTier
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
@@ -20,9 +19,9 @@ import androidx.compose.ui.unit.*
 import components_general.*
 import data.*
 import models.*
-
+/*
 @Composable
-fun Skills_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state 
+fun Skills_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) { //TODO Fix selection and handle empty state
     HorizontalFlow(modifier = modifier) {
         creatureVM.skillModifiers.setups.keys.forEach { skill ->
             SkillView(skill = skill, creatureVM = creatureVM)
@@ -139,3 +138,4 @@ fun SkillView(skill: Skill, creatureVM: CreatureVM, modifier: Modifier = Modifie
         }
     }
 }
+*/

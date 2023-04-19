@@ -1,20 +1,25 @@
 package pages
 
-import BasicNamedObject
 import Pages
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.platform.*
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
+import com.google.relay.compose.BoxScopeInstance.rowWeight
+import com.google.relay.compose.RelayText
 import components_general.*
 import models.*
 import components_unique.*
+import relay_components.Identity
 
 @Composable
 fun creatureMainStats(applicationVM: ApplicationVM) {
@@ -24,7 +29,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
         Column(
             Modifier
                 .padding(15.dp)
-                //.verticalScroll(rememberScrollState())
+            //.verticalScroll(rememberScrollState())
             ,
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
@@ -55,114 +60,141 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 )
             }
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-
-                //Creature Name
-                Name_Component(creatureVM)
-
-                //Level Choice
-                CL_Component(creatureVM = creatureVM)
-
-                Column(
-                    Modifier.padding(start = 6.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = "Rarity")
-                    TextDropdown(
-                        creatureVM.creatureRarity.value,
-                        { creatureVM.creatureRarity.value = it },
-                        enumValues(),
-                    )
-                }
-
-                Column(
-                    Modifier.padding(start = 3.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = "Alignment")
-                    TextDropdown(
-                        creatureVM.creatureAlignment.value,
-                        { creatureVM.creatureAlignment.value = it },
-                        enumValues(),
-                    )
-                }
-
-                Column(
-                    Modifier.padding(start = 3.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = "Size")
-
-                    TextDropdown(
-                        creatureVM.creatureSize.value,
-                        { creatureVM.creatureSize.value = it },
-                        enumValues(),
-                        size = Modifier.size(100.dp, 25.dp)
-                    )
-                }
-
-                //Secondary Traits
-                NamedList(
-                    modifier = Modifier.padding(start = 15.dp),
-                    traitsList = creatureVM.creatureSecondaryTraits,
-                    lambdaConstructor = { BasicNamedObject(it) }
-                )
-            }
-
-            Row {
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                 Column {
-                    Text("Ability Modifiers")
-                    AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
+                    Identity(creatureVM)
                 }
-                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
-                Column {
-                    Text("Perception")
-                    Row(Modifier.padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(3.dp)) {
-                        Perception_Component(creatureVM)
-                        Senses_Component(creatureVM)
+                Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                    Row {
+                        Column(
+                            horizontalAlignment = Alignment.Start
+                        ) {
+                            RelayText(
+                                color = Color(
+                                    alpha = 255,
+                                    red = 96,
+                                    green = 27,
+                                    blue = 21
+                                ),
+                                height = 1.171875.em,
+                                textAlign = TextAlign.Left,
+                                maxLines = -1,
+                                modifier = Modifier.requiredHeight(25.0.dp)
+                                    .wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 4.dp)
+                            ) { m, max, over, st ->
+                                BasicText(
+                                    "Rarity",
+                                    modifier = m,
+                                    maxLines = max,
+                                    overflow = over,
+                                    style = st,
+                                )
+                            }
+                            TextDropdown(
+                                creatureVM.creatureRarity.value,
+                                { creatureVM.creatureRarity.value = it },
+                                enumValues(),
+                            )
+                        }
+
+                        Column(
+                            horizontalAlignment = Alignment.Start
+                        ) {
+                            RelayText(
+                                color = Color(
+                                    alpha = 255,
+                                    red = 96,
+                                    green = 27,
+                                    blue = 21
+                                ),
+                                height = 1.171875.em,
+                                textAlign = TextAlign.Left,
+                                maxLines = -1,
+                                modifier = Modifier.requiredHeight(25.0.dp)
+                                    .wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 4.dp)
+                            ) { m, max, over, st ->
+                                BasicText(
+                                    "Alignment",
+                                    modifier = m,
+                                    maxLines = max,
+                                    overflow = over,
+                                    style = st,
+                                )
+                            }
+                            TextDropdown(
+                                creatureVM.creatureAlignment.value,
+                                { creatureVM.creatureAlignment.value = it },
+                                enumValues(),
+                            )
+                        }
+
+                        Column(
+                            horizontalAlignment = Alignment.Start
+                        ) {
+                            RelayText(
+                                color = Color(
+                                    alpha = 255,
+                                    red = 96,
+                                    green = 27,
+                                    blue = 21
+                                ),
+                                height = 1.171875.em,
+                                textAlign = TextAlign.Left,
+                                maxLines = -1,
+                                modifier = Modifier.requiredHeight(25.0.dp)
+                                    .wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 4.dp)
+                            ) { m, max, over, st ->
+                                BasicText(
+                                    "Size",
+                                    modifier = m,
+                                    maxLines = max,
+                                    overflow = over,
+                                    style = st,
+                                )
+                            }
+
+                            TextDropdown(
+                                creatureVM.creatureSize.value,
+                                { creatureVM.creatureSize.value = it },
+                                enumValues(),
+                            )
+                        }
+                    }
+                    Row {
+                        Column {
+                            Text("Ability Modifiers")
+                            AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
+                        }
+                        Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                        Column {
+                            Text("Perception")
+                            Row(Modifier.padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                                Perception_Component(creatureVM)
+                            }
+                        }
+                    }
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Column {
+                            Text("AC, HP & Saving Throws")
+                            Row(Modifier.padding(top = 6.dp)) {
+                                AC_Component(creatureVM = creatureVM, Modifier.padding(end = 3.dp))
+                                HP_Component(creatureVM = creatureVM, Modifier.padding(end = 6.dp))
+                                SavingThrows_Component(creatureVM = creatureVM)
+                            }
+                        }
+                        Column {
+                            Text("Speed")
+                            Row(Modifier.padding(top = 6.dp)) {
+                                NumericTextField(
+                                    value = creatureVM.creatureSpeed.value,
+                                    modifier = Modifier.width(50.dp),
+                                    onIntValueChange = { creatureVM.creatureSpeed.value = it })
+                            }
+                        }
                     }
                 }
             }
-
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                Column {
-                    Text("AC, HP & Saving Throws")
-                    Row(Modifier.padding(top = 6.dp)) {
-                        AC_Component(creatureVM = creatureVM, Modifier.padding(end = 3.dp))
-                        HP_Component(creatureVM = creatureVM, Modifier.padding(end = 6.dp))
-                        SavingThrows_Component(creatureVM = creatureVM)
-                    }
-                }
-                Column {
-                    Text("Speed")
-                    Row(Modifier.padding(top = 6.dp)) {
-                        NumericTextField(
-                            value = creatureVM.creatureSpeed.value,
-                            modifier = Modifier.width(50.dp),
-                            onIntValueChange = { creatureVM.creatureSpeed.value = it }) {}
-                    }
-                }
-                Column {
-                    Text("Resistances & Weaknesses")
-                    Row(Modifier.padding(top = 6.dp)) {
-                        ResistancesAndWeaknesses_Component(creatureVM = creatureVM)
-                    }
-                }
-            }
-
-            Column {
-                Text("Languages")
-                Row(Modifier.padding(top = 6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Languages_Component(creatureVM)
-                }
-            }
-
-            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text("Skills")
-                Skills_Component(creatureVM = creatureVM)
-                Lore_Component(creatureVM = creatureVM)
-            }
-
+            Spacer(Modifier.padding(vertical = 10.dp))
             dragAndDropGrid(creatureVM.CreatureCharacteristics) { characteristicCard(it) }
         }
     }

@@ -1,18 +1,17 @@
 package data
 
-import androidx.compose.ui.graphics.*
 
-enum class Alignment : NamedObject {
+enum class Alignment{
     LG, NG, CG, LN, NN, TN, CN, LE,
     NE, CE
 }
 
-enum class Size : NamedObject {
+enum class Size {
     Tiny, Small, Medium, Large, Huge, Gargantuan
 }
 
-enum class Rarity(override val color: Color) : ColoredNamedObject {
-    Common(Color.White), Uncommon(Color.Yellow), Rare(Color.Cyan), Unique(Color.Magenta)
+enum class Rarity {
+    Common, Uncommon, Rare, Unique
 }
 
 enum class AC {
@@ -31,12 +30,12 @@ enum class SavingThrow {
     Reflex, Will, Fortitude
 }
 
-enum class SensePrecision : NamedObject {
+enum class SensePrecision {
     Precise,
     Imprecise,
     Vague
 }
 
-enum class StatTier : NamedObject {
+enum class StatTier {
     Extreme, High, Moderate, Low, Terrible
 }

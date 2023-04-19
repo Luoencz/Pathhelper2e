@@ -17,7 +17,6 @@ fun SavingThrows_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier
     Row(modifier) {
         SavingThrow.values().forEach { savingThrow ->
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(start = 3.dp)) {
-                Row {
                     NumericTextField(
                         value = creatureVM.creatureSavingThrows.modByStat(savingThrow),
                         onIntValueChange = { creatureVM.creatureSavingThrows.changeToMod(savingThrow, it) },
@@ -26,9 +25,9 @@ fun SavingThrows_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier
                             is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                             null, is StatSetup.Tier -> TextStyle.Default
                         },
-                        explicitlySigned = true
-                    ) { Text(text = savingThrow.name) }
-                }
+                        explicitlySigned = true,
+                        label = savingThrow.name
+                    )
                 TextDropdown(creatureVM.creatureSavingThrows.tierByStat(savingThrow), {
                     creatureVM.creatureSavingThrows.changeToStatTier(savingThrow, it)
                 }, StatTier.values())

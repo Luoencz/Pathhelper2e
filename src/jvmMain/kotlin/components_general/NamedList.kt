@@ -15,12 +15,12 @@ import data.*
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun <T: NamedObject>NamedList(
+fun <T>NamedList(
     modifier: Modifier = Modifier,
     traitsList: SnapshotStateList<T>,
     lambdaConstructor: (String) -> T,
     label: @Composable () -> Unit = { Text(text = "New Trait") },
-    content: @Composable (NamedObject) -> Unit = {
+    content: @Composable (T) -> Unit = {
         NamedBubble(
             trait = it,
             modifier = Modifier.padding(end = 2.dp),
@@ -28,7 +28,7 @@ fun <T: NamedObject>NamedList(
             content = {
                 Box {
                     Text(
-                        text = it.name,
+                        text = it.toString(),
                         maxLines = 1,
                         modifier = Modifier
                             .widthIn(1.dp, Dp.Infinity)
@@ -57,7 +57,7 @@ fun <T: NamedObject>NamedList(
                 modifier = Modifier
                     .onKeyEvent { keyEvent ->
                         if ((keyEvent.key == Key.Enter || keyEvent.key == Key.Comma) && (keyEvent.type == KeyEventType.KeyUp)) {
-                            if (currentValue.filterNot { it.isWhitespace() } != "" && traitsList.find { it.name == currentValue } == null) {
+                            if (currentValue.filterNot { it.isWhitespace() } != "" && traitsList.find { it == currentValue } == null) {
                                 traitsList.add(lambdaConstructor(currentValue))
                             }
                             currentValue = ""

@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.*
 import data.*
 
 @Composable
-fun<T: NamedObject> NamedBubble(trait: NamedObject, modifier: Modifier, traitsList: SnapshotStateList<T>, content: @Composable (NamedObject) -> Unit) {
+fun<T> NamedBubble(trait: T, modifier: Modifier, traitsList: SnapshotStateList<T>, content: @Composable (T) -> Unit) {
     Row(modifier = modifier) {
         val interactionSource = remember { MutableInteractionSource() }
         val isHovered by interactionSource.collectIsHoveredAsState()

@@ -1,6 +1,6 @@
 package models
 
-import BasicNamedObject
+
 import data.AC
 import data.Alignment
 import data.Perception
@@ -16,14 +16,13 @@ import components_unique.CreatureCharacteristicCard
 import data.*
 
 class CreatureVM {
-    var creatureName by mutableStateOf("")
+    var creatureName by mutableStateOf("Nameless Beast")
     var creatureLevel by mutableStateOf(0)
 
     val creatureRarity = mutableStateOf(Rarity.Common)
     val creatureAlignment = mutableStateOf(Alignment.TN)
     val creatureSize = mutableStateOf(Size.Medium)
 
-    var creatureSecondaryTraits = mutableStateListOf<BasicNamedObject>()
 
     val creatureSpeed = mutableStateOf(25)
 
@@ -53,7 +52,6 @@ class CreatureVM {
 
     val perceptionTraits = mutableStateListOf<PerceptionTrait>()
 
-    val creatureLanguages = mutableStateListOf<BasicNamedObject>()
 
     val creatureReceivedDamageModifiers = mutableStateListOf<ReceivedDamageModifierTrait>()
 
@@ -64,7 +62,7 @@ class CreatureVM {
         values = Skill.values()
     )
 
-    val knownLore = mutableStateListOf<NamedObject>()
+    val knownLore = mutableStateListOf<String>()
     val loreModifiers = StatMap(
         creatureVM = this,
         table = skillTable,
