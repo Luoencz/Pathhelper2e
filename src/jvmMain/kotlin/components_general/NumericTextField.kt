@@ -35,6 +35,7 @@ fun NumericTextField(
     if (currentValue.toIntOrNull() != null && currentValue[0] != '+' && currentValue.toInt() >= 0 && explicitlySigned && !focused) {
         currentValue = "+$currentValue"
     }
+
     val interactionSource = remember { MutableInteractionSource() }
 
     Box(modifier = modifier) {
@@ -58,6 +59,7 @@ fun NumericTextField(
                 BasicTextField(
                     value = currentValue,
                     modifier = Modifier.onFocusChanged { focus ->
+                        println("focus")
                         focused = focus.isFocused
                         if (!focused) {
                             if (errorState) {
@@ -84,9 +86,9 @@ fun NumericTextField(
                     singleLine = true,
                 )
             },
-            modifier = modifier
-                .requiredWidth(66.0.dp)
-                .requiredHeight(35.0.dp)
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
         )
         if (label != null)
         RelayContainer(
@@ -106,11 +108,14 @@ fun NumericTextField(
                 blue = 96
             ),
             content = {
-                Text(text = label, textAlign = TextAlign.Center, fontSize = 12.5.sp, modifier = Modifier.padding(horizontal = 5.dp)
+                Text(text = label, textAlign = TextAlign.Center, fontSize = 12.5.sp, modifier = Modifier
+                    .padding(horizontal = 5.dp)
                     .widthIn(max = 45.dp), maxLines = 1
                 )
             },
-            modifier = Modifier.align(Alignment.TopStart).offset(x = 15.dp, y = (-7).dp)
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .offset(x = 5.dp, y = (-7).dp)
         )
     }
 }

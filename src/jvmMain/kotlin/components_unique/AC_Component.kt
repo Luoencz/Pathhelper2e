@@ -21,7 +21,7 @@ fun AC_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
         NumericTextField(
             value = creatureVM.creatureAC.modByStat(AC.AC),
             onIntValueChange = { creatureVM.creatureAC.changeToMod(AC.AC, it) },
-            modifier = Modifier.width(85.dp),
+            modifier = Modifier.width(60.dp).height(35.dp),
             textStyle = when (creatureVM.creatureAC.setups[AC.AC]) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
@@ -50,7 +50,7 @@ fun AC_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                 creatureVM.creatureAC.changeToStatTier(AC.AC, it)
             }, abilityModifiersTable[0]!!.keys.toTypedArray(), Modifier,true)
             },
-            modifier = Modifier.align(Alignment.CenterEnd)
+            modifier = Modifier.align(Alignment.CenterEnd).offset(x = 10.0.dp)
         )
     }
 }

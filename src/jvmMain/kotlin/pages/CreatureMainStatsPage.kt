@@ -163,31 +163,31 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                     Row {
                         Column {
                             Text("Ability Modifiers")
-                            AbilitiesStats_Component(creatureVM, Modifier.padding(top = 6.dp))
+                            AbilitiesStats_Component(creatureVM, Modifier.padding(top = 10.dp))
                         }
                         Spacer(modifier = Modifier.padding(horizontal = 10.dp))
                         Column {
                             Text("Perception")
-                            Row(Modifier.padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                            Row(Modifier.padding(top = 10.dp)) {
                                 Perception_Component(creatureVM)
                             }
                         }
                     }
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
                         Column {
                             Text("AC, HP & Saving Throws")
-                            Row(Modifier.padding(top = 6.dp)) {
-                                AC_Component(creatureVM = creatureVM, Modifier.padding(end = 3.dp))
-                                HP_Component(creatureVM = creatureVM, Modifier.padding(end = 6.dp))
+                            Row(Modifier.padding(top = 10.dp)) {
+                                AC_Component(creatureVM = creatureVM, Modifier.padding(end = 15.dp))
+                                HP_Component(creatureVM = creatureVM, Modifier.padding(end = 15.dp))
                                 SavingThrows_Component(creatureVM = creatureVM)
                             }
                         }
                         Column {
                             Text("Speed")
-                            Row(Modifier.padding(top = 6.dp)) {
+                            Row(Modifier.padding(top = 10.dp)) {
                                 NumericTextField(
                                     value = creatureVM.creatureSpeed.value,
-                                    modifier = Modifier.width(50.dp),
+                                    modifier = Modifier.width(60.dp).height(35.dp),
                                     onIntValueChange = { creatureVM.creatureSpeed.value = it })
                             }
                         }

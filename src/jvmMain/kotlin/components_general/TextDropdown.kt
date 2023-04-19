@@ -22,7 +22,7 @@ fun <T: Enum<T>> TextDropdown(
     selected: T, onValueChanged: (T) -> Unit, values: Array<T>, modifier: Modifier = Modifier, showOnlyFirstLetter: Boolean = false
 ) {
     var showDropdown by remember { mutableStateOf(false) }
-    var size_mod = if(showOnlyFirstLetter) Modifier.size(20.dp) else Modifier
+    var size_mod = if(showOnlyFirstLetter) Modifier.size(20.dp) else Modifier.size(width = 120.dp, height = 20.dp)
     Box(
         modifier = modifier,
     ) {

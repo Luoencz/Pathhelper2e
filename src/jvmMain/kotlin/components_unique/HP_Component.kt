@@ -21,33 +21,12 @@ fun HP_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
         NumericTextField(
             value = creatureVM.creatureHP.modByStat(HP.HP),
             onIntValueChange = { creatureVM.creatureHP.changeToMod(HP.HP, it) },
-            modifier = Modifier.width(85.dp),
+            modifier = Modifier.width(60.dp).height(35.dp),
             textStyle = when (creatureVM.creatureHP.setups[HP.HP]) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },
             label = "HP"
-        )
-        RelayContainer(
-            backgroundColor = Color(
-                alpha = 255,
-                red = 252,
-                green = 251,
-                blue = 246
-            ),
-            isStructured = false,
-            radius = 4.0,
-            strokeWidth = 0.0,
-            strokeColor = Color(
-                alpha = 255,
-                red = 9,
-                green = 39,
-                blue = 96
-            ),
-            content = {
-                Text(text = "HP", textAlign = TextAlign.Center, fontSize = 12.5.sp, modifier = Modifier.padding(horizontal = 5.dp))
-            },
-            modifier = Modifier.align(Alignment.TopStart).offset(x = 15.dp, y = (-7).dp)
         )
         RelayContainer(
             backgroundColor = Color(
@@ -70,7 +49,7 @@ fun HP_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
                     creatureVM.creatureHP.changeToStatTier(HP.HP, it)
                 }, arrayOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low, StatTier.Terrible), showOnlyFirstLetter = true)
             },
-                modifier = Modifier.align(Alignment.CenterEnd)
+                modifier = Modifier.align(Alignment.CenterEnd).offset(x = 10.0.dp)
         )
     }
 }
