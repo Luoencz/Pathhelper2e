@@ -6,12 +6,14 @@ import androidx.compose.foundation.text.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.focus.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import com.google.relay.compose.*
+import data.*
 
 @Composable
 fun NumericTextField(
@@ -108,7 +110,7 @@ fun NumericTextField(
                 blue = 96
             ),
             content = {
-                Text(text = label, textAlign = TextAlign.Center, fontSize = 12.5.sp, modifier = Modifier
+                Text(text = label, textAlign = TextAlign.Center, style = BoldTextStyle, modifier = Modifier
                     .padding(horizontal = 5.dp)
                     .widthIn(max = 45.dp), maxLines = 1
                 )

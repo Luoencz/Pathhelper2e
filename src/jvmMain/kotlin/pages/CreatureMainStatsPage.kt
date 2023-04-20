@@ -4,22 +4,20 @@ import Pages
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
-import androidx.compose.foundation.text.BasicText
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.layout.*
-import androidx.compose.ui.platform.*
+import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
-import com.google.relay.compose.BoxScopeInstance.rowWeight
 import com.google.relay.compose.RelayText
 import components_general.*
 import models.*
 import components_unique.*
-import relay_components.Identity
+import components_unique.Identity
+import data.*
 
 @Composable
 fun creatureMainStats(applicationVM: ApplicationVM) {
@@ -31,7 +29,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 .padding(15.dp)
             //.verticalScroll(rememberScrollState())
             ,
-            verticalArrangement = Arrangement.spacedBy(6.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Row(
                 Modifier
@@ -60,7 +58,11 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                 )
             }
 
-            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
+                modifier = Modifier.padding(top = 10.dp)
+            ) {
                 Column {
                     Identity(creatureVM)
                 }
@@ -69,127 +71,89 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                         Column(
                             horizontalAlignment = Alignment.Start
                         ) {
-                            RelayText(
-                                color = Color(
-                                    alpha = 255,
-                                    red = 96,
-                                    green = 27,
-                                    blue = 21
-                                ),
-                                height = 1.171875.em,
-                                textAlign = TextAlign.Left,
-                                maxLines = -1,
-                                modifier = Modifier.requiredHeight(25.0.dp)
-                                    .wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 4.dp)
-                            ) { m, max, over, st ->
-                                BasicText(
-                                    "Rarity",
-                                    modifier = m,
-                                    maxLines = max,
-                                    overflow = over,
-                                    style = st,
-                                )
-                            }
+                            Text(
+                                text = AnnotatedString("Rarity"),
+                                style = TitleTextStyle
+                            )
                             TextDropdown(
-                                creatureVM.creatureRarity.value,
-                                { creatureVM.creatureRarity.value = it },
-                                enumValues(),
+                                textStyle = TextStyle(fontSize = 17.sp),
+                                selected = creatureVM.creatureRarity.value,
+                                onValueChanged = { creatureVM.creatureRarity.value = it },
+                                values = enumValues(),
                             )
                         }
 
                         Column(
                             horizontalAlignment = Alignment.Start
                         ) {
-                            RelayText(
-                                color = Color(
-                                    alpha = 255,
-                                    red = 96,
-                                    green = 27,
-                                    blue = 21
-                                ),
-                                height = 1.171875.em,
-                                textAlign = TextAlign.Left,
-                                maxLines = -1,
-                                modifier = Modifier.requiredHeight(25.0.dp)
-                                    .wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 4.dp)
-                            ) { m, max, over, st ->
-                                BasicText(
-                                    "Alignment",
-                                    modifier = m,
-                                    maxLines = max,
-                                    overflow = over,
-                                    style = st,
-                                )
-                            }
+                            Text(
+                                text = AnnotatedString("Alignment"),
+                                style = TitleTextStyle
+                            )
                             TextDropdown(
-                                creatureVM.creatureAlignment.value,
-                                { creatureVM.creatureAlignment.value = it },
-                                enumValues(),
+                                textStyle = TextStyle(fontSize = 17.sp),
+                                selected = creatureVM.creatureAlignment.value,
+                                onValueChanged = { creatureVM.creatureAlignment.value = it },
+                                values = enumValues(),
                             )
                         }
 
                         Column(
                             horizontalAlignment = Alignment.Start
                         ) {
-                            RelayText(
-                                color = Color(
-                                    alpha = 255,
-                                    red = 96,
-                                    green = 27,
-                                    blue = 21
-                                ),
-                                height = 1.171875.em,
-                                textAlign = TextAlign.Left,
-                                maxLines = -1,
-                                modifier = Modifier.requiredHeight(25.0.dp)
-                                    .wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 4.dp)
-                            ) { m, max, over, st ->
-                                BasicText(
-                                    "Size",
-                                    modifier = m,
-                                    maxLines = max,
-                                    overflow = over,
-                                    style = st,
-                                )
-                            }
-
+                            Text(
+                                text = AnnotatedString("Size"),
+                                style = TitleTextStyle
+                            )
                             TextDropdown(
-                                creatureVM.creatureSize.value,
-                                { creatureVM.creatureSize.value = it },
-                                enumValues(),
+                                textStyle = TextStyle(fontSize = 17.sp),
+                                selected = creatureVM.creatureSize.value,
+                                onValueChanged = { creatureVM.creatureSize.value = it },
+                                values = enumValues(),
                             )
                         }
                     }
-                    Row {
-                        Column {
-                            Text("Ability Modifiers")
-                            AbilitiesStats_Component(creatureVM, Modifier.padding(top = 10.dp))
-                        }
-                        Spacer(modifier = Modifier.padding(horizontal = 10.dp))
-                        Column {
-                            Text("Perception")
-                            Row(Modifier.padding(top = 10.dp)) {
-                                Perception_Component(creatureVM)
-                            }
-                        }
-                    }
+                    Spacer(modifier = Modifier)
                     Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-                        Column {
-                            Text("AC, HP & Saving Throws")
-                            Row(Modifier.padding(top = 10.dp)) {
-                                AC_Component(creatureVM = creatureVM, Modifier.padding(end = 15.dp))
-                                HP_Component(creatureVM = creatureVM, Modifier.padding(end = 15.dp))
+                        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(
+                                text = AnnotatedString("Ability Modifiers"),
+                                style = TitleTextStyle
+                            )
+                            AbilitiesStats_Component(creatureVM)
+                        }
+                        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(
+                                text = AnnotatedString("Perception"),
+                                style = TitleTextStyle
+                            )
+                            Perception_Component(creatureVM)
+                        }
+                    }
+                    Row(horizontalArrangement = Arrangement.spacedBy(15.dp), modifier = Modifier.padding(top = 2.dp)) {
+                        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(
+                                text = AnnotatedString("AC, HP & Saving Throws"),
+                                style = TitleTextStyle
+                            )
+                            Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
+                                AC_Component(creatureVM = creatureVM)
+                                HP_Component(creatureVM = creatureVM)
                                 SavingThrows_Component(creatureVM = creatureVM)
                             }
                         }
-                        Column {
-                            Text("Speed")
-                            Row(Modifier.padding(top = 10.dp)) {
-                                NumericTextField(
-                                    value = creatureVM.creatureSpeed.value,
-                                    modifier = Modifier.width(60.dp).height(35.dp),
-                                    onIntValueChange = { creatureVM.creatureSpeed.value = it })
-                            }
+                        Spacer(modifier = Modifier.width(60.dp))
+                        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                           Text(
+                                text = AnnotatedString("Speed"),
+                               style = TitleTextStyle
+                            )
+                            NumericTextField(
+                                value = creatureVM.creatureSpeed.value,
+                                modifier = Modifier
+                                    .width(60.dp)
+                                    .height(35.dp),
+                                onIntValueChange = { creatureVM.creatureSpeed.value = it })
                         }
                     }
                 }
@@ -197,5 +161,5 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
             Spacer(Modifier.padding(vertical = 10.dp))
             dragAndDropGrid(creatureVM.CreatureCharacteristics) { characteristicCard(it) }
         }
+        }
     }
-}

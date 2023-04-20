@@ -1,6 +1,8 @@
 package components_unique
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
@@ -39,42 +41,47 @@ private fun AbilityView(creatureVM: CreatureVM, key: Ability, modifier: Modifier
 
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
     ) {
         NumericTextField(
             value = creatureVM.abilityModifiers.modByStat(key),
             onIntValueChange = { creatureVM.abilityModifiers.changeToMod(key, it) },
-            modifier = Modifier.width(60.dp).height(35.dp),
+            modifier = Modifier
+                .width(60.dp)
+                .height(35.dp)
+                .align(Alignment.Center),
             textStyle = when (creatureVM.abilityModifiers.setups[key]?.statSetup) {
-                is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
-                null, is StatSetup.Tier -> TextStyle.Default
+                is StatSetup.Modifier -> BoldTextStyle
+                null, is StatSetup.Tier -> RegularTextStyle
             },
             explicitlySigned = true,
             label = label
         )
 
-        RelayContainer(
-            backgroundColor = Color(
-                alpha = 255,
-                red = 252,
-                green = 251,
-                blue = 246
-            ),
-            isStructured = false,
-            radius = 4.0,
-            strokeWidth = 1.0,
-            strokeColor = Color(
-                alpha = 255,
-                red = 9,
-                green = 39,
-                blue = 96
-            ),
-            content = {
-                TextDropdown(creatureVM.abilityModifiers.tierByStat(key), {
-                    creatureVM.abilityModifiers.changeToStatTier(key, it)
-                }, abilityModifiersTable[0]!!.keys.toTypedArray(), Modifier, true)
-            },
-            modifier = Modifier.align(Alignment.CenterEnd).offset(x = 10.0.dp)
-        )
+        Box(
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .absoluteOffset(x = 10.0.dp)
+                .background(
+                    Color(
+                        alpha = 255,
+                        red = 252,
+                        green = 251,
+                        blue = 246
+                    )
+                )
+                .border(
+                    width = 1.dp, color = Color(
+                        alpha = 255,
+                        red = 9,
+                        green = 39,
+                        blue = 96
+                    ), shape = RoundedCornerShape(10)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            TextDropdown(creatureVM.abilityModifiers.tierByStat(key), {
+                creatureVM.abilityModifiers.changeToStatTier(key, it)
+            }, abilityModifiersTable[0]!!.keys.toTypedArray(), Modifier, true)
+        }
     }
 }

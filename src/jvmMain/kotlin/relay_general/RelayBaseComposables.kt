@@ -187,6 +187,7 @@ fun RelayText(
 @Composable
 fun RelayText(
     modifier: Modifier = Modifier,
+    text: AnnotatedString = AnnotatedString("New Trait"),
     fontSize: TextUnit = 14.sp,
     height: TextUnit = 1.em,
     letterSpacing: TextUnit = 0.sp,
@@ -205,7 +206,7 @@ fun RelayText(
     shadow: Shadow? = null,
     content: @Composable (Modifier,Int,TextOverflow,TextStyle) -> Unit = { m, max, over, st ->
         BasicText(
-            "New Trait",
+            text,
             modifier = m,
             maxLines = max,
             overflow = over,
