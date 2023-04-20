@@ -21,7 +21,7 @@ fun Perception_Component(creatureVM: CreatureVM) {
             value = creatureVM.creaturePerception.modByStat(Perception.Perception),
             onIntValueChange = { creatureVM.creaturePerception.changeToMod(Perception.Perception, it) },
             modifier = Modifier.width(60.dp).height(35.dp),
-            textStyle = when (creatureVM.creaturePerception.setups[Perception.Perception]) {
+            textStyle = when (creatureVM.creaturePerception.setups[Perception.Perception]?.statSetup) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },

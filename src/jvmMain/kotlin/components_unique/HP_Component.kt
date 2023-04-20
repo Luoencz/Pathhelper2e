@@ -22,7 +22,7 @@ fun HP_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
             value = creatureVM.creatureHP.modByStat(HP.HP),
             onIntValueChange = { creatureVM.creatureHP.changeToMod(HP.HP, it) },
             modifier = Modifier.width(60.dp).height(35.dp),
-            textStyle = when (creatureVM.creatureHP.setups[HP.HP]) {
+            textStyle = when (creatureVM.creatureHP.setups[HP.HP]?.statSetup) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },

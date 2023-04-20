@@ -22,7 +22,7 @@ fun AC_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier) {
             value = creatureVM.creatureAC.modByStat(AC.AC),
             onIntValueChange = { creatureVM.creatureAC.changeToMod(AC.AC, it) },
             modifier = Modifier.width(60.dp).height(35.dp),
-            textStyle = when (creatureVM.creatureAC.setups[AC.AC]) {
+            textStyle = when (creatureVM.creatureAC.setups[AC.AC]?.statSetup) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },

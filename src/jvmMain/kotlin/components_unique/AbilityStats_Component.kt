@@ -45,7 +45,7 @@ private fun AbilityView(creatureVM: CreatureVM, key: Ability, modifier: Modifier
             value = creatureVM.abilityModifiers.modByStat(key),
             onIntValueChange = { creatureVM.abilityModifiers.changeToMod(key, it) },
             modifier = Modifier.width(60.dp).height(35.dp),
-            textStyle = when (creatureVM.abilityModifiers.setups[key]) {
+            textStyle = when (creatureVM.abilityModifiers.setups[key]?.statSetup) {
                 is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                 null, is StatSetup.Tier -> TextStyle.Default
             },

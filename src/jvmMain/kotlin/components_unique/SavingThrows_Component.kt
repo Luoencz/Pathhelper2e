@@ -23,7 +23,7 @@ fun SavingThrows_Component(creatureVM: CreatureVM, modifier: Modifier = Modifier
                         value = creatureVM.creatureSavingThrows.modByStat(savingThrow),
                         onIntValueChange = { creatureVM.creatureSavingThrows.changeToMod(savingThrow, it) },
                         modifier = Modifier.width(60.dp).height(35.dp),
-                        textStyle = when (creatureVM.creatureSavingThrows.setups[savingThrow]) {
+                        textStyle = when (creatureVM.creatureSavingThrows.setups[savingThrow]?.statSetup) {
                             is StatSetup.Modifier -> TextStyle(fontWeight = FontWeight.Bold)
                             null, is StatSetup.Tier -> TextStyle.Default
                         },
