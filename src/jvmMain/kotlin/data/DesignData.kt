@@ -20,7 +20,7 @@ val TitleColor = Color(
     blue = 21
 )
 
-val EditableColor = Color(
+val InteractiveColor = Color(
     alpha = 255,
     red = 9,
     green = 39,
@@ -34,6 +34,13 @@ val BackgroundColor = Color(
     blue = 227
 )
 
+val LightBackgroundColor = Color(
+    alpha = 255,
+    red = 252,
+    green = 251,
+    blue = 246
+)
+
 val TitleTextStyle = TextStyle(
     TitleColor,
     fontSize = 17.sp,
@@ -41,7 +48,7 @@ val TitleTextStyle = TextStyle(
 )
 
 val InteractiveTextStyle = TextStyle(
-    EditableColor,
+    InteractiveColor,
     fontSize = 15.sp,
     fontFamily = robotoFont
 )

@@ -36,9 +36,9 @@ enum class Pages {
 @Composable
 fun navigate(applicationVM: ApplicationVM) {
     when (applicationVM.page.value) {
-        Pages.CreatureAbilitiesAndActionsPage -> creatureAbilitiesAndActions(applicationVM)
         Pages.HomePage -> homePage(applicationVM)
         Pages.CreatureMainStatsPage -> creatureMainStats(applicationVM)
+        else -> {}
     }
 }
 

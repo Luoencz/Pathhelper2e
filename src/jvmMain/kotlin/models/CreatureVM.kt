@@ -55,20 +55,6 @@ class CreatureVM {
 
     val creatureReceivedDamageModifiers = mutableStateListOf<ReceivedDamageModifierTrait>()
 
-    val proficientSkills = Skill.values().map { it to false }.toMutableStateMap()
-    val skillModifiers = StatMap(
-        creatureVM = this,
-        table = skillTable,
-        values = Skill.values()
-    )
-
-    val knownLore = mutableStateListOf<String>()
-    val loreModifiers = StatMap(
-        creatureVM = this,
-        table = skillTable,
-        values = knownLore.toTypedArray()
-    )
-
     val abilityModifiers = StatMap(
         creatureVM = this,
         table = abilityModifiersTable,

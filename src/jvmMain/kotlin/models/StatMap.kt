@@ -26,6 +26,7 @@ class Stat(val table: MutableMap<Int, Map<StatTier, Int>>) {
         StatType.SavingThrow -> savingThrowsTable
         StatType.Perception -> perceptionTable
     }*/
+
     var statSetup: StatSetup by mutableStateOf(StatSetup.Tier(StatTier.Moderate))
 
     fun modByStat(level: Int): Int {

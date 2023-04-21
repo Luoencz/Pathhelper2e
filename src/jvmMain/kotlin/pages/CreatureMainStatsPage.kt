@@ -10,14 +10,11 @@ import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
-import com.google.relay.compose.RelayText
 import components_general.*
-import models.*
 import components_unique.*
-import components_unique.Identity
 import data.*
+import models.*
 
 @Composable
 fun creatureMainStats(applicationVM: ApplicationVM) {
@@ -127,7 +124,11 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 text = AnnotatedString("Perception"),
                                 style = TitleTextStyle
                             )
-                            Perception_Component(creatureVM)
+                            TierStatView(
+                                modifier = Modifier,
+                                statMap = creatureVM.creaturePerception,
+                                key = Perception.Perception
+                            )
                         }
                     }
                     Row(horizontalArrangement = Arrangement.spacedBy(15.dp), modifier = Modifier.padding(top = 2.dp)) {
@@ -137,23 +138,43 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 style = TitleTextStyle
                             )
                             Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-                                AC_Component(creatureVM = creatureVM)
-                                HP_Component(creatureVM = creatureVM)
-                                SavingThrows_Component(creatureVM = creatureVM)
+                                TierStatView(Modifier, creatureVM.creatureAC, AC.AC, "AC")
+                                TierStatView(
+                                    modifier = Modifier,
+                                    statMap = creatureVM.creatureHP,
+                                    key = HP.HP,
+                                    label = "HP"
+                                )
+                                Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
+                                    SavingThrow.values().forEach { savingThrow ->
+                                        TierStatView(
+                                            modifier = Modifier,
+                                            statMap = creatureVM.creatureSavingThrows,
+                                            key = savingThrow,
+                                            label = when (savingThrow) {
+                                                SavingThrow.Reflex -> "Ref"
+                                                SavingThrow.Will -> "Will"
+                                                SavingThrow.Fortitude -> "Fort"
+                                            },
+                                            true
+                                        )
+                                    }
+                                }
                             }
                         }
                         Spacer(modifier = Modifier.width(60.dp))
                         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                           Text(
+                            Text(
                                 text = AnnotatedString("Speed"),
-                               style = TitleTextStyle
+                                style = TitleTextStyle
                             )
                             NumericTextField(
                                 value = creatureVM.creatureSpeed.value,
                                 modifier = Modifier
                                     .width(60.dp)
                                     .height(35.dp),
-                                onIntValueChange = { creatureVM.creatureSpeed.value = it })
+                                onIntValueChange = { creatureVM.creatureSpeed.value = it }
+                            )
                         }
                     }
                 }
@@ -161,5 +182,5 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
             Spacer(Modifier.padding(vertical = 10.dp))
             dragAndDropGrid(creatureVM.CreatureCharacteristics) { characteristicCard(it) }
         }
-        }
     }
+}

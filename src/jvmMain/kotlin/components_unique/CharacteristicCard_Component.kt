@@ -35,43 +35,6 @@ sealed interface CreatureCharacteristicCard {
 fun SkillCharacteristicCardComponent(data: MutableState<CreatureCharacteristicCard.SkillCharacteristicCard>) {
     //SkillView(data.value.skill, creatureVM)
 }
-
-@Composable
-@OptIn(ExperimentalMaterialApi::class)
-fun Outdated_GeneralTraitCharacteristicCardComponent(data: CreatureCharacteristicCard.GeneralTraitCharacteristicCard) {
-        val interactionSource = remember { MutableInteractionSource() }
-
-    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
-            BasicTextField(
-                value = data.name.value,
-                onValueChange = { data.name.value = it },
-                interactionSource = interactionSource,
-                enabled = true,
-                singleLine = true,
-                modifier = Modifier
-                    .widthIn(10.dp, Dp.Infinity).padding(16.dp).width(100.dp)
-            ) {
-                TextFieldDefaults.OutlinedTextFieldDecorationBox(
-                    value = data.name.value,
-                    visualTransformation = VisualTransformation.None,
-                    innerTextField = it,
-                    singleLine = true,
-                    enabled = true,
-                    label = { Text(text = "Name") },
-                    interactionSource = interactionSource,
-                    // keep vertical paddings but change the horizontal
-                    contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                        start = 8.dp, end = 8.dp
-                    ),
-                    colors = TextFieldDefaults.outlinedTextFieldColors()
-                )
-            }
-            Text(data.type.name, Modifier.padding(16.dp))
-        }
-    }
-}
-
 @Composable
 fun characteristicCard(content: CreatureCharacteristicCard) {
     Box(Modifier.size(200.dp)) {
