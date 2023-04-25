@@ -5,9 +5,10 @@ import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.*
@@ -18,11 +19,11 @@ import data.*
 @Composable
 fun characteristicCard(content: CreatureCharacteristic) {
     val interactionSource = remember { MutableInteractionSource() }
-    var generator: Pair<String, @Composable ()-> Unit> = when (content) {
+    var generator: Pair<String, @Composable () -> Unit> = when (content) {
         is CreatureCharacteristic.GeneralTrait -> Pair("Trait") @Composable { GeneralTraitContent(content) }
-        is CreatureCharacteristic.PerceptionSense -> TODO()
+        is CreatureCharacteristic.PerceptionSense -> Pair("Sense") @Composable { PerceptionContent(content)}
         is CreatureCharacteristic.Resistance -> TODO()
-        is CreatureCharacteristic.Ability -> TODO()
+        is CreatureCharacteristic.Stat -> Pair("Skill") @Composable { SkillContent(content) }
     }
 
     Box(
@@ -46,18 +47,21 @@ fun characteristicCard(content: CreatureCharacteristic) {
                     onValueChange = { content.name.value = it },
                     interactionSource = interactionSource,
                     singleLine = true,
-                    textStyle = RegularTextStyle.merge(TextStyle(color = TitleColor, fontSize = 17.sp))
+                    textStyle = RegularTextStyle.merge(TextStyle(color = TitleColor, fontSize = 17.sp)),
+                    modifier = Modifier.width(110.dp)
                 )
                 Spacer(Modifier.weight(1f))
                 Box(
                     Modifier
                         .wrapContentSize()
-                        .background(TitleColor, RoundedCornerShape(CornerSize(3.dp)))) {
+                        .background(TitleColor, RoundedCornerShape(CornerSize(3.dp)))
+                ) {
                     BasicText(
-                        generator.first, maxLines = 1, overflow = TextOverflow.Clip, style = RegularTextStyle.merge(
-                            TextStyle(color = Color.White)),
-                            modifier = Modifier.padding(3.dp)
-                        )
+                        generator.first, maxLines = 1, style = RegularTextStyle.merge(
+                            TextStyle(color = Color.White)
+                        ),
+                        modifier = Modifier.wrapContentWidth().padding(3.dp)
+                    )
                 }
             }
             generator.second()
@@ -69,10 +73,12 @@ fun characteristicCard(content: CreatureCharacteristic) {
 fun GeneralTraitContent(content: CreatureCharacteristic.GeneralTrait) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    Box(modifier = Modifier
-        .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
-        .padding(3.dp)
-        .fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
+            .padding(3.dp)
+            .fillMaxSize()
+    ) {
         BasicTextField(
             value = content.description.value,
             onValueChange = { content.description.value = it },
@@ -82,22 +88,71 @@ fun GeneralTraitContent(content: CreatureCharacteristic.GeneralTrait) {
         )
     }
 }
+
 @Composable
-fun SkillContent(content: CreatureCharacteristic.Ability) {
+fun SkillContent(content: CreatureCharacteristic.Stat) {
     val interactionSource = remember { MutableInteractionSource() }
 
-    Box(modifier = Modifier
-        .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
-        .padding(3.dp)
-        .fillMaxSize()) {
+    Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
+        TierStatView(stat = content.stat.value, explicitlySigned = true)
 
-        //TierStatView(statMap = content.stat, key = )
-        BasicTextField(
-            value = content.description.value,
-            onValueChange = { content.description.value = it },
-            interactionSource = interactionSource,
-            textStyle = RegularTextStyle,
-            modifier = Modifier.fillMaxSize()
-        )
+        Box(
+            modifier = Modifier
+                .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
+                .padding(3.dp)
+                .fillMaxSize()
+        ) {
+            BasicTextField(
+                value = content.description.value,
+                onValueChange = { content.description.value = it },
+                interactionSource = interactionSource,
+                textStyle = RegularTextStyle,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+    }
+}
+
+@Composable
+fun PerceptionContent(content: CreatureCharacteristic.PerceptionSense) {
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                NumericTextField(
+                    value = content.range.value,
+                    onIntValueChange = {
+                        content.range.value = it
+                    },
+                    modifier = Modifier
+                        .width(60.dp)
+                        .height(35.dp)
+                )
+                Text(text = "ft", color = Color.Gray)
+            }
+            TextDropdown(
+                selected = content.precision.value,
+                onValueChanged = {
+                    content.precision.value = it
+                },
+                values = SensePrecision.values(),
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
+                .padding(3.dp)
+                .fillMaxSize()
+        ) {
+            BasicTextField(
+                value = content.description.value,
+                onValueChange = { content.description.value = it },
+                interactionSource = interactionSource,
+                textStyle = RegularTextStyle,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
 }

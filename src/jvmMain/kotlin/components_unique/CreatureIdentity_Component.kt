@@ -77,10 +77,7 @@ fun Identity(creatureVM: CreatureVM) {
                 contentAlignment = Alignment.Center
             ) {
                 BasicText(
-                    "Level: ${
-                        creatureVM
-                            .level
-                    }",
+                    "Level: ${creatureVM.level.value}",
                     modifier = Modifier.clickable { popupControl = !popupControl },
                     style = InteractiveTextStyle.merge(TextStyle(textAlign = TextAlign.Center)),
                 )
@@ -108,7 +105,7 @@ fun Identity(creatureVM: CreatureVM) {
                             items(26) {
                                 Box(modifier = Modifier
                                     .clickable {
-                                    creatureVM.level = it - 1
+                                    creatureVM.level.value = it - 1
                                     popupControl = false }
                                     .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
                                     .background(LightBackgroundColor)

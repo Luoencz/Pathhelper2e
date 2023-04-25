@@ -62,43 +62,60 @@ fun<T> dragAndDropGrid(contentsData: SnapshotStateList<T>, contentsGenerator: @C
         columns = GridCells.Adaptive(200.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp),
-        modifier = Modifier.width(1230.dp).pointerInput(Unit) {
-            detectDragGestures(
-                onDragStart = { offset ->
-                    lazyGridState.layoutInfo.visibleItemsInfo.find { item ->
-                        offset.x.toInt() in item.offset.x..(item.offset.x + item.size.width) && offset.y.toInt() in item.offset.y..(item.offset.y + item.size.height)
-                    }?.also { item ->
-                        position = Pair(item.offset.x + item.size.width / 2f,item.offset.y + item.size.height / 2f)
+        modifier = Modifier
+            .width(1230.dp)
+            .pointerInput(Unit) {
+                detectDragGestures(
+                    onDragStart = { offset ->
+                        lazyGridState.layoutInfo.visibleItemsInfo
+                            .find { item ->
+                                offset.x.toInt() in item.offset.x..(item.offset.x + item.size.width) && offset.y.toInt() in item.offset.y..(item.offset.y + item.size.height)
+                            }
+                            ?.also { item ->
+                                position =
+                                    Pair(item.offset.x + item.size.width / 2f, item.offset.y + item.size.height / 2f)
+                            }
+                    },
+                    onDrag = { change, offset ->
+                        change.consume()
+                        position = Pair(
+                            position?.first?.plus(offset.x) ?: offset.x,
+                            position?.second?.plus(offset.y) ?: offset.y
+                        )
+                        changeItem = lazyGridState.layoutInfo.visibleItemsInfo.minByOrNull {
+                            ((position!!.first.minus((it.offset.x + it.size.width / 2f)))
+                                .toDouble()
+                                .pow(2.0)
+                                    +
+                                    (position!!.second.minus((it.offset.y + it.size.height / 2f)))
+                                        .toDouble()
+                                        .pow(2.0)
+                                    ).pow(0.5)
+                        }?.index
+                    },
+                    onDragEnd = {
+                        position = null
+                        changeItem = null
+                        draggedItem = null
                     }
-                },
-                onDrag = { change, offset ->
-                    change.consume()
-                    position = Pair(position?.first?.plus(offset.x) ?: offset.x,position?.second?.plus(offset.y) ?: offset.y)
-                    changeItem = lazyGridState.layoutInfo.visibleItemsInfo.minByOrNull {
-                        (  (position!!.first.minus((it.offset.x + it.size.width / 2f))).toDouble().pow(2.0)
-                        +
-                        (position!!.second.minus((it.offset.y + it.size.height / 2f))).toDouble().pow(2.0)
-                                ).pow(0.5)
-                    }?.index
-                },
-                onDragEnd = {
-                    position = null
-                    changeItem = null
-                    draggedItem = null
-                }
-            )
-        },
+                )
+            },
         state = lazyGridState
     ) {
+        //, {index, it -> it.hashCode()} - fix Drag&Drop selection
         this.itemsIndexed(contentsData) { index, it ->
-            val offset_x by remember {
-                derivedStateOf { indexWithOffset?.takeIf { it.first == index }?.second }
-            }
-            val offset_y by remember {
-                derivedStateOf { indexWithOffset?.takeIf { it.first == index }?.third }
-            }
-            Box(Modifier.zIndex(offset_x?.let { 1f } ?: 0f).graphicsLayer { translationX = offset_x ?: 0f }.graphicsLayer {  translationY = offset_y ?: 0f }) {
-               contentsGenerator(it)
+                val offset_x by remember {
+                    derivedStateOf { indexWithOffset?.takeIf { it.first == index }?.second }
+                }
+                val offset_y by remember {
+                    derivedStateOf { indexWithOffset?.takeIf { it.first == index }?.third }
+                }
+                Box(
+                    Modifier
+                        .zIndex(offset_x?.let { 1f } ?: 0f)
+                        .graphicsLayer { translationX = offset_x ?: 0f }
+                        .graphicsLayer { translationY = offset_y ?: 0f }) {
+                    contentsGenerator(it)
             }
         }
     }

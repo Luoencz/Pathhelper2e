@@ -1,7 +1,6 @@
 package data
 
 import androidx.compose.runtime.*
-import models.*
 
 sealed interface CreatureCharacteristic {
     var name: MutableState<String>
@@ -17,9 +16,9 @@ sealed interface CreatureCharacteristic {
         var description: MutableState<String>
     ) : CreatureCharacteristic
 
-    data class Ability(
+    data class Stat(
         override var name: MutableState<String>,
-        var stat: MutableState<Stat>,
+        var stat: MutableState<models.Stat>,
         var description: MutableState<String>
     ) : CreatureCharacteristic
 

@@ -1,7 +1,5 @@
 package data
 
-import data.StatTier
-
 val perceptionTable = """-1 +9 +8 +5 +2 +0
 0 +10 +9 +6 +3 +1
 1 +11 +10 +7 +4 +2
@@ -68,7 +66,7 @@ val skillTable = """-1 +8 +5 +4 +2 +1
     tiers = StatTier.values().toList()
 ) { it.toInt() }.toMutableMap()
 
-val abilityModifiersTable = """-1 +3 +3 +2 +0
+val abilitiesTable = """-1 +3 +3 +2 +0
 0 +3 +3 +2 +0
 1 +5 +4 +3 +1
 2 +5 +4 +3 +1
@@ -97,7 +95,7 @@ val abilityModifiersTable = """-1 +3 +3 +2 +0
     tiers = listOf(StatTier.Extreme, StatTier.High, StatTier.Moderate, StatTier.Low)
 ) { it.toInt() }.toMutableMap()
 
-val acModifiersTable = """-1 18 15 14 12
+val acTable = """-1 18 15 14 12
 0 19 16 15 13
 1 19 16 15 13
 2 21 18 17 15

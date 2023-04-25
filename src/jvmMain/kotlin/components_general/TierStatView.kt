@@ -13,7 +13,7 @@ import models.*
 
 @Composable
 fun TierStatView(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     stat: Stat,
     label: String? = null,
     explicitlySigned: Boolean = false

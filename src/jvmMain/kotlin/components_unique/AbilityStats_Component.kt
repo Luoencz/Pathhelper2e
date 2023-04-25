@@ -17,9 +17,9 @@ fun AbilitiesStats_Component(
             val label = when (it.name.value) {
                 "Strength" -> "STR"
                 "Dexterity" -> "DEX"
-                "Consitution" -> "CON"
+                "Constitution" -> "CON"
                 "Intelligence" -> "INT"
-                "Wishom" -> "WIS"
+                "Wisdom" -> "WIS"
                 "Charisma" -> "CHA"
                 else -> it.name.value
             }
