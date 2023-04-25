@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
-import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
@@ -58,8 +57,8 @@ fun Identity(creatureVM: CreatureVM) {
             ) {
                 val interactionSource = remember { MutableInteractionSource() }
                 BasicTextField(
-                    value = creatureVM.creatureName,
-                    onValueChange = { creatureVM.creatureName = it },
+                    value = creatureVM.name,
+                    onValueChange = { creatureVM.name = it },
                     interactionSource = interactionSource,
                     textStyle = InteractiveTextStyle.merge(TextStyle(textAlign = TextAlign.Center)),
                     singleLine = true
@@ -80,7 +79,7 @@ fun Identity(creatureVM: CreatureVM) {
                 BasicText(
                     "Level: ${
                         creatureVM
-                            .creatureLevel
+                            .level
                     }",
                     modifier = Modifier.clickable { popupControl = !popupControl },
                     style = InteractiveTextStyle.merge(TextStyle(textAlign = TextAlign.Center)),
@@ -109,7 +108,7 @@ fun Identity(creatureVM: CreatureVM) {
                             items(26) {
                                 Box(modifier = Modifier
                                     .clickable {
-                                    creatureVM.creatureLevel = it - 1
+                                    creatureVM.level = it - 1
                                     popupControl = false }
                                     .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
                                     .background(LightBackgroundColor)

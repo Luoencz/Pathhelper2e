@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
 import components_general.*
 import models.*
-
+/*
 @Composable
 fun ResistancesAndWeaknesses_Component(creatureVM: CreatureVM) {
     val traitsList = creatureVM.creatureReceivedDamageModifiers
@@ -67,3 +67,4 @@ fun ResistancesAndWeaknesses_Component(creatureVM: CreatureVM) {
         label = { Text(text = "Damage Type") }
     )
 }
+*/

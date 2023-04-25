@@ -74,8 +74,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                             )
                             TextDropdown(
                                 textStyle = TextStyle(fontSize = 17.sp),
-                                selected = creatureVM.creatureRarity.value,
-                                onValueChanged = { creatureVM.creatureRarity.value = it },
+                                selected = creatureVM.rarity.value,
+                                onValueChanged = { creatureVM.rarity.value = it },
                                 values = enumValues(),
                             )
                         }
@@ -89,8 +89,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                             )
                             TextDropdown(
                                 textStyle = TextStyle(fontSize = 17.sp),
-                                selected = creatureVM.creatureAlignment.value,
-                                onValueChanged = { creatureVM.creatureAlignment.value = it },
+                                selected = creatureVM.alignment.value,
+                                onValueChanged = { creatureVM.alignment.value = it },
                                 values = enumValues(),
                             )
                         }
@@ -104,8 +104,8 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                             )
                             TextDropdown(
                                 textStyle = TextStyle(fontSize = 17.sp),
-                                selected = creatureVM.creatureSize.value,
-                                onValueChanged = { creatureVM.creatureSize.value = it },
+                                selected = creatureVM.size.value,
+                                onValueChanged = { creatureVM.size.value = it },
                                 values = enumValues(),
                             )
                         }
@@ -126,8 +126,7 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                             )
                             TierStatView(
                                 modifier = Modifier,
-                                statMap = creatureVM.creaturePerception,
-                                key = Perception.Perception
+                                creatureVM.perceptionCharacteristic.stat.value
                             )
                         }
                     }
@@ -138,23 +137,17 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 style = TitleTextStyle
                             )
                             Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-                                TierStatView(Modifier, creatureVM.creatureAC, AC.AC, "AC")
-                                TierStatView(
-                                    modifier = Modifier,
-                                    statMap = creatureVM.creatureHP,
-                                    key = HP.HP,
-                                    label = "HP"
-                                )
+                                TierStatView(Modifier, creatureVM.defenseCharacteristics[0].stat.value, "HP")
+                                TierStatView(Modifier, creatureVM.defenseCharacteristics[1].stat.value, "AC")
                                 Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-                                    SavingThrow.values().forEach { savingThrow ->
+                                    creatureVM.defenseCharacteristics.subList(2,5).forEach { savingThrow ->
                                         TierStatView(
                                             modifier = Modifier,
-                                            statMap = creatureVM.creatureSavingThrows,
-                                            key = savingThrow,
-                                            label = when (savingThrow) {
-                                                SavingThrow.Reflex -> "Ref"
-                                                SavingThrow.Will -> "Will"
-                                                SavingThrow.Fortitude -> "Fort"
+                                            savingThrow.stat.value,
+                                            label = when (savingThrow.name.value) {
+                                                "Reflex" -> "Ref"
+                                                "Fortitude" -> "Fort"
+                                                else -> savingThrow.name.value
                                             },
                                             true
                                         )
@@ -169,18 +162,18 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 style = TitleTextStyle
                             )
                             NumericTextField(
-                                value = creatureVM.creatureSpeed.value,
+                                value = creatureVM.speed.value,
                                 modifier = Modifier
                                     .width(60.dp)
                                     .height(35.dp),
-                                onIntValueChange = { creatureVM.creatureSpeed.value = it }
+                                onIntValueChange = { creatureVM.speed.value = it }
                             )
                         }
                     }
                 }
             }
             Spacer(Modifier.padding(vertical = 10.dp))
-            dragAndDropGrid(creatureVM.CreatureCharacteristics) { characteristicCard(it) }
+            dragAndDropGrid(creatureVM.creatureCharacteristics) { characteristicCard(it.value) }
         }
     }
 }

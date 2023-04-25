@@ -1,46 +1,103 @@
 package components_unique
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.text.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import com.example.figmarelay_test.generaltraitcharacteristiccardcomponent.GeneralTraitCharacteristicCardComponent
-import data.Skill
-
-enum class CharacteristicType {
-    trait,
-    skill,
-    sense
-}
-
-sealed interface CreatureCharacteristicCard {
-    var name: MutableState<String>
-    var type: CharacteristicType
-
-    data class SkillCharacteristicCard(override var type: CharacteristicType, var skill: Skill, override var name: MutableState<String> = mutableStateOf(skill.name)) : CreatureCharacteristicCard
-    data class GeneralTraitCharacteristicCard(override var name: MutableState<String>, override var type: CharacteristicType, var description: String) : CreatureCharacteristicCard
-}
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.text.*
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.unit.*
+import components_general.*
+import data.*
 
 @Composable
-fun SkillCharacteristicCardComponent(data: MutableState<CreatureCharacteristicCard.SkillCharacteristicCard>) {
-    //SkillView(data.value.skill, creatureVM)
-}
-@Composable
-fun characteristicCard(content: CreatureCharacteristicCard) {
-    Box(Modifier.size(200.dp)) {
-            when (content) {
-                is CreatureCharacteristicCard.SkillCharacteristicCard -> SkillCharacteristicCardComponent(mutableStateOf(content))
-                is CreatureCharacteristicCard.GeneralTraitCharacteristicCard -> GeneralTraitCharacteristicCardComponent(data = content)
+fun characteristicCard(content: CreatureCharacteristic) {
+    val interactionSource = remember { MutableInteractionSource() }
+    var generator: Pair<String, @Composable ()-> Unit> = when (content) {
+        is CreatureCharacteristic.GeneralTrait -> Pair("Trait") @Composable { GeneralTraitContent(content) }
+        is CreatureCharacteristic.PerceptionSense -> TODO()
+        is CreatureCharacteristic.Resistance -> TODO()
+        is CreatureCharacteristic.Ability -> TODO()
+    }
+
+    Box(
+        Modifier
+            .size(200.dp)
+            .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
+            .background(BackgroundColor)
+            .padding(10.dp)
+    ) {
+        Column {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+                    .height(30.dp),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+                BasicTextField(
+                    value = content.name.value,
+                    onValueChange = { content.name.value = it },
+                    interactionSource = interactionSource,
+                    singleLine = true,
+                    textStyle = RegularTextStyle.merge(TextStyle(color = TitleColor, fontSize = 17.sp))
+                )
+                Spacer(Modifier.weight(1f))
+                Box(
+                    Modifier
+                        .wrapContentSize()
+                        .background(TitleColor, RoundedCornerShape(CornerSize(3.dp)))) {
+                    BasicText(
+                        generator.first, maxLines = 1, overflow = TextOverflow.Clip, style = RegularTextStyle.merge(
+                            TextStyle(color = Color.White)),
+                            modifier = Modifier.padding(3.dp)
+                        )
+                }
             }
+            generator.second()
+        }
+    }
+}
+
+@Composable
+fun GeneralTraitContent(content: CreatureCharacteristic.GeneralTrait) {
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Box(modifier = Modifier
+        .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
+        .padding(3.dp)
+        .fillMaxSize()) {
+        BasicTextField(
+            value = content.description.value,
+            onValueChange = { content.description.value = it },
+            interactionSource = interactionSource,
+            textStyle = RegularTextStyle,
+            modifier = Modifier.fillMaxSize()
+        )
+    }
+}
+@Composable
+fun SkillContent(content: CreatureCharacteristic.Ability) {
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Box(modifier = Modifier
+        .border(1.dp, InteractiveColor, RoundedCornerShape(CornerSize(3.dp)))
+        .padding(3.dp)
+        .fillMaxSize()) {
+
+        //TierStatView(statMap = content.stat, key = )
+        BasicTextField(
+            value = content.description.value,
+            onValueChange = { content.description.value = it },
+            interactionSource = interactionSource,
+            textStyle = RegularTextStyle,
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }

@@ -12,10 +12,9 @@ import data.*
 import models.*
 
 @Composable
-fun <T> TierStatView(
+fun TierStatView(
     modifier: Modifier,
-    statMap: StatMap<T>,
-    key: T,
+    stat: Stat,
     label: String? = null,
     explicitlySigned: Boolean = false
 ) {
@@ -23,13 +22,13 @@ fun <T> TierStatView(
         modifier = modifier,
     ) {
         NumericTextField(
-            value = statMap.modByStat(key),
-            onIntValueChange = { statMap.changeToMod(key, it) },
+            value = stat.modByStat(),
+            onIntValueChange = { stat.changeToMod(it) },
             modifier = Modifier
                 .width(60.dp)
                 .height(35.dp)
                 .align(Alignment.Center),
-            textStyle = when (statMap.setups[key]?.statSetup) {
+            textStyle = when (stat.statSetup) {
                 is StatSetup.Modifier -> BoldTextStyle
                 null, is StatSetup.Tier -> RegularTextStyle
             },
@@ -60,10 +59,10 @@ fun <T> TierStatView(
             contentAlignment = Alignment.Center
         ) {
             TextDropdown(
-                statMap.tierByStat(key), {
-                    statMap.changeToStatTier(key, it)
+                stat.tierByStat(), {
+                    stat.changeToStatTier(it)
                 },
-                statMap.table[0]!!.keys.toTypedArray(),
+                stat.table[0]!!.keys.toTypedArray(),
                 Modifier,
                 true
             )

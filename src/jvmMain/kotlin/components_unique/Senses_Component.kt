@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.*
 import components_general.*
 import data.*
 import models.*
-
+/*
 @Composable
 fun Senses_Component(creatureVM: CreatureVM) {
     NamedList(traitsList = creatureVM.perceptionTraits,
@@ -61,3 +61,4 @@ fun Senses_Component(creatureVM: CreatureVM) {
         label = { Text(text = "Sense") }
     )
 }
+*/

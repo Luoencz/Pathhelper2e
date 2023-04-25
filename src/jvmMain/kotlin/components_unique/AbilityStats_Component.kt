@@ -5,7 +5,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import components_general.*
-import data.*
 import models.*
 
 @Composable
@@ -13,18 +12,18 @@ fun AbilitiesStats_Component(
     creatureVM: CreatureVM,
     modifier: Modifier = Modifier
 ) { //TODO Fix selection and handle empty state
-    val keys = Ability.values()
     Row(modifier, horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-        keys.forEach { key ->
-            var label = when (key) {
-                Ability.Strength -> "STR"
-                Ability.Dexterity -> "DEX"
-                Ability.Constitution -> "CON"
-                Ability.Intelligence -> "INT"
-                Ability.Wisdom -> "WIS"
-                Ability.Charisma -> "CHA"
+        creatureVM.abilityCharacteristics.forEach {
+            val label = when (it.name.value) {
+                "Strength" -> "STR"
+                "Dexterity" -> "DEX"
+                "Consitution" -> "CON"
+                "Intelligence" -> "INT"
+                "Wishom" -> "WIS"
+                "Charisma" -> "CHA"
+                else -> it.name.value
             }
-            TierStatView(modifier, creatureVM.abilityModifiers, key, label, true)
+            TierStatView(modifier, it.stat.value, label, true)
         }
     }
 }
