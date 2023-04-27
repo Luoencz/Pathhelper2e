@@ -22,3 +22,7 @@ enum class SensePrecision {
 enum class StatTier {
     Extreme, High, Moderate, Low, Terrible
 }
+
+enum class DamageModifierType {
+    Immunity, Weakness, Resistance
+}

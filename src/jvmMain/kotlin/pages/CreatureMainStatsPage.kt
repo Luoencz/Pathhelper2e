@@ -73,7 +73,6 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 style = TitleTextStyle
                             )
                             TextDropdown(
-                                textStyle = TextStyle(fontSize = 17.sp),
                                 selected = creatureVM.rarity.value,
                                 onValueChanged = { creatureVM.rarity.value = it },
                                 values = enumValues(),
@@ -88,7 +87,6 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 style = TitleTextStyle
                             )
                             TextDropdown(
-                                textStyle = TextStyle(fontSize = 17.sp),
                                 selected = creatureVM.alignment.value,
                                 onValueChanged = { creatureVM.alignment.value = it },
                                 values = enumValues(),
@@ -103,7 +101,6 @@ fun creatureMainStats(applicationVM: ApplicationVM) {
                                 style = TitleTextStyle
                             )
                             TextDropdown(
-                                textStyle = TextStyle(fontSize = 17.sp),
                                 selected = creatureVM.size.value,
                                 onValueChanged = { creatureVM.size.value = it },
                                 values = enumValues(),

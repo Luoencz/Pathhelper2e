@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.text.*
 import androidx.compose.ui.unit.*
 import data.*
 import models.*
@@ -16,7 +17,7 @@ fun TierStatView(
     modifier: Modifier = Modifier,
     stat: Stat,
     label: String? = null,
-    explicitlySigned: Boolean = false
+    explicitlySigned: Boolean = false,
 ) {
     Box(
         modifier = modifier,

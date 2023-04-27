@@ -17,18 +17,17 @@ import data.*
 @Composable
 fun <T: Enum<T>> TextDropdown(
     selected: T, onValueChanged: (T) -> Unit, values: Array<T>, modifier: Modifier = Modifier, showOnlyFirstLetter: Boolean = false,
-    textStyle: TextStyle? = null
 ) {
     var showDropdown by remember { mutableStateOf(false) }
-    var size_mod = if(showOnlyFirstLetter) Modifier.size(20.dp) else Modifier.size(width = 120.dp, height = 20.dp)
+    var size_mod = if (showOnlyFirstLetter) Modifier.size(20.dp) else Modifier.size(width = 120.dp, height = 20.dp)
     Box(
         modifier = modifier.composed { size_mod },
         contentAlignment = if (showOnlyFirstLetter) Alignment.Center else Alignment.CenterStart
     ) {
         Text(
-            text = if(showOnlyFirstLetter) AnnotatedString(selected.name[0].toString()) else AnnotatedString(selected.name),
+            text = if (showOnlyFirstLetter) AnnotatedString(selected.name[0].toString()) else AnnotatedString(selected.name),
             overflow = TextOverflow.Clip,
-            textAlign = if(showOnlyFirstLetter) TextAlign.Center else TextAlign.Left,
+            textAlign = if (showOnlyFirstLetter) TextAlign.Center else TextAlign.Left,
             style = InteractiveTextStyle,
             modifier = Modifier.clickable { showDropdown = !showDropdown },
         )

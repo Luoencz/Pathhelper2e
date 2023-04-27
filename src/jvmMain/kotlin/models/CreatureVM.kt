@@ -83,16 +83,28 @@ class CreatureVM {
     val creatureCharacteristics = mutableStateListOf<MutableState<CreatureCharacteristic>>(
         mutableStateOf(
             CreatureCharacteristic.PerceptionSense(
-                mutableStateOf("Dark Vision"), precision = mutableStateOf(SensePrecision.Precise), range = mutableStateOf(100), description = mutableStateOf("")
+                mutableStateOf("Dark Vision"),
+                precision = mutableStateOf(SensePrecision.Precise),
+                range = mutableStateOf(100),
+                description = mutableStateOf("")
             )
         ), mutableStateOf(
             CreatureCharacteristic.GeneralTrait(
-                mutableStateOf("Dragon"), description = mutableStateOf("")
+                name = mutableStateOf("Dragon"),
+                description = mutableStateOf("")
             )
         ), mutableStateOf(
             CreatureCharacteristic.Stat(
-                mutableStateOf("Dragon Lore"),
-                mutableStateOf(Stat(skillTable, level)),
+                name = mutableStateOf("Dragon Lore"),
+                stat = mutableStateOf(Stat(skillTable, level)),
+                description = mutableStateOf("")
+            )
+        ),
+        mutableStateOf(
+            CreatureCharacteristic.DamageModifier(
+                value = mutableStateOf(1),
+                damageType = mutableStateOf("Fire"),
+                modifierType = mutableStateOf(DamageModifierType.Resistance),
                 description = mutableStateOf("")
             )
         )
